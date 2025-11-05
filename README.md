@@ -1,6 +1,6 @@
 # 🧬 Darwin Scaffold Studio
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXX)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17535484.svg)](https://doi.org/10.5281/zenodo.17535484)
 
 **"Ciência rigorosa. Resultados honestos. Impacto real."**
 
@@ -40,7 +40,7 @@ If you use this software in your research, please cite:
 ```
 Agourakis, D.C. (2025). Darwin Scaffold Studio: Q1-Level MicroCT and SEM 
 Analysis Platform. Version 1.0.0 [Software]. Zenodo. 
-https://doi.org/10.5281/zenodo.XXXXXX
+https://doi.org/10.5281/zenodo.17535484
 ```
 
 ### 📖 References
