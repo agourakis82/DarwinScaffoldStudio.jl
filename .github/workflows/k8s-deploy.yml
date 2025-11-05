@@ -1,0 +1,110 @@
+name: K8s Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy'
+        required: true
+        type: choice
+        options:
+          - dev
+          - staging
+          - production
+      version:
+        description: 'Version to deploy (e.g. v2.0.0)'
+        required: true
+        type: string
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment }}
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event.inputs.version }}
+    
+    - name: Set up kubectl
+      uses: azure/setup-kubectl@v3
+      with:
+        version: 'v1.28.0'
+    
+    - name: Configure kubectl
+      run: |
+        # Select kubeconfig based on environment
+        if [ "${{ github.event.inputs.environment }}" == "production" ]; then
+          echo "${{ secrets.KUBECONFIG_PROD }}" | base64 -d > kubeconfig
+        elif [ "${{ github.event.inputs.environment }}" == "staging" ]; then
+          echo "${{ secrets.KUBECONFIG_STAGING }}" | base64 -d > kubeconfig
+        else
+          echo "${{ secrets.KUBECONFIG_DEV }}" | base64 -d > kubeconfig
+        fi
+        export KUBECONFIG=./kubeconfig
+        kubectl cluster-info
+    
+    - name: Darwin Omniscient Agent
+      run: |
+        chmod +x .darwin/agents/darwin-omniscient-agent.sh
+        ./.darwin/agents/darwin-omniscient-agent.sh
+    
+    - name: Sync Check
+      run: |
+        chmod +x .darwin/agents/sync-check.sh
+        ./.darwin/agents/sync-check.sh || echo "Warning: Sync issues detected"
+    
+    - name: Deploy via Auto-Deploy Agent
+      run: |
+        chmod +x .darwin/agents/auto-deploy.sh
+        ./.darwin/agents/auto-deploy.sh ${{ github.event.inputs.environment }} ${{ github.event.inputs.version }}
+    
+    - name: Deployment verification
+      run: |
+        export KUBECONFIG=./kubeconfig
+        
+        # Get namespace
+        if [ "${{ github.event.inputs.environment }}" == "production" ]; then
+          NAMESPACE=darwin-scaffold-studio
+        else
+          NAMESPACE=darwin-scaffold-studio-${{ github.event.inputs.environment }}
+        fi
+        
+        # Wait for ready
+        kubectl wait --for=condition=ready pod \
+          -l app=darwin-scaffold-studio \
+          -n $NAMESPACE \
+          --timeout=600s
+        
+        # Health check
+        POD=$(kubectl get pod -l app=darwin-scaffold-studio -n $NAMESPACE -o jsonpath='{.items[0].metadata.name}')
+        kubectl exec $POD -n $NAMESPACE -- curl -sf http://localhost:8000/health
+        
+        echo "✅ Deployment verified!"
+    
+    - name: Deployment summary
+      run: |
+        export KUBECONFIG=./kubeconfig
+        
+        if [ "${{ github.event.inputs.environment }}" == "production" ]; then
+          NAMESPACE=darwin-scaffold-studio
+        else
+          NAMESPACE=darwin-scaffold-studio-${{ github.event.inputs.environment }}
+        fi
+        
+        echo "╔══════════════════════════════════════════════════════════════════════╗"
+        echo "║  ✅ DEPLOYMENT COMPLETE!                                             ║"
+        echo "╚══════════════════════════════════════════════════════════════════════╝"
+        echo ""
+        echo "Environment: ${{ github.event.inputs.environment }}"
+        echo "Version: ${{ github.event.inputs.version }}"
+        echo "Namespace: $NAMESPACE"
+        echo ""
+        echo "📊 Pods:"
+        kubectl get pods -n $NAMESPACE -l app=darwin-scaffold-studio
+        echo ""
+        echo "🔗 Services:"
+        kubectl get svc -n $NAMESPACE -l app=darwin-scaffold-studio
+        echo ""
+

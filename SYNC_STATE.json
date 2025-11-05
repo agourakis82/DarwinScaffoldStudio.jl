@@ -1,0 +1,23 @@
+{
+  "last_update": "2025-11-05T20:00:00-03:00",
+  "active_agents": [],
+  "locks": {},
+  "last_actions": [
+    {
+      "action": "apply_best_practices_template",
+      "description": "Darwin Scaffold Studio - Best Practices 2025 from darwin-core template",
+      "timestamp": "2025-11-05T20:00:00-03:00",
+      "agent_id": "cursor_agent",
+      "files_modified": [
+        ".darwin/",
+        "kubernetes/",
+        "docs/",
+        ".github/workflows/"
+      ]
+    }
+  ],
+  "version": "1.0.0",
+  "repository": "darwin-scaffold-studio",
+  "doi": "10.5281/zenodo.17535484"
+}
+

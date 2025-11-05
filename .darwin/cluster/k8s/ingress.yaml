@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: darwin-scaffold-studio
+  namespace: darwin-scaffold-studio
+  labels:
+    app: darwin-scaffold-studio
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - studio.agourakis.med.br
+    secretName: darwin-scaffold-studio-tls
+  rules:
+  - host: studio.agourakis.med.br
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: darwin-scaffold-studio
+            port:
+              number: 8600
+

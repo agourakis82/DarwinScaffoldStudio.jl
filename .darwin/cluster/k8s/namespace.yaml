@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: darwin-scaffold-studio
+  labels:
+    app: darwin-scaffold-studio
+    darwin-ecosystem: "true"
+    project: core
+    environment: production
+

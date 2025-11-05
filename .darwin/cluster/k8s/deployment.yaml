@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: darwin-scaffold-studio
+  namespace: darwin-scaffold-studio
+  labels:
+    app: darwin-scaffold-studio
+    version: v2.0.0
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: darwin-scaffold-studio
+  template:
+    metadata:
+      labels:
+        app: darwin-scaffold-studio
+        version: v2.0.0
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9090"
+        prometheus.io/path: "/metrics"
+    spec:
+      containers:
+      - name: darwin-scaffold-studio
+        image: ghcr.io/agourakis82/darwin-scaffold-studio:v2.0.0
+        ports:
+        - name: http
+          containerPort: 8600
+          protocol: TCP
+        - name: metrics
+          containerPort: 9090
+          protocol: TCP
+        env:
+        - name: DARWIN_CLUSTER_ENABLED
+          value: "true"
+        - name: DARWIN_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: DARWIN_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: DARWIN_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: PYTHONUNBUFFERED
+          value: "1"
+        envFrom:
+        - secretRef:
+            name: darwin-scaffold-studio-secrets
+        - configMapRef:
+            name: darwin-scaffold-studio-config
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "1000m"
+          limits:
+            memory: "4Gi"
+            cpu: "3000m"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8600
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8600
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+        volumeMounts:
+        - name: config
+          mountPath: /app/config
+          readOnly: true
+        - name: cache
+          mountPath: /app/.cache
+      volumes:
+      - name: config
+        configMap:
+          name: darwin-scaffold-studio-config
+      - name: cache
+        emptyDir: {}
+      restartPolicy: Always
+

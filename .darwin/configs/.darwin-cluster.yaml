@@ -1,0 +1,104 @@
+cluster:
+  name: darwin-cluster
+  namespace: darwin-scaffold-studio
+  provider: k3s  # k3s, k8s, eks, gke, aks
+  
+resources:
+  cpu:
+    request: 1000m
+    limit: 3000m
+  memory:
+    request: 1Gi
+    limit: 4Gi
+  gpu:
+    enabled: false
+    count: 0
+    type: nvidia-tesla-t4
+
+services:
+  app:
+    port: 8600
+    type: ClusterIP
+    replicas: 2
+  
+  metrics:
+    enabled: true
+    port: 9090
+
+storage:
+  type: persistent
+  size: 50Gi
+  class: standard
+  mount_path: /app/data
+
+darwin:
+  core:
+    enabled: true  # This IS darwin-scaffold-studio
+    version: v2.0.0
+  
+  agents:
+    omniscient: true
+    auto_sync: true
+    memory_enabled: true
+  
+  features:
+    rag: true
+    graphrag: true
+    selfrag: true
+    multi_ai: true
+    embedding_cache: true
+    continuous_learning: true
+
+dependencies:
+  pulsar:
+    enabled: true
+    endpoint: pulsar://pulsar.darwin-scaffold-studio.svc.cluster.local:6650
+  
+  qdrant:
+    enabled: true
+    host: qdrant.darwin-scaffold-studio.svc.cluster.local
+    port: 6333
+  
+  redis:
+    enabled: true
+    host: redis.darwin-scaffold-studio.svc.cluster.local
+    port: 6379
+
+monitoring:
+  prometheus: true
+  grafana: true
+  opentelemetry: true
+  jaeger: false
+
+logging:
+  level: INFO
+  format: json
+  aggregator: loki
+
+scaling:
+  horizontal:
+    enabled: true
+    min_replicas: 2
+    max_replicas: 10
+    target_cpu: 70
+    target_memory: 80
+  
+  vertical:
+    enabled: false
+
+health_checks:
+  liveness:
+    path: /health
+    initial_delay: 60
+    period: 10
+  
+  readiness:
+    path: /ready
+    initial_delay: 10
+    period: 5
+
+security:
+  network_policy: true
+  pod_security_policy: true
+  rbac: true
+
