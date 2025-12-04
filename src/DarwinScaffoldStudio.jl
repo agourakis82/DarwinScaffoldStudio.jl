@@ -61,11 +61,16 @@ include("DarwinScaffoldStudio/Agents/SynthesisAgent.jl")
 @info "Loading OBO Foundry integration (UBERON, CL, CHEBI, GO, NCIT, BTO)..."
 include("DarwinScaffoldStudio/Ontology/OBOFoundry.jl")
 
+# ONTOLOGY MANAGER: 3-Tier lookup system with caching
+# Tier 1: Hardcoded (~150 terms), Tier 2: SQLite cache, Tier 3: EBI OLS API
+@info "Loading OntologyManager (3-tier lookup with FAIR export)..."
+@safe_include "DarwinScaffoldStudio/Ontology/OntologyManager.jl" "OntologyManager"
+
 # INTERACTIVE: ScaffoldEditor with Q1 Literature Validation
 @info "Loading Interactive layer (ScaffoldEditor)..."
 module Interactive
-    # ScaffoldEditor will import Types and Config directly via ... prefix
-    include("DarwinScaffoldStudio/Interactive/ScaffoldEditor.jl")
+# ScaffoldEditor will import Types and Config directly via ... prefix
+include("DarwinScaffoldStudio/Interactive/ScaffoldEditor.jl")
 end
 
 # FRONTIER: Advanced AI Modules (Optional but recommended)
