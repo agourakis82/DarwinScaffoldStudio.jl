@@ -1,0 +1,140 @@
+% Darwin Scaffold Studio - Validation Tables for Q1 Publications
+% Generated: December 5, 2025
+% Version: 0.2.1
+
+% ============================================================================
+% Table 1: Literature References
+% ============================================================================
+\begin{table}[htbp]
+\centering
+\caption{Q1 Literature References Used for Validation}
+\label{tab:literature_references}
+\begin{tabular}{llll}
+\toprule
+Reference & Journal & Parameter & Criterion \\
+\midrule
+Murphy et al. (2010) & Biomaterials & Pore size & 100--325 $\mu$m \\
+Karageorgiou \& Kaplan (2005) & Biomaterials & Interconnectivity & $>$90\% \\
+Gibson \& Ashby (1997) & Cambridge UP & Elastic modulus & $E = E_s C_1 \rho^n$ \\
+Keaveny et al. (2001) & J Biomech & Trabecular bone & 70--90\% porosity \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================================
+% Table 2: Interconnectivity Results
+% ============================================================================
+\begin{table}[htbp]
+\centering
+\caption{TPMS Scaffold Interconnectivity Validation}
+\label{tab:interconnectivity}
+\begin{tabular}{lccc}
+\toprule
+TPMS Type & Interconnectivity (\%) & Criterion ($>$90\%) & Status \\
+\midrule
+Gyroid & 100.0 & \checkmark & PASS \\
+Diamond & 99.9 & \checkmark & PASS \\
+Schwarz P & 100.0 & \checkmark & PASS \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================================
+% Table 3: Gibson-Ashby Model Validation
+% ============================================================================
+\begin{table}[htbp]
+\centering
+\caption{Gibson-Ashby Mechanical Model Validation ($E_s = 20$ GPa, $C_1 = 0.3$, $n = 2$)}
+\label{tab:gibson_ashby}
+\begin{tabular}{ccccc}
+\toprule
+Porosity (\%) & Computed $E$ (MPa) & Expected $E$ (MPa) & Error (\%) & Status \\
+\midrule
+50 & 1499.9 & 1499.9 & 0.0 & \checkmark \\
+70 & 539.9 & 539.9 & 0.0 & \checkmark \\
+85 & 135.0 & 135.0 & 0.0 & \checkmark \\
+90 & 60.0 & 60.0 & 0.0 & \checkmark \\
+95 & 15.0 & 15.0 & 0.0 & \checkmark \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================================
+% Table 4: Kozeny-Carman Permeability
+% ============================================================================
+\begin{table}[htbp]
+\centering
+\caption{Kozeny-Carman Permeability Validation}
+\label{tab:permeability}
+\begin{tabular}{ccc}
+\toprule
+Porosity (\%) & Permeability (m$^2$) & Physical Trend \\
+\midrule
+50 & $4.09 \times 10^{-11}$ & Baseline \\
+70 & $5.40 \times 10^{-10}$ & $\uparrow$ Increasing \\
+85 & $7.37 \times 10^{-9}$ & $\uparrow$ Increasing \\
+90 & $2.54 \times 10^{-8}$ & $\uparrow$ Increasing \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================================
+% Table 5: Trabecular Bone Mimetic Scaffold
+% ============================================================================
+\begin{table}[htbp]
+\centering
+\caption{Trabecular Bone Mimetic Scaffold Properties}
+\label{tab:trabecular_bone}
+\begin{tabular}{lccc}
+\toprule
+Property & Target Range & Computed & Status \\
+\midrule
+Porosity & 70--90\% & 80.0\% & \checkmark \\
+Pore Size & 300--900 $\mu$m & 437.1 $\mu$m & \checkmark \\
+Tortuosity & 1.0--3.0 & 1.1 & \checkmark \\
+Interconnectivity & $>$90\% & 99.9\% & \checkmark \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================================
+% Table 6: Porosity Accuracy (Ground Truth)
+% ============================================================================
+\begin{table}[htbp]
+\centering
+\caption{Porosity Computation Accuracy (Ground Truth Validation)}
+\label{tab:porosity_accuracy}
+\begin{tabular}{cccc}
+\toprule
+Target (\%) & Computed (\%) & Error (\%) & Status \\
+\midrule
+30 & 30.0000 & 0.0 & Exact \\
+50 & 50.0000 & 0.0 & Exact \\
+70 & 70.0000 & 0.0 & Exact \\
+85 & 85.0000 & 0.0 & Exact \\
+90 & 90.0000 & 0.0 & Exact \\
+95 & 95.0000 & 0.0 & Exact \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================================
+% Table 7: Summary of All Validation Tests
+% ============================================================================
+\begin{table}[htbp]
+\centering
+\caption{Summary of Q1 Literature Validation Results}
+\label{tab:validation_summary}
+\begin{tabular}{llll}
+\toprule
+Test & Reference & Criterion & Result \\
+\midrule
+Pore Size & Murphy et al. (2010) & 100--325 $\mu$m & PASS \\
+Interconnectivity & Karageorgiou \& Kaplan (2005) & $>$90\% & PASS \\
+Elastic Modulus & Gibson \& Ashby (1997) & Model agreement & PASS (0\% error) \\
+Permeability & Kozeny-Carman & Physical consistency & PASS \\
+Trabecular Mimetic & Keaveny et al. (2001) & Biological range & PASS \\
+Porosity & Ground Truth & Exact computation & PASS (0\% error) \\
+\bottomrule
+\end{tabular}
+\end{table}
