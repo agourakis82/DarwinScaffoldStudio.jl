@@ -1,0 +1,281 @@
+\documentclass[final,5p,times,twocolumn]{elsarticle}
+
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\lstset{
+  language=Julia,
+  basicstyle=\ttfamily\scriptsize,
+  keywordstyle=\color{blue}\bfseries,
+  commentstyle=\color{gray},
+  breaklines=true,
+  frame=single
+}
+
+\journal{SoftwareX}
+
+\begin{document}
+
+\begin{frontmatter}
+
+\title{Darwin Scaffold Studio: Open-source scaffold morphometry with ontology integration}
+
+\author[pucsp]{Demetrios Chiuratto Agourakis\corref{cor1}}
+\ead{demetrios@agourakis.med.br}
+\cortext[cor1]{Corresponding author}
+
+\author[pucsp]{Moema Alencar Hausen}
+
+\affiliation[pucsp]{organization={Pontifical Catholic University of S\~ao Paulo},
+            city={S\~ao Paulo}, country={Brazil}}
+
+\begin{abstract}
+Darwin Scaffold Studio is an open-source Julia platform for tissue engineering scaffold analysis from microCT and SEM images. The software computes porosity, pore size distribution (local thickness algorithm), interconnectivity, and geometric tortuosity (Dijkstra-based). It integrates 1,200+ terms from OBO Foundry biomedical ontologies for standardized, FAIR-compliant characterization. Validation against analytical TPMS surfaces shows $<$1\% porosity error. Validation against PoreScript experimental data (n=374 manual measurements) yields 14.1\% pore size error with documented systematic bias. Darwin provides validated morphometry with ontology-aware metadata export.
+\end{abstract}
+
+\begin{keyword}
+scaffold morphometry \sep tissue engineering \sep biomedical ontology \sep microCT \sep Julia \sep open source
+\end{keyword}
+
+\end{frontmatter}
+
+%% METADATA TABLE (Required)
+\section*{Metadata}
+
+\begin{table}[h]
+\small
+\begin{tabular}{p{0.35\linewidth}p{0.55\linewidth}}
+\toprule
+\textbf{Code metadata} & \textbf{Description} \\
+\midrule
+C1: Current version & v0.3.0 \\
+C2: Repository & \url{https://github.com/agourakis82/darwin-scaffold-studio} \\
+C3: Permanent DOI & \url{https://doi.org/10.5281/zenodo.17832882} \\
+C4: License & MIT \\
+C5: Version control & git \\
+C6: Languages & Julia 1.10+ \\
+C7: Dependencies & Images.jl, Statistics.jl \\
+C8: Documentation & README.md, docs/ \\
+C9: Support & demetrios@agourakis.med.br \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%% ============================================
+\section{Motivation and significance}
+%% ============================================
+
+Scaffold characterization requires quantifying porosity, pore size, interconnectivity, and tortuosity---parameters that determine cell infiltration, nutrient transport, and tissue regeneration \cite{murphy2010,karageorgiou2005}. Despite decades of research, scaffold analysis software exhibits persistent limitations.
+
+\textbf{Validation gap.} Commercial tools (Bruker CTAn, Thermo Avizo) and open-source alternatives (BoneJ \cite{bonej}) do not publish validation against ground truth. Users cannot assess measurement accuracy or systematic errors.
+
+\textbf{Terminology inconsistency.} ``Pore size'' may indicate mean diameter, equivalent spherical diameter, or maximum inscribed sphere---different quantities with different biological implications. This ambiguity impedes reproducibility and meta-analysis.
+
+\textbf{Algorithmic shortcuts.} Many tools approximate pore size using simple connectivity metrics rather than rigorous local thickness \cite{hildebrand1997}. Tortuosity is often estimated empirically ($\tau \approx \phi^{-0.5}$) rather than computed geometrically.
+
+Darwin Scaffold Studio addresses these gaps through: (1) public validation with quantified errors, (2) integration with OBO Foundry ontologies for standardized terminology, and (3) implementation of Hildebrand-R\"uegsegger local thickness and Dijkstra-based tortuosity algorithms.
+
+The software serves two primary workflows: researchers analyzing experimental scaffolds from microCT/SEM data, and computational studies requiring validated synthetic scaffolds (TPMS surfaces) with known ground truth.
+
+%% ============================================
+\section{Software description}
+%% ============================================
+
+\subsection{Architecture}
+
+Darwin employs a modular architecture (Figure~\ref{fig:arch}):
+
+\begin{itemize}
+\item \textbf{MicroCT}: Image I/O, segmentation, morphometric algorithms
+\item \textbf{Ontology}: OBO Foundry integration, 3-tier lookup, FAIR export
+\item \textbf{Validation}: TPMS generation, Q1 literature database
+\end{itemize}
+
+The separation enables independent testing: morphometric algorithms are validated against synthetic ground truth before application to experimental data.
+
+\subsection{Morphometric algorithms}
+
+\textbf{Porosity} is computed by voxel counting---mathematically exact for binary volumes.
+
+\textbf{Pore size distribution} uses the local thickness algorithm \cite{hildebrand1997}: each pore voxel receives the diameter of the largest inscribed sphere containing it. This yields a distribution rather than a single mean, enabling characterization of pore size heterogeneity.
+
+\textbf{Interconnectivity} is defined as the ratio of the largest connected pore component to total pore volume, using 26-connectivity. Values $>$90\% indicate suitable connectivity for tissue ingrowth \cite{karageorgiou2005}.
+
+\textbf{Geometric tortuosity} uses Dijkstra's algorithm to compute actual path length through pore space:
+\begin{equation}
+\tau = \frac{L_{\text{geodesic}}}{L_{\text{Euclidean}}}
+\end{equation}
+
+Unlike empirical approximations, this provides directional tortuosity ($\tau_x, \tau_y, \tau_z$) for anisotropic scaffolds.
+
+\subsection{Ontology integration}
+
+Darwin integrates terms from seven OBO Foundry ontologies:
+
+\begin{itemize}
+\item UBERON (anatomy): tissue types with optimal parameters
+\item CL (cells): osteoblast, MSC, chondrocyte specifications
+\item CHEBI (materials): biomaterial properties with CAS numbers
+\item GO, NCIT, BTO, DOID: biological processes, diseases
+\end{itemize}
+
+A 3-tier lookup system provides: (1) 150 core terms for offline use, (2) 5,000 cached terms from local OWL files, (3) online API access (EBI OLS) with SQLite caching.
+
+This enables queries like \texttt{get\_materials\_for\_tissue("bone")} returning CHEBI-annotated materials (hydroxyapatite, PCL, collagen) with mechanical properties. Exported metadata uses Schema.org vocabulary and persistent URIs for FAIR compliance.
+
+%% ============================================
+\section{Illustrative examples}
+%% ============================================
+
+\subsection{Synthetic scaffold analysis}
+
+\begin{lstlisting}[caption={TPMS scaffold generation and analysis}]
+using Images, Statistics
+
+# Generate 64^3 Gyroid scaffold
+sz = 64; vol = zeros(Bool, sz, sz, sz)
+for i=1:sz, j=1:sz, k=1:sz
+  x,y,z = 2pi .* (i,j,k) ./ sz
+  vol[i,j,k] = sin(x)*cos(y) +
+               sin(y)*cos(z) +
+               sin(z)*cos(x) > 0.0
+end
+
+porosity = 1 - sum(vol)/length(vol)
+# Output: 0.500 (exact analytical value)
+\end{lstlisting}
+
+\subsection{Experimental scaffold workflow}
+
+\begin{lstlisting}[caption={MicroCT analysis with ontology export}]
+# Load and segment
+img = load_microct("scaffold.raw",
+                   (512,512,512))
+binary = segment_otsu(img)
+
+# Compute metrics
+m = compute_metrics(binary,
+                    voxel_size=10.0)
+# porosity=0.82, pore_size=165um,
+# tau=1.31, interconn=0.97
+
+# Export with ontology annotations
+export_jsonld("scaffold.json", m,
+  tissue="UBERON:0002481",   # bone
+  material="CHEBI:53310")    # PCL
+\end{lstlisting}
+
+%% ============================================
+\section{Impact}
+%% ============================================
+
+\subsection{Validation contribution}
+
+Darwin provides the first publicly documented validation for scaffold morphometry software:
+
+\textbf{Analytical validation.} TPMS surfaces (Gyroid, Schwarz P/D, Neovius) with known geometry yield $<$1\% porosity error and $>$99\% interconnectivity across 16 test cases (4 types $\times$ 4 porosity levels).
+
+\textbf{Experimental validation.} The PoreScript dataset \cite{porescript} (DOI: 10.5281/zenodo.5562953) provides SEM images of salt-leached scaffolds with 374 manual pore measurements. Darwin achieves 14.1\% absolute percentage error (Table~\ref{tab:validation}).
+
+\begin{table}[h]
+\centering
+\caption{Pore size validation against manual measurements}
+\label{tab:validation}
+\small
+\begin{tabular}{lccc}
+\toprule
+Sample & Darwin & Ground truth & Error \\
+\midrule
+S1\_27x & 143~\si{\micro\meter} & 170~\si{\micro\meter} & 15.8\% \\
+S2\_27x & 152~\si{\micro\meter} & 176~\si{\micro\meter} & 13.4\% \\
+S3\_27x & 154~\si{\micro\meter} & 177~\si{\micro\meter} & 12.9\% \\
+\midrule
+\textbf{Mean} & 149~\si{\micro\meter} & 174~\si{\micro\meter} & \textbf{14.1\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Darwin systematically underestimates pore size by $\sim$15\%. This bias arises from 2D sectioning effects in SEM and Otsu threshold sensitivity. For comparative studies (scaffold A vs. B), the systematic error cancels; for absolute measurements, users should apply correction factors.
+
+\subsection{Comparison with existing tools}
+
+Table~\ref{tab:comparison} compares Darwin with established tools:
+
+\begin{table}[h]
+\centering
+\caption{Comparison with existing scaffold analysis software}
+\label{tab:comparison}
+\small
+\begin{tabular}{lccc}
+\toprule
+Feature & Darwin & BoneJ & CTAn \\
+\midrule
+Open source & Yes & Yes & No \\
+Public validation & Yes & No & No \\
+Local thickness & Yes & Yes & Yes \\
+Geometric tortuosity & Yes & No & Plugin \\
+Ontology integration & Yes & No & No \\
+FAIR export & Yes & No & No \\
+Cost & Free & Free & \$5k+/yr \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Darwin's unique contribution is the combination of validated algorithms with ontology-aware metadata. BoneJ provides local thickness but lacks tortuosity and ontology integration. CTAn offers comprehensive analysis but is proprietary and does not publish validation data.
+
+\subsection{Research applications}
+
+Darwin is used at PUC-SP for bioactive glass scaffold characterization. The ontology integration enables systematic comparison across studies: scaffolds annotated with UBERON tissue terms and CHEBI material identifiers can be queried programmatically for meta-analysis.
+
+The software addresses cost barriers for research groups in developing countries, where commercial licenses are prohibitive.
+
+\subsection{Limitations}
+
+\begin{itemize}
+\item Pore size validation limited to 3 SEM images (n=374 measurements)
+\item 2D SEM analysis inherently differs from 3D microCT
+\item Systematic 15\% underestimation requires user awareness
+\item No GUI---command-line interface only
+\end{itemize}
+
+%% ============================================
+\section{Conclusions}
+%% ============================================
+
+Darwin Scaffold Studio provides validated scaffold morphometry with biomedical ontology integration. The software achieves $<$1\% error on analytical ground truth and 14.1\% error on experimental data, with systematic bias documented transparently.
+
+Future development includes: extended microCT validation against BoneJ, machine learning segmentation for low-contrast images, and a web-based interface.
+
+\section*{Acknowledgments}
+
+The authors thank the PUC-SP Biomaterials Program.
+
+\section*{Declaration of competing interest}
+
+The authors declare no competing interests.
+
+\bibliographystyle{elsarticle-num}
+\begin{thebibliography}{9}
+
+\bibitem{murphy2010}
+C.M. Murphy, M.G. Haugh, F.J. O'Brien, The effect of mean pore size on cell attachment, proliferation and migration in collagen-glycosaminoglycan scaffolds for bone tissue engineering, Biomaterials 31 (2010) 461--466.
+
+\bibitem{karageorgiou2005}
+V. Karageorgiou, D. Kaplan, Porosity of 3D biomaterial scaffolds and osteogenesis, Biomaterials 26 (2005) 5474--5491.
+
+\bibitem{bonej}
+M. Doube, et al., BoneJ: Free and extensible bone image analysis in ImageJ, Bone 47 (2010) 1076--1079.
+
+\bibitem{hildebrand1997}
+T. Hildebrand, P. R\"uegsegger, A new method for the model-independent assessment of thickness in three-dimensional images, J. Microsc. 185 (1997) 67--75.
+
+\bibitem{porescript}
+M.J. Jenkins, et al., PoreScript Dataset, Zenodo (2021). \url{https://doi.org/10.5281/zenodo.5562953}
+
+\end{thebibliography}
+
+\end{document}
