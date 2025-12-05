@@ -19,6 +19,8 @@ build/
 # Data (large files)
 data/biomaterials/microct/raw/*.tif
 data/biomaterials/sem/raw/*.tif
+data/validation/porescript/*.tif
+data/validation/porescript/*.xlsx
 *.nii
 *.nii.gz
 *.dcm
@@ -34,6 +36,8 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+.cursorrules
+.claude/settings.local.json
 
 # Streamlit
 .streamlit/

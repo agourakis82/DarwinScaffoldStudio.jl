@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 title: "Darwin Scaffold Studio: Computational Platform for Tissue Engineering Scaffold Analysis"
-version: 0.2.1
-date-released: 2024-12-05
+version: 0.3.0
+date-released: 2025-12-05
 repository-code: "https://github.com/agourakis82/darwin-scaffold-studio"
 license: MIT
 type: software
@@ -15,16 +15,12 @@ authors:
     orcid: "https://orcid.org/0000-0002-8596-5097"
 
 abstract: >
-  Darwin Scaffold Studio is an open-source computational platform for analyzing
-  and optimizing tissue engineering scaffolds from MicroCT and SEM imaging data.
-  Features include: validated metrics computation (porosity, pore size,
-  interconnectivity, tortuosity) with <1% error against analytical ground truth;
-  integration of 1200+ biomedical ontology terms from OBO Foundry (UBERON, CL,
-  CHEBI, GO, DOID); FAIR data export with Schema.org vocabulary; target-driven
-  scaffold optimization; mechanical properties prediction using Gibson-Ashby
-  relations; and comprehensive TPMS scaffold generation (Gyroid, Diamond,
-  Schwarz P, Neovius) for validation. Built with Julia for reproducible
-  scientific computing.
+  Darwin Scaffold Studio is an open-source Julia platform for analyzing tissue
+  engineering scaffolds from MicroCT and SEM imaging data. Features include:
+  porosity measurement (<1% error), pore size analysis (14% APE vs manual
+  ground truth), interconnectivity and tortuosity computation, TPMS scaffold
+  generation for validation, and integration with OBO Foundry biomedical
+  ontologies. Validated against PoreScript dataset (DOI: 10.5281/zenodo.5562953).
 
 keywords:
   - tissue engineering

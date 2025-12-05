@@ -46,16 +46,16 @@ Darwin Scaffold Studio is an open-source computational platform for analyzing an
 
 ## Features
 
-### Validated Metrics
+### Metrics
 
-| Metric | Method | Validation |
-|--------|--------|------------|
-| Porosity | Voxel counting | <1% error vs. ground truth |
-| Surface Area | Marching cubes | <1% error vs. analytical |
-| Pore Size | Distance transform | <5% error vs. known geometry |
-| Interconnectivity | Connected components | Percolation theory |
-| Tortuosity | Geodesic path analysis | Literature validated |
-| Mechanical Properties | Gibson-Ashby model | Experimental correlation |
+| Metric | Method | Validation Status |
+|--------|--------|-------------------|
+| Porosity | Voxel counting | <1% error (synthetic) |
+| Surface Area | Marching cubes | <1% error (synthetic) |
+| Pore Size | Connected components + Otsu | 14% APE (real SEM data) |
+| Interconnectivity | Connected components | Theoretical validation |
+| Tortuosity | Dijkstra shortest path | Theoretical validation |
+| Mechanical Properties | Gibson-Ashby model | Literature-based |
 
 ### Ontology Integration
 
@@ -173,20 +173,34 @@ DarwinScaffoldStudio/
 
 ## Validation
 
-The platform includes validated synthetic scaffolds with analytical ground truth:
+### Synthetic Ground Truth (TPMS Scaffolds)
+
+Validation against analytical TPMS surfaces with known geometry:
+
+| Metric | Mean Error | Threshold | Status |
+|--------|-----------|-----------|--------|
+| Porosity | <1% | <1% | PASS |
+| Surface Area | <1% | <1% | PASS |
+
+### Real Experimental Data (PoreScript Dataset)
+
+Validation against manual measurements from SEM images (DOI: 10.5281/zenodo.5562953):
+
+| Metric | Darwin | Ground Truth | APE |
+|--------|--------|--------------|-----|
+| Pore Size | 149.4 um | 174.0 um | 14.1% |
+
+**Limitations:**
+- Systematic underestimation of ~15% on pore size
+- Validated on 3 SEM images only
+- 2D analysis (SEM), not 3D (microCT)
 
 ```bash
-# Run validation benchmark
-julia --project=. scripts/run_validation_benchmark.jl
+# Run validation
+julia --project=. scripts/validate_honest.jl
 ```
 
-Results on 16 TPMS scaffolds (4 types × 4 porosity levels):
-
-| Metric | Mean Error | Max Error | Threshold |
-|--------|-----------|-----------|-----------|
-| Porosity | 0.00% | 0.00% | <1% |
-| Surface Area | 0.00% | 0.00% | <1% |
-| Pore Size | 0.00% | 0.00% | <5% |
+See [docs/validation/](docs/validation/) for detailed validation reports.
 
 ---
 

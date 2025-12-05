@@ -2,7 +2,26 @@
 
 All notable changes to Darwin Scaffold Studio will be documented in this file.
 
-## [2.0.1] - 2025-12-04
+## [0.3.0] - 2025-12-05
+
+### Added
+- Honest validation against PoreScript dataset (DOI: 10.5281/zenodo.5562953)
+- LocalThickness algorithm (Hildebrand & Ruegsegger 1997)
+- Dijkstra-based geometric tortuosity
+- Minimal reproducible example (`examples/minimal_example.jl`)
+- SoftwareX paper draft (`paper/softwarex_draft.md`)
+- Validation reports in `docs/validation/`
+
+### Changed
+- README updated with honest validation results (14.1% APE on pore size)
+- Metrics table reflects actual validation status
+- Repository structure cleaned up
+
+### Fixed
+- Pore size algorithm now uses Otsu adaptive thresholding
+- Removed overfitting adjustments from validation
+
+## [0.2.1] - 2025-12-04
 
 ### Fixed
 - Fixed type annotation in `Science/Optimization.jl` - changed `ScaffoldOptimizer` to `Optimizer`
