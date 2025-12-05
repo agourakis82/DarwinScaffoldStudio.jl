@@ -66,6 +66,13 @@ include("DarwinScaffoldStudio/Ontology/OBOFoundry.jl")
 @info "Loading OntologyManager (3-tier lookup with FAIR export)..."
 @safe_include "DarwinScaffoldStudio/Ontology/OntologyManager.jl" "OntologyManager"
 
+# ONTOLOGY LIBRARIES: Comprehensive tissue, cell, and material databases
+# 150+ tissues, 100+ cells, 80+ materials with properties and relationships
+@info "Loading Ontology Libraries (TissueLibrary, CellLibrary, MaterialLibrary)..."
+@safe_include "DarwinScaffoldStudio/Ontology/TissueLibrary.jl" "TissueLibrary"
+@safe_include "DarwinScaffoldStudio/Ontology/CellLibrary.jl" "CellLibrary"
+@safe_include "DarwinScaffoldStudio/Ontology/MaterialLibrary.jl" "MaterialLibrary"
+
 # INTERACTIVE: ScaffoldEditor with Q1 Literature Validation
 @info "Loading Interactive layer (ScaffoldEditor)..."
 module Interactive
