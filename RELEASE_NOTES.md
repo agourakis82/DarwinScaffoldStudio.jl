@@ -1,48 +1,44 @@
-# 🎊 Darwin Scaffold Studio v1.0.0 - Production Release
+## Darwin Scaffold Studio v0.2.1
 
-**"Ciência rigorosa. Resultados honestos. Impacto real."**
+### Major Features
 
-## 🚀 Features
+#### OBO Foundry Ontology Integration
+- 12 ontology libraries with **1200+ biomedical terms**
+- Standardized IDs: UBERON (anatomy), CL (cells), CHEBI (chemicals), GO (processes), DOID (diseases)
+- 3-tier lookup system: hardcoded -> SQLite cache -> EBI OLS API
+- FAIR JSON-LD export with Schema.org vocabulary
 
-### Core Analysis
-- ✅ MicroCT and SEM image processing (TIFF, NIfTI, DICOM)
-- ✅ Q1-validated morphological metrics
-- ✅ Parametric scaffold optimization
-- ✅ 3D interactive visualization (Plotly)
-- ✅ Mechanical properties prediction (Gibson-Ashby)
-- ✅ Cell viability analysis
-- ✅ STL export for 3D printing
+#### Scientific Validation
+- 16 TPMS synthetic scaffolds (Gyroid, Diamond, Schwarz P, Neovius)
+- Analytical ground truth at 50%, 70%, 85%, 90% porosity
+- **Validation benchmark: less than 1% error** on porosity, surface area, pore size
 
-### Q1 Literature Validation
-- ✅ Murphy et al. 2010 (Biomaterials): Pore size targets 50-200 µm
-- ✅ Karageorgiou & Kaplan 2005 (Biomaterials): Porosity 90-95%, interconnectivity >90%
-- ✅ Gibson & Ashby 1997 (Cambridge): Mechanical properties relations
+#### Reproducibility
+- Comprehensive test suite (11 test files, 100+ assertions)
+- Docker multi-stage build for reproducible environment
+- GitHub Actions CI/CD pipeline
+- Quick tests for fast CI (~0.3s)
 
-### Infrastructure
-- ✅ Landing page: https://studio.agourakis.med.br
-- ✅ Files upload: https://files.agourakis.med.br
-- ✅ Production-ready architecture
+### Documentation
+- docs/tutorial.md - Complete end-to-end workflow
+- docs/api.md - Full API reference
 
-## 📊 Metrics
+### Installation
 
-- **Porosity:** Validated against Karageorgiou 2005
-- **Pore Size:** 50-200 µm (Murphy 2010 compliant)
-- **Interconnectivity:** >90% target
-- **Mechanical Properties:** Gibson-Ashby validated
+```julia
+using Pkg
+Pkg.add(url="https://github.com/agourakis82/darwin-scaffold-studio")
+```
 
-## 📚 Citation
+Or with Docker:
+```bash
+docker build -t darwin-scaffold-studio .
+docker run -it darwin-scaffold-studio
+```
 
-If you use this software, please cite:
+### Requirements
+- Julia 1.10+
+- See Project.toml for dependencies
 
-> Agourakis, D.C. (2025). Darwin Scaffold Studio v1.0.0 [Software]. 
-> Zenodo. https://doi.org/10.5281/zenodo.XXXXXX
-
-## 📄 License
-
-MIT License - See [LICENSE](LICENSE) file
-
-## 🙏 Acknowledgments
-
-Developed with Q1 scientific rigor for tissue engineering research.
-
-**"Rigorous science. Honest results. Real impact."**
+---
+*Tissue Engineering Scaffold Analysis Platform*
