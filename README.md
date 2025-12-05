@@ -1,214 +1,243 @@
-# Darwin Scaffold Studio - TRUE 2025 SOTA
+<p align="center">
+  <h1 align="center">Darwin Scaffold Studio</h1>
+  <p align="center">
+    <strong>Computational Platform for Tissue Engineering Scaffold Analysis</strong>
+  </p>
+</p>
 
-**Nature/Science-Tier Computational Platform for Tissue Engineering**
+<p align="center">
+  <a href="https://github.com/agourakis82/darwin-scaffold-studio/actions/workflows/ci.yml">
+    <img src="https://github.com/agourakis82/darwin-scaffold-studio/actions/workflows/ci.yml/badge.svg" alt="CI Status">
+  </a>
+  <a href="https://github.com/agourakis82/darwin-scaffold-studio/releases/latest">
+    <img src="https://img.shields.io/github/v/release/agourakis82/darwin-scaffold-studio" alt="Latest Release">
+  </a>
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT">
+  </a>
+  <a href="https://www.julia-lang.org/">
+    <img src="https://img.shields.io/badge/Julia-1.10+-9558B2.svg?logo=julia" alt="Julia 1.10+">
+  </a>
+</p>
 
-## 🚀 Quick Start
+<p align="center">
+  <a href="#features">Features</a> •
+  <a href="#installation">Installation</a> •
+  <a href="#quick-start">Quick Start</a> •
+  <a href="#documentation">Documentation</a> •
+  <a href="#citation">Citation</a>
+</p>
 
-### Prerequisites
-- Julia 1.10+
-- Rust (cargo)
-- Ollama (for local LLMs)
+---
 
-### 1. Install AI Models
-```bash
-chmod +x scripts/setup_llm.sh
-./scripts/setup_llm.sh
+## Overview
+
+Darwin Scaffold Studio is an open-source computational platform for analyzing and optimizing tissue engineering scaffolds from MicroCT and SEM imaging data. It integrates biomedical ontologies, validated metrics computation, and AI-assisted design optimization.
+
+### Key Capabilities
+
+- **Image Analysis**: Load and process MicroCT/SEM data with automated segmentation
+- **Metrics Computation**: Porosity, pore size, interconnectivity, tortuosity, mechanical properties
+- **Ontology Integration**: 1200+ biomedical terms from OBO Foundry (UBERON, CL, CHEBI)
+- **Design Optimization**: Target-driven scaffold optimization with fabrication recommendations
+- **FAIR Data Export**: Schema.org compatible JSON-LD with full provenance tracking
+
+---
+
+## Features
+
+### Validated Metrics
+
+| Metric | Method | Validation |
+|--------|--------|------------|
+| Porosity | Voxel counting | <1% error vs. ground truth |
+| Surface Area | Marching cubes | <1% error vs. analytical |
+| Pore Size | Distance transform | <5% error vs. known geometry |
+| Interconnectivity | Connected components | Percolation theory |
+| Tortuosity | Geodesic path analysis | Literature validated |
+| Mechanical Properties | Gibson-Ashby model | Experimental correlation |
+
+### Ontology Integration
+
+```julia
+# Lookup optimal parameters for bone tissue
+bone = OntologyManager.lookup_tissue("bone")
+# Returns: UBERON:0002481, optimal porosity 85-95%, pore size 100-300μm
+
+# Get cell requirements
+osteoblast = OntologyManager.lookup_cell("osteoblast")
+# Returns: CL:0000062, size 20-30μm, markers, growth factors
+
+# Material properties
+ha = OntologyManager.lookup_material("hydroxyapatite")
+# Returns: CHEBI:52254, E=80-120 GPa, biocompatibility: excellent
 ```
 
-### 2. Install Dependencies
+### TPMS Scaffold Generation
+
+Analytical Triply Periodic Minimal Surfaces for validation:
+- **Gyroid**: High surface area, interconnected pores
+- **Diamond (Schwarz D)**: Isotropic mechanical properties
+- **Schwarz P**: Simple cubic symmetry
+- **Neovius**: Complex multi-scale porosity
+
+---
+
+## Installation
+
+### Requirements
+
+- Julia 1.10 or higher
+- 8GB RAM minimum (16GB recommended for large datasets)
+
+### Option 1: Julia Package
+
+```julia
+using Pkg
+Pkg.add(url="https://github.com/agourakis82/darwin-scaffold-studio")
+```
+
+### Option 2: Development Setup
+
 ```bash
+git clone https://github.com/agourakis82/darwin-scaffold-studio.git
+cd darwin-scaffold-studio
 julia --project=. -e 'using Pkg; Pkg.instantiate()'
 ```
 
-### 3. Start the System
+### Option 3: Docker
+
 ```bash
-# Terminal 1: Julia Compute Engine (Port 8081)
-julia --project=. src/server.jl
-
-# Terminal 2: Rust Web Server (Port 3000)
-cd darwin-server
-cargo run --release
-```
-
-### 4. Access the Interface
-- **Agent Chat Hub**: http://localhost:3000/agents.html
-- **Classic UI**: http://localhost:3000/
-
----
-
-## 🧠 What's Inside
-
-### **13 SOTA Modules (2017-2025)**
-
-#### **TRUE 2025 Cutting Edge** ⭐
-1. **SAM 2** (Meta AI, July 2024) - Zero-shot 3D segmentation
-2. **AlphaFold 3** (DeepMind, May 2024) - Protein-scaffold interactions
-3. **Drug Delivery** (2025) - PDE + PBPK + ML optimization
-
-#### **Advanced AI & Rendering**
-4. **Gaussian Splatting** (SIGGRAPH 2023) - Real-time photorealistic rendering
-5. **NeRF** - Neural Radiance Fields for volumetric reconstruction
-6. **Multi-Agent System** - Design, Analysis, Synthesis agents (Ollama)
-
-#### **Scientific Computing**
-7. **PINNs** - Physics-Informed Neural Networks (nutrient transport)
-8. **TDA** - Topological Data Analysis (persistent homology)
-9. **GNN** - Graph Neural Networks (cell migration)
-
-#### **Preprocessing & Analysis**
-10. **DnCNN** - Deep learning denoising (60x faster)
-11. **EDSR** - AI super-resolution (2x-4x upscaling)
-12. **KEC** - Curvature, Entropy, Coherence metrics
-13. **Percolation** - Navigability and tortuosity
-
----
-
-## 📖 Usage Examples
-
-### Chat with Design Agent
-```
-You: "Generate a bone scaffold with 75% porosity using PCL"
-Design Agent: *generates scaffold using parametric optimization*
-```
-
-### Chat with Analysis Agent
-```
-You: "Analyze this scaffold with all FRONTIER metrics"
-Analysis Agent: *computes KEC, Percolation, runs PINNs, TDA, GNN*
-```
-
-### Chat with Synthesis Agent
-```
-You: "Find papers on optimal pore size for bone regeneration"
-Synthesis Agent: *searches literature, extracts methods, suggests experiments*
+docker build -t darwin-scaffold-studio .
+docker run -it -v $(pwd)/data:/app/user_data darwin-scaffold-studio
 ```
 
 ---
 
-## 🔬 Scientific Modules API
+## Quick Start
 
-### Physics-Informed Neural Networks
 ```julia
-using DarwinScaffoldStudio
-result = solve_nutrient_transport(scaffold_volume, [0, 5, 10, 24])
-# Returns: concentration(x,y,z,t), hypoxic_volume
-```
+# Load the module
+include("src/DarwinScaffoldStudio.jl")
+using .DarwinScaffoldStudio
 
-### Topological Data Analysis
-```julia
-topology = analyze_pore_topology(scaffold_volume)
-# Returns: β₀ (components), β₁ (loops), β₂ (voids), Euler characteristic
-```
+# 1. Load MicroCT data
+img = load_microct("scaffold.raw", (512, 512, 512))
 
-### Graph Neural Networks
-```julia
-graph = scaffold_to_graph(volume, voxel_size)
-migration_prob = predict_cell_migration(gnn, graph, source_nodes)
-```
+# 2. Preprocess and segment
+processed = preprocess_image(img; denoise=true, normalize=true)
+binary = segment_scaffold(processed, "otsu")
 
----
+# 3. Compute metrics
+metrics = compute_metrics(binary, 10.0)  # 10 μm voxel size
 
-## 📊 Architecture
+println("Porosity: $(round(metrics.porosity * 100, digits=1))%")
+println("Pore size: $(round(metrics.mean_pore_size_um, digits=1)) μm")
+println("Interconnectivity: $(round(metrics.interconnectivity * 100, digits=1))%")
 
-```
-┌───────────────────────────────────────┐
-│      Darwin Research Command Center   │
-├─────────────┬─────────────────────────┤
-│   AGENTS    │     FRONTIER AI         │
-│ (Llama 3.2) │  PINNs, TDA, GNN        │
-├─────────────┴─────────────────────────┤
-│      Julia Scientific Core (8081)     │
-├───────────────────────────────────────┤
-│      Rust Web Server (3000)           │
-├───────────────────────────────────────┤
-│      Frontend (WebGPU + WebSocket)    │
-└───────────────────────────────────────┘
+# 4. Validate against literature
+bone = OntologyManager.lookup_tissue("bone")
+if bone.optimal_porosity[1] <= metrics.porosity <= bone.optimal_porosity[2]
+    println("✓ Porosity optimal for bone tissue engineering")
+end
+
+# 5. Export mesh for 3D printing
+vertices, faces = create_mesh_simple(binary, 10.0)
+export_stl("scaffold.stl", vertices, faces)
 ```
 
 ---
 
-## 🎓 Thesis Contributions
+## Documentation
 
-1. **Methodological**: First multi-agent AI for tissue engineering
-2. **Computational**: PINNs for scaffold analysis (no prior work)
-3. **Mathematical**: TDA applied to porous biomaterials
-4. **Practical**: Open-source platform for scaffold design
+| Document | Description |
+|----------|-------------|
+| [Tutorial](docs/guides/tutorial.md) | Complete end-to-end workflow |
+| [API Reference](docs/reference/api.md) | Full function documentation |
+| [Materials Reference](docs/reference/EXTENDED_MATERIALS_REFERENCE.md) | Biomaterial properties database |
 
-**Target Journals**: Nature Computational Science, PNAS, Advanced Materials
-
----
-
-## 📁 Project Structure
+### Architecture
 
 ```
-darwin-scaffold-studio/
-├── src/
-│   ├── DarwinScaffoldStudio/
-│   │   ├── Science/
-│   │   │   ├── PINNs.jl          ⭐ Nutrient PDEs
-│   │   │   ├── TDA.jl            ⭐ Persistent homology
-│   │   │   ├── GraphNeuralNetworks.jl  ⭐ GNN
-│   │   │   ├── Topology.jl       KEC metrics
-│   │   │   ├── Percolation.jl    Navigability
-│   │   │   └── ML.jl             Viability predictor
-│   │   ├── Agents/
-│   │   │   ├── DesignAgent.jl
-│   │   │   ├── AnalysisAgent.jl
-│   │   │   └── SynthesisAgent.jl
-│   │   └── LLM/
-│   │       └── OllamaClient.jl
-│   └── server.jl
-├── darwin-server/
-│   ├── src/
-│   │   ├── main.rs
-│   │   └── agents.rs
-│   └── public/
-│       ├── agents.html           Agent chat UI
-│       └── agent-client.js       WebSocket client
-└── scripts/
-    └── setup_llm.sh
+DarwinScaffoldStudio/
+├── Core/           # Types, Config, Utils
+├── MicroCT/        # Image loading, segmentation, metrics
+├── Optimization/   # Scaffold optimization algorithms
+├── Visualization/  # Mesh generation, export
+├── Science/        # Topology, percolation, ML
+├── Ontology/       # OBO Foundry integration
+└── Agents/         # AI-assisted analysis (optional)
 ```
 
 ---
 
-## 🐛 Troubleshooting
+## Validation
 
-**Julia server won't start**:
+The platform includes validated synthetic scaffolds with analytical ground truth:
+
 ```bash
-julia --project=. -e 'using Pkg; Pkg.resolve(); Pkg.instantiate()'
+# Run validation benchmark
+julia --project=. scripts/run_validation_benchmark.jl
 ```
 
-**Ollama not responding**:
+Results on 16 TPMS scaffolds (4 types × 4 porosity levels):
+
+| Metric | Mean Error | Max Error | Threshold |
+|--------|-----------|-----------|-----------|
+| Porosity | 0.00% | 0.00% | <1% |
+| Surface Area | 0.00% | 0.00% | <1% |
+| Pore Size | 0.00% | 0.00% | <5% |
+
+---
+
+## Citation
+
+If you use Darwin Scaffold Studio in your research, please cite:
+
+```bibtex
+@software{darwin_scaffold_studio,
+  author = {Agourakis, Demetrios},
+  title = {Darwin Scaffold Studio: Computational Platform for Tissue Engineering},
+  year = {2024},
+  url = {https://github.com/agourakis82/darwin-scaffold-studio},
+  version = {0.2.1}
+}
+```
+
+See [CITATION.cff](CITATION.cff) for full citation information.
+
+---
+
+## Contributing
+
+We welcome contributions! Please see [CONTRIBUTING.md](docs/development/CONTRIBUTING.md) for guidelines.
+
+### Development
+
 ```bash
-ollama serve &
-ollama list  # Check installed models
-```
+# Run tests
+julia --project=. test/runtests.jl
 
-**Rust compilation errors**:
-```bash
-cd darwin-server
-cargo clean
-cargo build --release
+# Quick tests (CI)
+julia --project=. test/test_quick.jl
 ```
 
 ---
 
-## 📚 References
+## License
 
-- Murphy et al. (2010) - Scaffold design principles
-- Raissi et al. (2019) - Physics-Informed Neural Networks
-- Edelsbrunner & Harer (2010) - Computational Topology
+This project is licensed under the MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 
-## 📄 License
+## Acknowledgments
 
-MIT License - Academic use encouraged
-
-## 🤝 Contributing
-
-This is a Master's Thesis project. For collaboration, contact the author.
+- PUC-SP Biomaterials and Regenerative Medicine Program
+- OBO Foundry for standardized biomedical ontologies
+- Julia community for scientific computing ecosystem
 
 ---
 
-**Built with**: Julia, Rust, Flux.jl, Ollama, WebGPU
+<p align="center">
+  <sub>Built with Julia for reproducible tissue engineering research</sub>
+</p>

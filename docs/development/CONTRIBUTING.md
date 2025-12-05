@@ -1,10 +1,8 @@
-# Contributing to Darwin Core
+# Contributing to Darwin Scaffold Studio
 
-Thank you for your interest in contributing to Darwin Core!
+Thank you for your interest in contributing to Darwin Scaffold Studio!
 
----
-
-## 🎯 Quick Start
+## Quick Start
 
 1. Fork the repository
 2. Clone your fork
@@ -13,15 +11,12 @@ Thank you for your interest in contributing to Darwin Core!
 5. Run tests
 6. Submit a pull request
 
----
-
-## 📋 Development Setup
+## Development Setup
 
 ### Prerequisites
 
-- Python 3.9+
-- Docker (optional)
-- kubectl (optional, for K8s testing)
+- Julia 1.10+
+- Git
 
 ### Installation
 
@@ -30,117 +25,111 @@ Thank you for your interest in contributing to Darwin Core!
 git clone https://github.com/YOUR_USERNAME/darwin-scaffold-studio.git
 cd darwin-scaffold-studio
 
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # or `venv\Scripts\activate` on Windows
+# Install dependencies
+julia --project=. -e 'using Pkg; Pkg.instantiate()'
 
-# Install in editable mode
-pip install -e ".[dev]"
-
-# Install pre-commit hooks
-pre-commit install
+# Run quick tests to verify setup
+julia --project=. test/test_quick.jl
 ```
 
----
+## Project Structure
 
-## 🧪 Testing
+```
+darwin-scaffold-studio/
+├── src/
+│   └── DarwinScaffoldStudio/
+│       ├── Core/           # Types, Config, Utils
+│       ├── MicroCT/         # Image processing
+│       ├── Optimization/    # Scaffold optimization
+│       ├── Visualization/   # Mesh and export
+│       ├── Science/         # Topology, ML
+│       └── Ontology/        # OBO Foundry integration
+├── test/                    # Test files
+├── scripts/                 # Utility scripts
+├── data/                    # Validation data
+└── docs/                    # Documentation
+```
+
+## Testing
 
 ### Run Tests
 
 ```bash
-# All tests
-pytest
+# Quick tests (CI, ~0.3s)
+julia --project=. test/test_quick.jl
 
-# With coverage
-pytest --cov=app --cov-report=html
+# Full test suite
+julia --project=. test/runtests.jl
 
-# Specific test
-pytest tests/unit/test_graph_rag.py
+# Specific test file
+julia --project=. -e 'include("test/test_microct.jl")'
 
-# Integration tests
-pytest tests/integration/
-
-# Cluster tests (requires K8s)
-pytest tests/cluster/
+# Validation benchmark
+julia --project=. scripts/run_validation_benchmark.jl
 ```
 
-### Code Quality
+## Code Style
 
-```bash
-# Format code
-black app/
+### Julia Style Guide
 
-# Lint
-flake8 app/
+- **Functions**: `snake_case`
+- **Types/Modules**: `PascalCase`
+- **Constants**: `SCREAMING_SNAKE_CASE`
+- **Line length**: 92 characters (soft limit)
+- **Indentation**: 4 spaces
 
-# Type check
-mypy app/
+### Docstrings
 
-# All checks (pre-commit)
-pre-commit run --all-files
+All exported functions must have docstrings:
+
+```julia
+"""
+    compute_porosity(scaffold::Array{Bool,3}) -> Float64
+
+Compute the porosity of a binary scaffold volume.
+
+# Arguments
+- `scaffold`: Binary 3D array where `true` = material, `false` = pore
+
+# Returns
+- Porosity value between 0.0 and 1.0
+
+# Example
+```julia
+scaffold = rand(Bool, 100, 100, 100)
+porosity = compute_porosity(scaffold)
+```
+"""
+function compute_porosity(scaffold::Array{Bool,3})
+    return 1.0 - sum(scaffold) / length(scaffold)
+end
 ```
 
----
+### Type Annotations
 
-## 📝 Code Style
+- Required for public API functions
+- Optional for internal functions
+- Use abstract types when possible (`AbstractArray` vs `Array`)
 
-### Python Style Guide
-
-- **PEP 8** compliant
-- **Line length:** 100 characters
-- **Formatter:** Black
-- **Linter:** Flake8
-- **Type hints:** Required for public APIs
-
-### Example
-
-```python
-"""Module docstring."""
-
-from typing import List, Optional
-
-def process_data(
-    data: List[str],
-    options: Optional[dict] = None
-) -> dict:
-    """
-    Process data with optional configuration.
-    
-    Args:
-        data: Input data list
-        options: Optional configuration
-    
-    Returns:
-        Processed results
-    """
-    results = {}
-    # ... implementation ...
-    return results
-```
-
----
-
-## 🌿 Branching Strategy
+## Branching Strategy
 
 ### Branch Naming
 
 ```
-feature/add-new-rag-variant
-bugfix/fix-graphrag-memory-leak
-docs/update-cluster-setup
-refactor/improve-embedding-manager
+feature/add-sem-analysis
+bugfix/fix-segmentation-threshold
+docs/update-api-reference
+refactor/improve-mesh-generation
 ```
 
 ### Commit Messages
 
-**Format:** Conventional Commits
+Use conventional commits:
 
 ```
 <type>(<scope>): <description>
 
 [optional body]
-
-[optional footer]
 ```
 
 **Types:**
@@ -153,25 +142,20 @@ refactor/improve-embedding-manager
 
 **Examples:**
 ```
-feat(graphrag): add Leiden community detection
-fix(selfrag): handle empty retrieval results
-docs(cluster): update K8s setup guide
-refactor(cache): improve unified cache performance
-test(integration): add Multi-AI Hub tests
+feat(ontology): add disease library with DOID terms
+fix(metrics): correct surface area calculation for non-cubic voxels
+docs(api): add examples for optimization module
+test(tpms): add Neovius surface validation tests
 ```
 
----
-
-## 🔀 Pull Request Process
+## Pull Request Process
 
 ### Before Submitting
 
-- [ ] Tests pass (`pytest`)
-- [ ] Code formatted (`black`)
-- [ ] Linting passes (`flake8`)
-- [ ] Type checks pass (`mypy`)
+- [ ] Tests pass (`julia --project=. test/test_quick.jl`)
+- [ ] New features have tests
 - [ ] Documentation updated
-- [ ] CHANGELOG.md updated
+- [ ] CHANGELOG.md updated (for significant changes)
 
 ### PR Template
 
@@ -183,105 +167,96 @@ test(integration): add Multi-AI Hub tests
 [Why is this change necessary?]
 
 ## Changes
-- [ ] Added X
-- [ ] Fixed Y
-- [ ] Updated Z
+- Added X
+- Fixed Y
+- Updated Z
 
 ## Testing
-- [ ] Unit tests added/updated
-- [ ] Integration tests pass
-- [ ] Tested on cluster (if applicable)
+- [ ] Quick tests pass
+- [ ] Added tests for new functionality
+- [ ] Tested with real data (if applicable)
 
 ## Checklist
 - [ ] Code follows style guide
-- [ ] Tests pass
-- [ ] Documentation updated
-- [ ] CHANGELOG.md updated
+- [ ] Docstrings added for new functions
+- [ ] No breaking changes (or documented if necessary)
 ```
 
-### Review Process
+## Adding New Modules
 
-1. Automated checks (CI)
-2. Code review (maintainer)
-3. Testing (integration tests)
-4. Approval
-5. Merge to main
+### 1. Create the module file
 
----
+```julia
+# src/DarwinScaffoldStudio/Category/NewModule.jl
+"""
+    NewModule
 
-## 📦 Versioning
+Description of the module.
+"""
+module NewModule
 
-### Semantic Versioning
+using ..Types
+using ..Config
 
-```
-MAJOR.MINOR.PATCH
+export main_function
 
-MAJOR: Breaking changes
-MINOR: New features (backward compatible)
-PATCH: Bug fixes (backward compatible)
-```
+"""
+    main_function(args)
 
-### Examples
+Description of the function.
+"""
+function main_function(args)
+    # implementation
+end
 
-```
-feat(api): new endpoint → MINOR bump (2.0.0 → 2.1.0)
-fix(rag): memory leak → PATCH bump (2.0.0 → 2.0.1)
-refactor(api): breaking change → MAJOR bump (2.0.0 → 3.0.0)
-```
-
-### Updating Version
-
-```bash
-# Update pyproject.toml
-version = "2.1.0"
-
-# Update CHANGELOG.md
-## [2.1.0] - 2025-11-10
-### Added
-- New GraphRAG feature
-
-# Tag and release
-git tag v2.1.0
-git push origin v2.1.0
+end # module
 ```
 
----
+### 2. Add to main file
 
-## 🎯 Areas for Contribution
+Edit `src/DarwinScaffoldStudio.jl`:
+
+```julia
+include("DarwinScaffoldStudio/Category/NewModule.jl")
+using .NewModule
+export main_function
+```
+
+### 3. Add tests
+
+Create `test/test_newmodule.jl` and add to `test/runtests.jl`.
+
+## Areas for Contribution
 
 ### High Priority
 
-- RAG++ improvements (new variants, performance)
-- Multi-AI enhancements (new models, routing)
-- Documentation (examples, tutorials)
-- Testing (unit, integration, cluster)
+- SEM image analysis improvements
+- Additional TPMS surface types
+- Performance optimization for large datasets
+- Documentation examples
 
 ### Medium Priority
 
-- Monitoring dashboards (Grafana)
-- Performance optimizations
-- Plugin examples
-- Deployment guides
+- New ontology libraries (more OBO terms)
+- Visualization enhancements
+- Export format additions (OBJ, PLY with colors)
 
-### Low Priority
+### Good First Issues
 
-- Code cleanup
-- Typo fixes
-- Minor refactoring
+- Improve error messages
+- Add docstrings to undocumented functions
+- Fix typos in documentation
+- Add test coverage
 
----
-
-## 📞 Getting Help
+## Getting Help
 
 - **Issues**: https://github.com/agourakis82/darwin-scaffold-studio/issues
-- **Discussions**: https://github.com/agourakis82/darwin-scaffold-studio/discussions
-- **Email**: agourakis@agourakis.med.br
+- **Email**: demetrios@agourakis.med.br
+
+## Code of Conduct
+
+Please read and follow our [Code of Conduct](../../CODE_OF_CONDUCT.md).
 
 ---
 
-## 🙏 Thank You!
-
-Contributions are welcome and appreciated!
-
-**"Ciência rigorosa. Resultados honestos. Impacto real."**
-
+Thank you for contributing to Darwin Scaffold Studio!

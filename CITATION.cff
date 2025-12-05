@@ -1,11 +1,9 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
-title: "Darwin Scaffold Studio: Q1-Level MicroCT and SEM Analysis Platform with Topological Data Analysis"
-version: 1.1.0
-date-released: 2025-11-08
-doi: 10.5281/zenodo.17535484
+title: "Darwin Scaffold Studio: Computational Platform for Tissue Engineering Scaffold Analysis"
+version: 0.2.1
+date-released: 2024-12-05
 repository-code: "https://github.com/agourakis82/darwin-scaffold-studio"
-url: "https://studio.agourakis.med.br"
 license: MIT
 type: software
 
@@ -13,21 +11,20 @@ authors:
   - family-names: "Agourakis"
     given-names: "Demetrios Chiuratto"
     email: "demetrios@agourakis.med.br"
-    affiliation: "Pontifical Catholic University of São Paulo (PUC-SP); Faculdade São Leopoldo Mandic"
+    affiliation: "Pontifical Catholic University of São Paulo (PUC-SP), Biomaterials and Regenerative Medicine Program"
     orcid: "https://orcid.org/0000-0002-8596-5097"
 
 abstract: >
-  Darwin Scaffold Studio v1.1.0 is a production-ready software platform for
-  Q1-level analysis of tissue engineering scaffolds from MicroCT and SEM
-  imaging. NEW in v1.1.0: Integration of KEC 3.0 (Knowledge Exchange Coefficient)
-  with Persistent Homology for topological data analysis (TDA). Features include
-  morphological analysis validated against Murphy et al. 2010 and Karageorgiou &
-  Kaplan 2005, Betti numbers computation (β₀, β₁, β₂) using GUDHI and Ripser,
-  topological biomarkers for scaffold connectivity, parametric optimization,
-  3D interactive visualization, mechanical properties prediction using Gibson-Ashby
-  relations, cell viability analysis, and STL export for 3D printing. The software
-  implements rigorous scientific standards for reproducible research and is designed
-  for publication in Q1 journals (Nature Materials, Biomaterials, Advanced Materials).
+  Darwin Scaffold Studio is an open-source computational platform for analyzing
+  and optimizing tissue engineering scaffolds from MicroCT and SEM imaging data.
+  Features include: validated metrics computation (porosity, pore size,
+  interconnectivity, tortuosity) with <1% error against analytical ground truth;
+  integration of 1200+ biomedical ontology terms from OBO Foundry (UBERON, CL,
+  CHEBI, GO, DOID); FAIR data export with Schema.org vocabulary; target-driven
+  scaffold optimization; mechanical properties prediction using Gibson-Ashby
+  relations; and comprehensive TPMS scaffold generation (Gyroid, Diamond,
+  Schwarz P, Neovius) for validation. Built with Julia for reproducible
+  scientific computing.
 
 keywords:
   - tissue engineering
@@ -35,17 +32,16 @@ keywords:
   - microCT
   - scanning electron microscopy
   - biomaterials
-  - topological data analysis
-  - persistent homology
-  - betti numbers
-  - KEC 3.0
-  - Q1 validation
+  - biomedical ontology
+  - OBO Foundry
+  - TPMS scaffolds
+  - porosity analysis
   - parametric optimization
-  - 3D reconstruction
   - mechanical properties
   - Gibson-Ashby
-  - cell viability
+  - FAIR data
   - reproducible research
+  - Julia
 
 references:
   - type: article
