@@ -89,6 +89,10 @@ module Ontology
     @info "Loading OntologyQuery (cross-library lookups)..."
     include("DarwinScaffoldStudio/Ontology/OntologyQuery.jl")
 
+    # PolymerBlendPredictor: Mixture property prediction
+    @info "Loading PolymerBlendPredictor (blend property prediction)..."
+    include("DarwinScaffoldStudio/Ontology/PolymerBlendPredictor.jl")
+
     # OntologyManager also needs OBOFoundry, include it here
     @info "Loading OntologyManager (3-tier lookup with FAIR export)..."
     include("DarwinScaffoldStudio/Ontology/OntologyManager.jl")
@@ -113,6 +117,7 @@ module Ontology
     using .CompatibilityMatrix
     using .BiomarkersLibrary
     using .OntologyQuery
+    using .PolymerBlendPredictor
 
     export OBOFoundry, TissueLibrary, CellLibrary, MaterialLibrary
     export DiseaseLibrary, ProcessLibrary, FabricationLibrary
@@ -121,7 +126,7 @@ module Ontology
     # New library exports
     export MolecularPropertiesLibrary, PhysicalPropertiesLibrary
     export DrugDeliveryLibrary, CompatibilityMatrix, BiomarkersLibrary
-    export OntologyQuery
+    export OntologyQuery, PolymerBlendPredictor
 end
 
 # INTERACTIVE: ScaffoldEditor with Q1 Literature Validation
