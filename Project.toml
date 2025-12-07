@@ -1,7 +1,7 @@
 name = "DarwinScaffoldStudio"
 uuid = "a1b2c3d4-e5f6-7890-abcd-1234567890ab"
 authors = ["Dr. Demetrios Agourakis <agourakis@med.br>"]
-version = "0.5.0"
+version = "0.6.0"
 
 [deps]
 BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
@@ -40,5 +40,12 @@ UUIDs = "cf7118a7-6976-5b1a-9a39-7adc72f591a4"
 XLSX = "fdbf4ff8-1666-58a4-91e7-1b58723a45e0"
 Zygote = "e88e6eb3-aa80-5325-afca-941959d7151f"
 
+[weakdeps]
+CUDA = "052768ef-5323-5732-b1bb-66c8b64840ba"
+
+[extensions]
+DarwinScaffoldStudioCUDAExt = "CUDA"
+
 [compat]
 julia = "1.10"
+CUDA = "5"

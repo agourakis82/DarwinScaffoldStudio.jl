@@ -166,6 +166,24 @@ if SYSTEM_CONFIG.enable_advanced_modules
     @safe_include "DarwinScaffoldStudio/Hausen/PhytochemicalScaffold.jl" "PhytochemicalScaffold"
 end
 
+# MEMORY: Persistent Knowledge Storage (SQLite + Vector Embeddings)
+@info "Loading Memory layer (PersistentKnowledge)..."
+module Memory
+    include("DarwinScaffoldStudio/Memory/PersistentKnowledge.jl")
+    using .PersistentKnowledge
+    export PersistentKnowledge
+end
+
+# GENERATIVE: Text-to-Scaffold Generation (LLM + TPMS)
+@info "Loading Generative layer (TextToScaffold)..."
+module Generative
+    using ..LLM.OllamaClient
+    using ..Types
+    include("DarwinScaffoldStudio/Generative/TextToScaffold.jl")
+    using .TextToScaffold
+    export TextToScaffold
+end
+
 # UNIFIED PIPELINE: End-to-End Workflow
 @safe_include "DarwinScaffoldStudio/Pipeline/DarwinPipeline.jl" "Pipeline"
 
@@ -226,6 +244,10 @@ export
     compute_percolation_metrics,
     predict_viability,
     predict_failure_load,
-    optimize_scaffold_thesis
+    optimize_scaffold_thesis,
+    # Memory (Persistent Knowledge)
+    Memory,
+    # Generative (Text-to-Scaffold)
+    Generative
 
 end # module

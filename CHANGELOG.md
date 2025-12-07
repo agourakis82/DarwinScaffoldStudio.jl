@@ -2,6 +2,46 @@
 
 All notable changes to Darwin Scaffold Studio will be documented in this file.
 
+## [0.6.0] - 2025-12-07
+
+### Added
+- **Memory Module** (`Memory/PersistentKnowledge.jl` - 739 lines):
+  - SQLite-backed persistent knowledge storage
+  - Vector embeddings for semantic similarity search (cosine similarity)
+  - `KnowledgeStore` with scaffold storage, retrieval, and search
+  - `SessionMemory` for agent conversation context
+  - `DesignHistory` for scaffold version control with restore capability
+  - Import/export functionality for knowledge base portability
+  - Bit-packed binary volume serialization for efficient storage
+
+- **Generative Module** (`Generative/TextToScaffold.jl` - 644 lines):
+  - LLM-based parameter extraction from natural language descriptions
+  - 7 TPMS surface types: Gyroid, Schwarz-P, Schwarz-D, Neovius, Lidinoid, IWP, Fischer-Koch
+  - Salt-leaching model for random spherical pore generation
+  - Bioprinting lattice generation with configurable strand parameters
+  - Q1 literature validation (Murphy 2010, Karageorgiou 2005)
+  - Material-tissue compatibility checking
+  - `generate_scaffold_from_text()` end-to-end pipeline
+
+- **GPU Acceleration** (`ext/DarwinScaffoldStudioCUDAExt.jl` - 413 lines):
+  - Julia package extension pattern (CUDA optional, loaded when available)
+  - GPU-accelerated PINN training (10-50x speedup)
+  - GPU-accelerated GNN forward pass for large graphs
+  - GPU-accelerated TDA distance matrix computation
+  - GPU-accelerated TPMS generation with broadcasting
+  - Automatic CPU fallback when CUDA unavailable
+
+### Changed
+- Updated `Project.toml` with CUDA weak dependency and extension configuration
+- Made CUDA optional in `AdvancedPreprocessing.jl`
+- Integrated Memory and Generative modules into main package exports
+
+### Technical Details
+- Total new code: 1,796 lines across 3 files
+- Memory uses SQLite.jl with JSON3 serialization
+- Generative uses OllamaClient for LLM inference
+- CUDA extension requires CUDA.jl >= 5.0
+
 ## [0.5.0] - 2025-12-07
 
 ### Added
