@@ -123,6 +123,8 @@ if SYSTEM_CONFIG.enable_visualization
     @safe_include "DarwinScaffoldStudio/Visualization/GaussianSplatting.jl" "GaussianSplatting"
     @safe_include "DarwinScaffoldStudio/Visualization/NeRF.jl" "NeRF"
     @safe_include "DarwinScaffoldStudio/Visualization/SAM2Integration.jl" "SAM2"
+    # SAM3: Meta AI's Segment Anything Model 3 (November 2024) - 2x accuracy improvement
+    @safe_include "DarwinScaffoldStudio/MicroCT/SAM3Segmentation.jl" "SAM3"
 end
 
 # TRUE 2025 SOTA: Tissue Engineering + Drug Delivery (Optional)

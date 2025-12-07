@@ -109,10 +109,10 @@ function segment_pores_sam3(image::AbstractMatrix; config::SAM3Config=SAM3Config
         inputs = Dict(k => v.to("cuda") for (k, v) in inputs)
     end
 
-    # Run inference
-    with torch.no_grad() do
-        outputs = SAM3_MODEL[](inputs...)
-    end
+    # Run inference (no_grad context for PyTorch)
+    torch.set_grad_enabled(false)
+    outputs = SAM3_MODEL[](inputs...)
+    torch.set_grad_enabled(true)
 
     # Extract masks
     masks = outputs.pred_masks.cpu().numpy()
