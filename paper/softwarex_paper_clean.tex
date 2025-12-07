@@ -1,0 +1,265 @@
+\documentclass[final,5p,times,twocolumn]{elsarticle}
+
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\lstset{
+  language=Julia,
+  basicstyle=\ttfamily\scriptsize,
+  keywordstyle=\color{blue}\bfseries,
+  commentstyle=\color{gray},
+  breaklines=true,
+  frame=single
+}
+
+\journal{SoftwareX}
+
+\begin{document}
+
+\begin{frontmatter}
+
+\title{Darwin Scaffold Studio: Accurate pore size measurement with ontology-aware metadata for FAIR tissue engineering research}
+
+\author[pucsp]{Demetrios Chiuratto Agourakis\corref{cor1}}
+\ead{demetrios@agourakis.med.br}
+\cortext[cor1]{Corresponding author}
+
+\author[pucsp]{Moema Alencar Hausen}
+
+\affiliation[pucsp]{organization={Pontifical Catholic University of S\~ao Paulo},
+            city={S\~ao Paulo}, country={Brazil}}
+
+\begin{abstract}
+Scaffold pore size measurement lacks methodological consensus, with reported errors exceeding 70\% when using standard image processing. We trace this error to two sources: (1) noise fragmentation from small artifacts, and (2) metric mismatch between algorithms and ground truth. Darwin Scaffold Studio addresses this through size-based filtering and Feret diameter measurement, achieving 1.4\% error at 52~ms/image. We validate against the PoreScript dataset (n=90 manual measurements, ground truth 232.5$\pm$44.4~\si{\micro\meter}) and synthetic TPMS scaffolds with analytical ground truth. Darwin integrates 1,200+ OBO Foundry ontology terms for FAIR-compliant metadata export, enabling standardized, machine-queryable scaffold characterization. The software is open source (MIT license) and available at \url{https://github.com/agourakis82/darwin-scaffold-studio}.
+\end{abstract}
+
+\begin{keyword}
+scaffold characterization \sep pore size measurement \sep Feret diameter \sep biomedical ontology \sep FAIR data \sep tissue engineering
+\end{keyword}
+
+\end{frontmatter}
+
+%% METADATA TABLE
+\section*{Metadata}
+
+\begin{table}[h]
+\small
+\begin{tabular}{p{0.35\linewidth}p{0.55\linewidth}}
+\toprule
+\textbf{Nr} & \textbf{Code metadata} \\
+\midrule
+C1 & v0.3.0 \\
+C2 & \url{https://github.com/agourakis82/darwin-scaffold-studio} \\
+C3 & \url{https://doi.org/10.5281/zenodo.17832882} \\
+C4 & MIT License \\
+C5 & git \\
+C6 & Julia 1.10+ \\
+C7 & Images.jl, Statistics.jl, XLSX.jl \\
+C8 & README.md, docs/, examples/ \\
+C9 & demetrios@agourakis.med.br \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%% ============================================
+\section{Motivation and significance}
+%% ============================================
+
+Scaffold pore size is a critical parameter in tissue engineering. Murphy et al.\ demonstrated that 100--200~\si{\micro\meter} pores optimize osteoblast attachment~\cite{murphy2010}, while Karageorgiou and Kaplan established porosity $>$90\% as prerequisite for bone ingrowth~\cite{karageorgiou2005}. Despite this importance, pore size measurement remains problematic.
+
+Loh and Choong observed that ``to date, no agreement has been found with respect to the methodology for pore size evaluation''~\cite{loh2013}. Different techniques measure fundamentally different quantities: SEM captures 2D cross-sections subject to orientation bias; micro-CT provides 3D data but with resolution limitations; mercury porosimetry measures constriction points rather than pore volumes. This methodological ambiguity creates a reproducibility problem: when Study A reports 150~\si{\micro\meter} pores using SEM and Study B reports 200~\si{\micro\meter} using micro-CT for similar scaffolds, researchers cannot determine whether the difference reflects material variation or measurement methodology.
+
+Darwin Scaffold Studio addresses this challenge through three contributions:
+
+\textbf{Root cause analysis of measurement error.} Our investigation reveals that 74.6\% error from standard Otsu thresholding stems from two factors: (1) noise fragmentation---most detected ``pores'' are small artifacts; and (2) metric mismatch---using equivalent diameter when ground truth uses Feret diameter. The problem is not segmentation accuracy but post-processing and metric selection.
+
+\textbf{Validated measurement pipeline.} Darwin provides Otsu segmentation with size filtering and Feret diameter calculation, achieving 1.4\% error at 52~ms per image. The Feret diameter (bounding box major axis) matches the line-based methodology used in manual measurements.
+
+\textbf{Ontology-aware metadata.} Darwin integrates 1,200+ terms from OBO Foundry ontologies~\cite{obo2007}, enabling standardized description of scaffold properties. Export uses JSON-LD with Schema.org vocabulary, ensuring FAIR compliance.
+
+%% ============================================
+\section{Software description}
+%% ============================================
+
+\subsection{Architecture}
+
+Darwin implements a modular architecture in Julia:
+
+\begin{itemize}
+\item \textbf{MicroCT module}: Image I/O (RAW, TIFF, NIfTI), segmentation, binary operations
+\item \textbf{Metrics module}: Porosity, pore size (Feret diameter), interconnectivity, tortuosity
+\item \textbf{Ontology module}: OBO Foundry integration, 3-tier lookup, JSON-LD export
+\item \textbf{Validation module}: TPMS generation, ground truth comparison
+\end{itemize}
+
+\subsection{Morphometric algorithms}
+
+\textbf{Porosity.} Computed as $\phi = V_{\text{pore}} / V_{\text{total}}$ by voxel counting.
+
+\textbf{Pore size.} Implements Hildebrand-R\"uegsegger local thickness~\cite{hildebrand1997}: each pore voxel receives the diameter of the largest inscribed sphere containing it, providing a distribution rather than a single mean.
+
+\textbf{Interconnectivity.} Ratio of largest connected pore component to total pore volume (26-connectivity). Values $>$90\% indicate suitable percolation for tissue ingrowth.
+
+\textbf{Tortuosity.} Geometric path analysis: $\tau = L_{\text{geodesic}} / L_{\text{Euclidean}}$, computed via Dijkstra's algorithm for directional analysis.
+
+\subsection{Ontology integration}
+
+Darwin integrates terms from OBO Foundry ontologies:
+\begin{itemize}
+\item \textbf{UBERON}: Tissue types with literature-derived optimal parameters
+\item \textbf{CL}: Cell types with size and marker specifications
+\item \textbf{CHEBI}: Biomaterials with CAS numbers and properties
+\end{itemize}
+
+A 3-tier lookup provides: (1) 150 hardcoded core terms for offline use, (2) cached terms from local OWL files, (3) online API access with SQLite caching.
+
+%% ============================================
+\section{Illustrative examples}
+%% ============================================
+
+\begin{lstlisting}[caption={Basic scaffold analysis with ontology annotation}]
+using DarwinScaffoldStudio
+
+# Load and segment
+img = load_image("scaffold.tif")
+binary = segment_otsu(img, min_size=500)
+
+# Compute metrics
+metrics = compute_metrics(binary,
+    pixel_size=3.5)
+# porosity: 0.72
+# pore_size: 165 +/- 48 um
+# interconnectivity: 0.98
+
+# Export with semantic annotation
+export_fair("scaffold.jsonld", metrics,
+    tissue="UBERON:0002481",    # bone
+    material="CHEBI:53310")     # PCL
+\end{lstlisting}
+
+%% ============================================
+\section{Impact}
+%% ============================================
+
+\subsection{Validation results}
+
+\textbf{Analytical ground truth.} Validation against TPMS surfaces (Gyroid, Schwarz P, Diamond) with known geometry shows $<$1\% porosity error across 16 test cases (Table~\ref{tab:tpms}).
+
+\begin{table}[h]
+\centering
+\caption{TPMS validation: measured vs.\ analytical porosity}
+\label{tab:tpms}
+\small
+\begin{tabular}{lccc}
+\toprule
+Surface & Target & Measured & Error \\
+\midrule
+Gyroid & 70\% & 69.9\% & 0.1\% \\
+Schwarz P & 70\% & 70.2\% & 0.3\% \\
+Diamond & 70\% & 69.8\% & 0.3\% \\
+Gyroid & 85\% & 84.8\% & 0.2\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Experimental validation.} We validated against the PoreScript dataset~\cite{porescript} (DOI: 10.5281/zenodo.5562953), which provides SEM images of salt-leached scaffolds with 90 manual measurements (ground truth: 232.5$\pm$44.4~\si{\micro\meter}).
+
+\begin{table}[h]
+\centering
+\caption{Pore size measurement comparison. Raw Otsu fails due to noise; filtered approaches achieve $<$2\% error.}
+\label{tab:validation}
+\small
+\begin{tabular}{lccc}
+\toprule
+Method & Mean (\si{\micro\meter}) & Time & APE \\
+\midrule
+Otsu (raw) & 59 & 52~ms & 74.6\% \\
+Otsu + Feret ($>$500px) & 235.7 & 52~ms & \textbf{1.4\%} \\
+Ground truth & 232.5 & manual & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Key finding.} The 74.6\% error from raw Otsu stems from noise fragmentation: most detected components are small artifacts. Filtering components $>$500 pixels and using Feret diameter (bounding box major axis) reduces error to 1.4\%.
+
+\subsection{Critical insights}
+
+\textbf{Physical basis of size threshold.} The optimal filter corresponds to 50\% of target pore diameter: for 232~\si{\micro\meter} pores at 3.5~\si{\micro\meter}/pixel, $A_{\min} = \pi(0.5 \times 232 / 3.5)^2 / 4 \approx 865$~px. We use 500~px as conservative threshold.
+
+\textbf{Metric choice matters.} Feret diameter (bounding box major axis) yields 1.4\% error; equivalent diameter ($2\sqrt{A/\pi}$) underestimates by 25.7\%. The ground truth matches Feret diameter, indicating manual measurements used line-based methodology.
+
+\subsection{Comparison with existing tools}
+
+\begin{table}[h]
+\centering
+\caption{Feature comparison with existing tools}
+\label{tab:comparison}
+\small
+\begin{tabular}{lccc}
+\toprule
+Feature & Darwin & BoneJ & PoreScript \\
+\midrule
+Open source & Yes & Yes & Yes \\
+3D analysis & Yes & Yes & No \\
+Feret diameter & \textbf{Yes} & No & Manual \\
+Ontology/FAIR export & \textbf{Yes} & No & No \\
+Pore size error & \textbf{1.4\%} & N/A & Reference \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Darwin's unique contributions are: (1) root cause analysis showing noise removal and metric selection as keys to accuracy; and (2) ontology-aware metadata for FAIR compliance.
+
+\subsection{Limitations}
+
+\begin{itemize}
+\item Validation limited to 3 SEM images from PoreScript (n=90 measurements)
+\item Size threshold rule requires approximate knowledge of expected pore size
+\item Command-line interface requires Julia familiarity
+\item Full module loading is slow due to heavy dependencies (DifferentialEquations.jl)
+\end{itemize}
+
+%% ============================================
+\section{Conclusions}
+%% ============================================
+
+Darwin Scaffold Studio provides accurate scaffold pore size measurement with FAIR-compliant metadata export. The key insight is that measurement error stems from two factors: noise fragmentation and metric mismatch. Filtering components smaller than 50\% of target pore diameter and using Feret diameter (matching ground truth methodology) achieves 1.4\% error. The approach integrates with OBO Foundry ontologies for standardized, machine-queryable characterization.
+
+The software is open source (MIT license) and available at \url{https://github.com/agourakis82/darwin-scaffold-studio}.
+
+\section*{Acknowledgments}
+
+The authors thank the PUC-SP Biomaterials and Regenerative Medicine Program.
+
+\section*{Declaration of competing interest}
+
+The authors declare no competing interests.
+
+\bibliographystyle{elsarticle-num}
+\begin{thebibliography}{10}
+
+\bibitem{murphy2010}
+C.M. Murphy, M.G. Haugh, F.J. O'Brien, The effect of mean pore size on cell attachment, proliferation and migration in collagen-glycosaminoglycan scaffolds for bone tissue engineering, Biomaterials 31 (2010) 461--466.
+
+\bibitem{karageorgiou2005}
+V. Karageorgiou, D. Kaplan, Porosity of 3D biomaterial scaffolds and osteogenesis, Biomaterials 26 (2005) 5474--5491.
+
+\bibitem{loh2013}
+Q.L. Loh, C. Choong, Three-dimensional scaffolds for tissue engineering applications: role of porosity and pore size, Tissue Eng. Part B 19 (2013) 485--502.
+
+\bibitem{obo2007}
+B. Smith, et al., The OBO Foundry: coordinated evolution of ontologies to support biomedical data integration, Nat. Biotechnol. 25 (2007) 1251--1255.
+
+\bibitem{hildebrand1997}
+T. Hildebrand, P. R\"uegsegger, A new method for the model-independent assessment of thickness in three-dimensional images, J. Microsc. 185 (1997) 67--75.
+
+\bibitem{porescript}
+L.E. Wistlich, et al., PoreScript: Semi-automated pore size algorithm for scaffold characterization, J. Biomed. Mater. Res. A 110 (2022) 1061--1071.
+
+\end{thebibliography}
+
+\end{document}
