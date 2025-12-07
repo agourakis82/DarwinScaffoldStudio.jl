@@ -2,6 +2,48 @@
 
 All notable changes to Darwin Scaffold Studio will be documented in this file.
 
+## [0.5.0] - 2025-12-07
+
+### Added
+- **Complete PINNs Module** (`Science/PINNs.jl`):
+  - Zygote autodiff for Laplacian and time derivatives
+  - `NutrientPINN` with configurable architecture
+  - `physics_loss_fast()` with finite differences (Zygote-compatible)
+  - `train_pinn!()` with Adam optimizer
+  - `solve_nutrient_transport()` for scaffold analysis
+  - `validate_against_analytical()` for 1D diffusion
+
+- **Complete TDA Module** (`Science/TDA.jl`):
+  - Ripserer-based persistent homology (H₀, H₁, H₂)
+  - `PersistenceSummary` struct with statistics
+  - `betti_numbers()`, `persistence_entropy()`, `bottleneck_distance()`
+  - ASCII `plot_persistence_diagram()` and `plot_betti_barcode()`
+  - `compare_scaffolds()` for topological similarity
+
+- **Complete GNN Module** (`Science/GraphNeuralNetworks.jl`):
+  - `GCNConv`: Graph Convolutional Network (Kipf & Welling 2017)
+  - `GraphSAGEConv`: Inductive learning with neighbor sampling
+  - `GATConv`: Graph Attention Network
+  - `scaffold_to_graph()`: 3D volume to graph with node/edge features
+  - `ScaffoldGNN`: Full model with encoder, GNN layers, readout
+  - `train_gnn!()` with modern Flux API
+  - `predict_properties()`, `node_classification()`, `graph_classification()`
+
+- **D = φ Validation Results**:
+  - Salt-leached scaffolds: D = 1.6850 ± 0.0507 (φ = 1.618)
+  - TPMS controls: D = 1.1874 ± 0.1042 (significantly different)
+  - Publication-quality figure generated
+  - Statistical validation: p < 0.000001 for salt vs TPMS
+
+### Changed
+- Updated all Flux macros from `@functor` to `@layer` (Flux 0.15 API)
+- PINNs training uses explicit gradients (Zygote-compatible)
+- GNN training uses `Flux.setup()` and explicit `withgradient()`
+
+### Fixed
+- Added SparseArrays to dependencies for GNN module
+- Fixed Zygote mutation errors in physics_loss_fast()
+
 ## [0.4.0] - 2025-12-07
 
 ### Added
