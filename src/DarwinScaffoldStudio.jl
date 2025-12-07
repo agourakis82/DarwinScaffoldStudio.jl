@@ -77,6 +77,14 @@ module Ontology
     include("DarwinScaffoldStudio/Ontology/MaterialLibraryExtended.jl")
     include("DarwinScaffoldStudio/Ontology/CrossOntologyRelations.jl")
 
+    # NEW v0.8.0: Comprehensive Property & Compatibility Libraries
+    @info "Loading Molecular, Physical, Drug, Compatibility & Biomarker Libraries..."
+    include("DarwinScaffoldStudio/Ontology/MolecularPropertiesLibrary.jl")
+    include("DarwinScaffoldStudio/Ontology/PhysicalPropertiesLibrary.jl")
+    include("DarwinScaffoldStudio/Ontology/DrugDeliveryLibrary.jl")
+    include("DarwinScaffoldStudio/Ontology/CompatibilityMatrix.jl")
+    include("DarwinScaffoldStudio/Ontology/BiomarkersLibrary.jl")
+
     # OntologyManager also needs OBOFoundry, include it here
     @info "Loading OntologyManager (3-tier lookup with FAIR export)..."
     include("DarwinScaffoldStudio/Ontology/OntologyManager.jl")
@@ -94,11 +102,20 @@ module Ontology
     using .MaterialLibraryExtended
     using .CrossOntologyRelations
     using .OntologyManager
+    # New libraries
+    using .MolecularPropertiesLibrary
+    using .PhysicalPropertiesLibrary
+    using .DrugDeliveryLibrary
+    using .CompatibilityMatrix
+    using .BiomarkersLibrary
 
     export OBOFoundry, TissueLibrary, CellLibrary, MaterialLibrary
     export DiseaseLibrary, ProcessLibrary, FabricationLibrary
     export TissueLibraryExtended, CellLibraryExtended, MaterialLibraryExtended
     export CrossOntologyRelations, OntologyManager
+    # New library exports
+    export MolecularPropertiesLibrary, PhysicalPropertiesLibrary
+    export DrugDeliveryLibrary, CompatibilityMatrix, BiomarkersLibrary
 end
 
 # INTERACTIVE: ScaffoldEditor with Q1 Literature Validation
