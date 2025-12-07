@@ -31,6 +31,7 @@ include("DarwinScaffoldStudio/MicroCT/Metrics.jl")
 # Optimization modules (Core functionality)
 include("DarwinScaffoldStudio/Optimization/Parametric.jl")
 include("DarwinScaffoldStudio/Optimization/ScaffoldOptimizer.jl")
+include("DarwinScaffoldStudio/Optimization/BayesianOptimization.jl")
 
 # Visualization modules (Core functionality)
 include("DarwinScaffoldStudio/Visualization/Mesh3D.jl")
@@ -214,6 +215,9 @@ using .Topology: compute_kec_metrics
 using .Percolation: compute_percolation_metrics
 using .ML: predict_viability, predict_failure_load
 using .Optimization: optimize_scaffold_thesis
+using .BayesianOptimization: BayesianOptimizer, MultiObjectiveBO, TuRBO, NSGA2,
+    GaussianProcess, ExpectedImprovement, UpperConfidenceBound,
+    optimize!, suggest_next, compute_pareto_front, hypervolume
 
 # Export public API
 export
@@ -245,6 +249,16 @@ export
     predict_viability,
     predict_failure_load,
     optimize_scaffold_thesis,
+    # Bayesian Optimization (SOTA)
+    BayesianOptimizer,
+    MultiObjectiveBO,
+    TuRBO,
+    NSGA2,
+    GaussianProcess,
+    ExpectedImprovement,
+    UpperConfidenceBound,
+    compute_pareto_front,
+    hypervolume,
     # Memory (Persistent Knowledge)
     Memory,
     # Generative (Text-to-Scaffold)

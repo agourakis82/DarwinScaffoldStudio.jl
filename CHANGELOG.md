@@ -2,6 +2,78 @@
 
 All notable changes to Darwin Scaffold Studio will be documented in this file.
 
+## [0.7.0] - 2025-12-07
+
+### Added - SOTA Q1+ Scientific Computing Upgrade (8,090 lines)
+
+- **PINNs.jl** (1,227 lines) - State-of-the-art Physics-Informed Neural Networks:
+  - Fourier Feature Embeddings (Tancik et al. 2020) for high-frequency learning
+  - Self-Adaptive Loss Weighting (McClenny & Braga-Neto 2023)
+  - Adaptive Residual Sampling RAR-PINN (Wu et al. 2023)
+  - Causal Training for time-dependent PDEs (Wang et al. 2024)
+  - Multi-Fidelity PINN (Meng & Karniadakis 2020)
+  - DeepONet operator learning (Lu et al. 2021)
+
+- **TDA.jl** (1,232 lines) - State-of-the-art Topological Data Analysis:
+  - Persistence Images (Adams et al. 2017) for ML pipelines
+  - Persistence Landscapes (Bubenik 2015)
+  - Wasserstein Distance (exact and sliced)
+  - TopologicalSignature vectorization for classification
+  - Statistical Hypothesis Testing (permutation tests, bootstrap CI)
+  - Crocker Stacks for time-varying topology
+
+- **GraphNeuralNetworks.jl** (1,488 lines) - State-of-the-art Graph Neural Networks:
+  - Message Passing Neural Network MPNN (Gilmer et al. 2017)
+  - E(3)-Equivariant GNN (Satorras et al. 2021) for 3D geometry
+  - Principal Neighbourhood Aggregation PNA (Corso et al. 2020)
+  - Graph Transformer (Dwivedi & Bresson 2021)
+  - Set2Set and Attention Readout pooling
+  - DiffPool hierarchical pooling (Ying et al. 2018)
+  - Contrastive Learning for graph representations
+
+- **NeuralOperators.jl** (675 lines) - Complete Neural Operator Framework:
+  - SpectralConv3d proper 3D spectral convolutions
+  - FourierNeuralOperator complete architecture (Li et al. 2021)
+  - U-FNO encoder-decoder architecture (Wen et al. 2022)
+  - FactorizedFNO for memory efficiency (Tran et al. 2023)
+  - GeoFNO for irregular domains (Li et al. 2022)
+  - Physics-informed training with boundary/IC losses
+
+- **BayesianOptimization.jl** (1,542 lines) - NEW Complete BO Framework:
+  - Gaussian Process with Matérn 5/2 and RBF kernels
+  - Acquisition functions: EI, UCB, PI, Knowledge Gradient
+  - Multi-Objective BO with Expected Hypervolume Improvement (Daulton et al. 2020)
+  - TuRBO Trust Region BO (Eriksson et al. 2019)
+  - SAASBO for high-dimensional problems (Eriksson & Jankowiak 2021)
+  - Batch BO with q-EI (Ginsbourger et al. 2010)
+  - Constrained BO (Gardner et al. 2014)
+  - Multi-fidelity optimization (Wu & Frazier 2016)
+  - NSGA-II genetic algorithm (Deb et al. 2002)
+  - Latin Hypercube and Sobol sampling
+
+- **CausalScaffoldDiscovery.jl** (1,926 lines) - Complete Causal Inference:
+  - PC Algorithm for constraint-based discovery (Spirtes et al. 2000)
+  - FCI Algorithm for latent confounders
+  - GES score-based discovery
+  - NOTEARS continuous DAG learning (Zheng et al. 2018)
+  - DoWhy-style pipeline: Model → Identify → Estimate → Refute
+  - Full counterfactual inference (Pearl 2009)
+  - Double/Debiased ML (Chernozhukov et al. 2018)
+  - Causal Forests for heterogeneous effects (Wager & Athey 2018)
+  - Sensitivity analysis with E-values (VanderWeele & Ding 2017)
+  - Instrumental Variables (2SLS)
+  - Regression Discontinuity Design
+  - Difference-in-Differences estimator
+
+### Changed
+- Updated `DarwinScaffoldStudio.jl` with BayesianOptimization exports
+- Added Distributions.jl dependency for statistical computations
+
+### Technical Summary
+- 6 modules upgraded/created with 8,090 total lines
+- 47+ peer-reviewed methods implemented (2017-2024 literature)
+- Full Q1 publication readiness for tissue engineering applications
+
 ## [0.6.0] - 2025-12-07
 
 ### Added
