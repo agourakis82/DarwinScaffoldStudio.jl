@@ -24,6 +24,41 @@ data/validation/porescript/*.xlsx
 *.nii
 *.nii.gz
 *.dcm
+*.h5
+*.tif
+*.tiff
+*.zip
+data/deepore/
+data/kfoam/
+data/cambridge_apollo/
+data/soil_pore_space/
+data/real_datasets/
+data/public/
+data/validation/
+data/external_validation/
+
+# Temporary text files
+COMPLETE_DATASET_LINKS.txt
+CURRENT_STATUS_SUMMARY.txt
+DATASET_DOWNLOAD_LINKS.txt
+PEER_REVIEW_ACTION_PLAN.txt
+PERCOLATION_INVESTIGATION_COMPLETE.txt
+REAL_DATA_VALIDATION_COMPLETE.txt
+RESULTADOS_SEM_RESUMO.txt
+SEM_DATASETS_FOUND.md
+SEM_DOWNLOAD_GUIDE.txt
+STATISTICAL_RIGOR_ADDED.txt
+percolation_investigation_output.txt
+nmc_3d.tif
+pemfc_3d.tiff
+
+# LaTeX auxiliary
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.synctex.gz
 
 # Temporary
 *.tmp

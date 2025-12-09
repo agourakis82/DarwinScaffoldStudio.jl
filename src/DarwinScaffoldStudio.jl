@@ -5,7 +5,15 @@ Julia 1.10 implementation for tissue engineering scaffold analysis.
 
 Created: 2025-11-13
 Author: Dr. Demetrios Agourakis + AI Assistant
-Version: 1.0.0
+Version: 0.9.0
+
+CHANGELOG v0.9.0 (Pipeline Evolution - SOTA 2025):
+- GNNPermeability: GNN-embedded pore network for fast permeability prediction
+- GeodesicTortuosity: Fast Marching + Random Walk tortuosity methods
+- TPMSGenerators: Gyroid, Diamond, Schwarz P, I-WP, Neovius surfaces
+- UNet3DSegmentation: 3D U-Net with attention gates, deep supervision
+- NeuralSEMDepth: DPT + Shape-from-Shading depth estimation
+- DiffusionScaffoldGenerator: DDPM/DDIM for conditional scaffold generation
 """
 
 module DarwinScaffoldStudio
@@ -143,6 +151,21 @@ if SYSTEM_CONFIG.enable_frontier_ai
     @safe_include "DarwinScaffoldStudio/Science/PINNs.jl" "PINNs"
     @safe_include "DarwinScaffoldStudio/Science/TDA.jl" "TDA"
     @safe_include "DarwinScaffoldStudio/Science/GraphNeuralNetworks.jl" "GNN"
+
+    # NEW v0.9.0: SOTA 2025 Pipeline Evolution Modules
+    @info "Loading SOTA 2025 Pipeline Evolution modules..."
+
+    # GNN-embedded Pore Network for fast permeability prediction
+    @safe_include "DarwinScaffoldStudio/Science/GNNPermeability.jl" "GNNPermeability"
+
+    # Geodesic tortuosity (Fast Marching + Random Walk methods)
+    @safe_include "DarwinScaffoldStudio/Science/GeodesicTortuosity.jl" "GeodesicTortuosity"
+
+    # TPMS generators (Gyroid, Diamond, Schwarz P, etc.)
+    @safe_include "DarwinScaffoldStudio/Science/TPMSGenerators.jl" "TPMSGenerators"
+
+    # 3D U-Net segmentation with training pipeline
+    @safe_include "DarwinScaffoldStudio/Science/UNet3DSegmentation.jl" "UNet3DSegmentation"
 else
     @warn "FRONTIER AI modules disabled. Enable with GlobalConfig(enable_frontier_ai=true)"
 end
@@ -169,6 +192,9 @@ if SYSTEM_CONFIG.enable_visualization
     @safe_include "DarwinScaffoldStudio/Science/BiomimeticPatterns.jl" "BiomimeticPatterns"
     @safe_include "DarwinScaffoldStudio/Vision/SEMCellIdentification.jl" "SEMCellIdentification"
     @safe_include "DarwinScaffoldStudio/Vision/SEM3DReconstruction.jl" "SEM3DReconstruction"
+
+    # NEW v0.9.0: Neural SEM Depth Estimation (DPT + Shape-from-Shading)
+    @safe_include "DarwinScaffoldStudio/Vision/NeuralSEMDepth.jl" "NeuralSEMDepth"
 end
 
 # FABRICATION: G-Code Generation for Bioprinting
@@ -232,9 +258,13 @@ end
 # FOUNDATION MODELS: 2025 SOTA+ (ESM-3, Diffusion, Neural Operators)
 if SYSTEM_CONFIG.enable_advanced_modules
     @safe_include "DarwinScaffoldStudio/Foundation/FoundationModels.jl" "FoundationModels"
-    @safe_include "DarwinScaffoldStudio/Foundation/DiffusionScaffoldGenerator.jl" "DiffusionGenerator"
     @safe_include "DarwinScaffoldStudio/Foundation/NeuralOperators.jl" "NeuralOperators"
 end
+
+# NEW v0.9.0: Diffusion Model for Scaffold Generation (DDPM/DDIM)
+# Always try to load - critical for generative scaffold design
+@info "Loading Diffusion Model for structure generation..."
+@safe_include "DarwinScaffoldStudio/Foundation/DiffusionScaffoldGenerator.jl" "DiffusionGenerator"
 
 # Log module loading summary
 ErrorHandling.log_module_status()

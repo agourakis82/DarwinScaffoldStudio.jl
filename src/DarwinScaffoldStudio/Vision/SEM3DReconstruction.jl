@@ -19,7 +19,18 @@ using Images
 using ImageFiltering
 using Statistics
 using LinearAlgebra
-using FFTW
+
+# Try to use FFTW if available, otherwise use fallback
+const FFTW_AVAILABLE = Ref(false)
+
+function __init__()
+    try
+        @eval Main using FFTW
+        FFTW_AVAILABLE[] = true
+    catch
+        FFTW_AVAILABLE[] = false
+    end
+end
 
 export reconstruct_depth_sfs, reconstruct_stereo_sem, reconstruct_focus_stack
 export SEM3DResult, estimate_surface_normals, depth_to_mesh
@@ -169,15 +180,26 @@ function reconstruct_depth_sfs(
 end
 
 """
-Frankot-Chellappa gradient integration (Fourier domain).
-More robust than direct integration.
+Frankot-Chellappa gradient integration.
+Uses Fourier domain if FFTW available, otherwise falls back to iterative Poisson solver.
 """
 function integrate_gradients_fc(p::Matrix{Float64}, q::Matrix{Float64})::Matrix{Float64}
+    if FFTW_AVAILABLE[]
+        return integrate_gradients_fft(p, q)
+    else
+        return integrate_gradients_poisson(p, q)
+    end
+end
+
+"""
+FFT-based Frankot-Chellappa integration (requires FFTW).
+"""
+function integrate_gradients_fft(p::Matrix{Float64}, q::Matrix{Float64})::Matrix{Float64}
     h, w = size(p)
 
-    # Fourier transforms
-    P = fft(p)
-    Q = fft(q)
+    # Fourier transforms (use Main.FFTW to avoid import issues)
+    P = Main.FFTW.fft(p)
+    Q = Main.FFTW.fft(q)
 
     # Frequency grids
     u = fftfreq(w)
@@ -197,9 +219,57 @@ function integrate_gradients_fc(p::Matrix{Float64}, q::Matrix{Float64})::Matrix{
     end
 
     # Inverse FFT
-    Z = real.(ifft(Z_hat))
+    Z = real.(Main.FFTW.ifft(Z_hat))
 
     # Remove mean and scale
+    Z = Z .- mean(Z)
+
+    return Z
+end
+
+"""
+Poisson solver for gradient integration (no FFTW required).
+Uses Gauss-Seidel iteration to solve ∇²Z = ∂p/∂x + ∂q/∂y
+"""
+function integrate_gradients_poisson(p::Matrix{Float64}, q::Matrix{Float64};
+                                      max_iter::Int=500, tol::Float64=1e-4)::Matrix{Float64}
+    h, w = size(p)
+
+    # Compute divergence of gradient field: div = ∂p/∂x + ∂q/∂y
+    div = zeros(Float64, h, w)
+    for i in 2:(h-1)
+        for j in 2:(w-1)
+            dp_dx = (p[i, j+1] - p[i, j-1]) / 2.0
+            dq_dy = (q[i+1, j] - q[i-1, j]) / 2.0
+            div[i, j] = dp_dx + dq_dy
+        end
+    end
+
+    # Initialize depth
+    Z = zeros(Float64, h, w)
+
+    # Gauss-Seidel iteration for Poisson equation: ∇²Z = div
+    for iter in 1:max_iter
+        max_change = 0.0
+
+        for i in 2:(h-1)
+            for j in 2:(w-1)
+                # Laplacian stencil: Z_new = (Z_left + Z_right + Z_up + Z_down - h²*div) / 4
+                Z_new = (Z[i-1,j] + Z[i+1,j] + Z[i,j-1] + Z[i,j+1] - div[i,j]) / 4.0
+                change = abs(Z_new - Z[i,j])
+                if change > max_change
+                    max_change = change
+                end
+                Z[i,j] = Z_new
+            end
+        end
+
+        if max_change < tol
+            break
+        end
+    end
+
+    # Remove mean
     Z = Z .- mean(Z)
 
     return Z
