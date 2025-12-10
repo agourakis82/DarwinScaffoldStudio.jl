@@ -1,0 +1,8 @@
+# Tabela 1: Resumo da Validação Cross-Dataset
+Dataset,Polymer,Mn0(kg/mol),Xc(%),NRMSE(%),Status
+PLDLA Kaique,PLDLA,51.3,8,11.1,Pass
+PLLA Tsuji,PLLA,180.0,55,6.5,Pass
+PDLLA Li,PDLLA,100.0,0,13.5,Pass
+PLGA Grizzi,PLGA,70.0,0,24.3,Acceptable
+PCL Sun,PCL,80.0,50,18.0,Pass
+PLLA Odelius,PLLA,120.0,45,5.6,Pass

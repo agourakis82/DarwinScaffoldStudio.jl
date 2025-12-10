@@ -1,0 +1,2644 @@
+
+--- PAGE 1 ---
+PONTIFÍCIA UNIVERSIDADE CATÓLICA DE SÃO PAULO 
+FACULDADE DE CIÊNCIAS MÉDICAS E DA SAÚDE 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+DESENVOLVIMENTO DE SCAFFOLDS POR IMPRESSÃO 3D DE POLI(L-CO-D,L-
+ÁCIDO LÁCTICO) COM CITRATO DE TRIETILA PARA POTENCIAL APLICAÇÃO 
+EM PRÓTESE DE MENISCO 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+KAIQUE GOMES HERGESEL 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Sorocaba /SP 
+2025 
+
+--- PAGE 2 ---
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+KAIQUE GOMES HERGESEL 
+ 
+ 
+DESENVOLVIMENTO DE SCAFFOLDS POR IMPRESSÃO 3D DE POLI(L-CO-D,L-
+ÁCIDO LÁCTICO) COM CITRATO DE TRIETILA PARA POTENCIAL APLICAÇÃO 
+EM PRÓTESE DE MENISCO 
+ 
+ 
+ 
+ 
+ 
+ 
+Dissertação apresentada à Faculdade de 
+Ciências Médicas e da Saúde da Pontifícia 
+Universidade Católica de São Paulo como parte 
+dos requisitos exigidos para a obtenção do título 
+de Mestre em Biomateriais e Medicina 
+Regenerativa, sob orientação da Profa. Dra. 
+Moema de Alencar Hausen e coorientação da 
+Profa. Dra. Eliana Aparecida de Rezende Duek 
+ 
+ 
+ 
+ 
+Sorocaba /SP 
+2025
+
+--- PAGE 3 ---
+ 
+AGRADECIMENTOS 
+Este trabalho de pesquisa não teria sido possível sem o apoio e a contribuição de muitas 
+pessoas. 
+Gostaria de agradecer a minha orientadora, professora doutora Moema de Alencar 
+Hausen, por sua orientação ao longo de todo o processo.  
+Meus sinceros agradecimentos aos membros da banca examinadora por sua dedicação 
+em avaliar e fornecer feedbacks construtivos sobre este trabalho. 
+Agradeço também ao Conselho Nacional de Desenvolvimento Científico e Tecnológico 
+(CNPq) pelo suporte financeiro que tornou esta pesquisa viável. 
+Aos meus colegas e amigos do programa, obrigado pelas discussões inspiradoras e pelo 
+companheirismo que tornaram essa jornada mais leve e enriquecedora. 
+Por fim, um agradecimento especial à minha família, cujo apoio incondicional, amor e 
+compreensão foram a minha maior fonte de motivação. 
+
+--- PAGE 4 ---
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+“Quero começar, mas não sei por onde. 
+Onde será que o começo se esconde?” 
+- Tiquequê 
+
+--- PAGE 5 ---
+ 
+RESUMO 
+O menisco é uma estrutura fibrocartilaginosa fundamental para a estabilidade e, 
+absorção da força mecânica articular, distribuição de cargas e a propriocepção do joelho. As 
+lesões no menisco são de alta prevalência, podendo resultar em traumas agudos (geralmente em 
+atletas), ou por degeneração (comum em indivíduos acima de 60 anos ou em pessoas que 
+realizam atividades com movimentos repetitivos). Apesar dos avanços terapêuticos, como 
+meniscectomias, suturas e transplantes, a taxa de insucesso é alta, o que resulta em dor crônica 
+e perda de mobilidade. Nesse contexto, a engenharia de tecidos tem surgido como uma solução 
+promissora. Essa abordagem usa biomateriais para mimetizar o ambiente natural do menisco e 
+estimular a regeneração tecidual. Entre os polímeros mais utilizados, destaca-se o poli(L-co-
+D,L-ácido láctico) (PLDLA) por serem biodegradáveis e biocompatíveis. A incorporação do 
+plastificante citrato de trietila (TEC) ao PLDLA se justifica como uma proposta para otimizar 
+a impressão das estruturas, reduzir a acidez do material e aumentar a adesão das células, 
+facilitando a integração do implante ao tecido. Associada a essas propriedades, impressão 3D é 
+uma tecnologia crucial nessa área, pois permite criar implantes personalizados sob medida de 
+acordo com a área a ser implatada, que pode ser parcial ou total, além de levar em consideração, 
+variações anatômicas individuais, com estruturas porosas que favorecem a dinâmica de fluidos 
+e o remodelamento tecidual. O presente trabalho tem como objetivo desenvolver e scaffolds de 
+PLDLA com diferentes concentrações de TEC (1% e 2%) para aplicação como prótese de 
+menisco. Foram produzidas três apresentações amostrais: PLDLA puro, PLDLA-TEC1% e 
+PLDLA-TEC2%, submetidas a caracterizações por espectroscopia no infravermelho por 
+transformada de fourier (FTIR), termogravimetria (TG), calorimetria exploratória diferencial 
+(DSC), potencial zeta, ângulo de contato e ensaio mecânico de compressão. Etapas 
+subsequentes incluirão análises de degradação hidrolítica, citocompatibilidade e análise 
+morfológica DAPI/Faloidina/Vinculina. 
+Os resultados 
+preliminares confirmaram 
+a 
+incorporação do TEC por meio de FTIR, DSC e TG, sem modificar de forma significativa o 
+comportamento térmico do PLDLA. Observou-se que a carga de superfície dos materiais foi 
+levemente modificada ao adicionar TEC, tornando a superfície mais negativa e mantendo 
+comportamento hidrofílico, bem como redução da rigidez mecânica dos scaffolds após a adição 
+do plastificante. Os resultados prévios sugerem que a incorporação do TEC no PLDLA é 
+promissora e representa uma estratégia em medicina regenerativa direcionada à aplicação 
+dispositivo 3D de PLDLA-TEC como prótese de menisco. 
+ 
+Palavras-chave: poli(L-co-D,L-ácido láctico), citrato de trietila, menisco, prótese. 
+ 
+ 
+ 
+
+--- PAGE 6 ---
+ 
+LISTA DE FIGURAS 
+ 
+Figura 1 – Anatomia da articulação do joelho: vista anterior. ................................................ 13 
+Figura 2 - Anatomia do menisco: vista superior do planalto tibial. ........................................ 15 
+Figura 3 – Anatomia vascular do menisco. ............................................................................. 17 
+Figura 4 - Estereoisômeros do ácido láctico (L e D) ............................................................... 24 
+Figura 5 – Estrutura química do poli(L-co-D,L-ácido láctico) (PLDLA). .............................. 25 
+Figura 6 – Estrutura química do trietil citrato. ........................................................................ 28 
+Figura 7 - Modelagem computacional realizada dos scaffolds. Cada impressão produziu quatro 
+arcabouços. ............................................................................................................................... 32 
+Figura 8 – Análise de FTIR do PLDLA, TEC, PLDLA/TEC1% e PLDLA/TEC2%. Espectros 
+por transmitância (A) e por deconvolução dos espectros em absorbância (B). ........................ 36 
+Figura 9 – Análise termogravimétrica de PLDLA, TEC e PLDLA/TEC. Curvas de (A) TG e 
+(B) DTG das amostras PLDLA (vermelho), TEC (azul), PLDLA/TEC1% (roxo) e 
+PLDLA/TEC2% (verde). .......................................................................................................... 38 
+Figura 10 – Curvas de DSC das amostras de PLDLA (vermelho), TEC (azul), PLDLA/TEC1% 
+(roxo) e PLDLA/TEC2% (verde). ............................................................................................ 41 
+Figura 11 – Análise da carga superficial, potencial Zeta, das amostras PLDLA, TEC, 
+PLDLA/TEC1% e PLDLA/TEC2% em função do pH. ........................................................... 42 
+Figura 12 – Análise da molhabilidade, ângulo de contato, das amostras PLDLA, 
+PLDLA/TEC1% e PLDLA/TEC2%. ........................................................................................ 43 
+Figura 13 – Massa das amostras de PLDLA, PLDLA/TEC1% e PLDLA/TEC2% no período 
+de degradação de 90 dias. ......................................................................................................... 44 
+Figura 14 – Microscopia eletrônica de varredura das superfícies dos scaffolds de PLDLA, 
+PLDLA/TEC1% e PLDLA/TEC2% ao longo do tempo de degradação com ampliação de 20x.
+ .................................................................................................................................................. 46 
+Figura 15 – Microscopia eletrônica de varredura das superfícies dos scaffolds de PLDLA, 
+PLDLA/TEC1% e PLDLA/TEC2% ao longo do tempo de degradação com ampliação de 100x.
+ .................................................................................................................................................. 47 
+
+--- PAGE 7 ---
+ 
+Figura 16 – Análise termogravimétrica das amostras PLDLA, PLDLA/TEC1% e 
+PLDLA/TEC2%. Curvas de (A, C e E) TG e (B, D e F) DTG das amostras submetidas a 
+degradação por 90 dias. 0 dias (vermelho), 30 dias (amarelo), 60 dias (verde) e 90 dias (azul).
+ .................................................................................................................................................. 48 
+Figura 17 - Análise de DSC das amostras PLDLA (A), PLDLA/TEC1% (B) e PLDLA/TEC2% 
+(C) submetidas a degradação por 90 dias. 0 dias (vermelho), 30 dias (amarelo), 60 dias (verde) 
+e 90 dias (azul). ......................................................................................................................... 51 
+Figura 18 – Compressão mecânica do scaffolds de PLDLA (laranja), PLDLA/TEC1% (verde) 
+e PLDLA/TEC2% (roxo) apresentada em tensão por deformação. ......................................... 54 
+Figura 19 – Compressão mecânica do scaffolds de PLDLA (laranja), PLDLA/TEC1% (verde) 
+e PLDLA/TEC2% (roxo). Módulo de Young (A) e Tensão à compressão (B). ...................... 54 
+ 
+ 
+ 
+
+--- PAGE 8 ---
+ 
+LISTA DE TABELAS 
+ 
+Tabela 1 - Propriedades térmicas determinadas por TG e DTG nas amostras PLDLA, 
+PLDLA/TEC1% e PLDLA/TEC2%. ........................................................................................ 39 
+Tabela 2 – Massas molares médias dos scaffolds de PLDLA. Mn – Massa molar numérica 
+média. Mw – Massa molar ponderal média. PDI – Indice de polidispersão. ............................ 45 
+Tabela 3 - Massas molares médias dos scaffolds de PLDLA/TEC1%. Mn – Massa molar 
+numérica média. Mw – Massa molar ponderal média. PDI – Indice de polidispersão. ............ 45 
+Tabela 4 - Massas molares médias dos scaffolds de PLDLA/TEC2%. Mn – Massa molar 
+numérica média. Mw – Massa molar ponderal média. PDI – Indice de polidispersão. ............ 45 
+Tabela 5 - Propriedades térmicas determinadas por TG e DTG nas amostras PLDLA durante o 
+período de degradação de 90 dias. ............................................................................................ 49 
+Tabela 6 - Propriedades térmicas determinadas por TG e DTG nas amostras PLDLA/TEC1% 
+durante o período de degradação de 90 dias. ............................................................................ 49 
+Tabela 7 - Propriedades térmicas determinadas por TG e DTG nas amostras PLDLA/TEC2% 
+durante o período de degradação de 90 dias. ............................................................................ 49 
+Tabela 8 - Propriedades térmicas determinadas por DSC nas amostras PLDLA durante o 
+período de degradação de 90 dias. Tg – Temperatura de transição vítrea; Tm – Temperatura de 
+fusão endotérmica; Tc – Temperatura de cristalização exotérmica. ......................................... 52 
+Tabela 9 - Propriedades térmicas determinadas por DSC nas amostras PLDLA/TEC1% durante 
+o período de degradação de 90 dias. Tg – Temperatura de transição vítrea; Tm – Temperatura de 
+fusão endotérmica; Tc – Temperatura de cristalização exotérmica. ......................................... 52 
+Tabela 10 - Propriedades térmicas determinadas por DSC nas amostras PLDLA/TEC2% 
+durante o período de degradação de 90 dias. Tg – Temperatura de transição vítrea; Tm – 
+Temperatura de fusão endotérmica; Tc – Temperatura de cristalização exotérmica. ............... 52 
+
+--- PAGE 9 ---
+ 
+SUMÁRIO 
+ 
+1. INTRODUÇÃO .................................................................................................................... 10 
+2. REFERENCIAL TEÓRICO ................................................................................................. 13 
+2.1 O joelho e sua anatomia, ................................................................................................ 13 
+2.2 Os meniscos e sua anatomia .......................................................................................... 14 
+2.2.1 Composição celular e da matriz extracelular dos meniscos ................................... 15 
+2.2.2 Vascularização e inervação dos meniscos.............................................................. 16 
+2.2.3 Propriedades funcionais e biomecânicas dos meniscos ......................................... 17 
+2.2.4 Lesões meniscais e suas implicações ..................................................................... 19 
+2.2.5 Terapêutica atual para lesões meniscais ................................................................. 21 
+2.3 Biomateriais direcionados a regeneração meniscal ....................................................... 22 
+2.3.1 Biomateriais poliméricos ....................................................................................... 23 
+2.3.1.1 Poli(ácido láctico)........................................................................................... 23 
+2.3.1.1.1 Poli(L-co-D,L-ácido láctico) ......................................................... 25 
+2.3.2 Ésteres do ácido cítrico .......................................................................................... 27 
+2.3.2.1 Trietil Citrato .................................................................................................. 27 
+2.4 Manufatura de aditiva de biomateriais ........................................................................... 28 
+3. OBJETIVOS ......................................................................................................................... 30 
+3.1 Objetivo geral ................................................................................................................ 30 
+3.2 Objetivos específicos ..................................................................................................... 30 
+4. METODOLOGIA ................................................................................................................. 31 
+4.1 Síntese do material ......................................................................................................... 31 
+4.2 Impressão do biomaterial de PLDLA e PLDLA-TEC ................................................... 31 
+4.3. Espectroscopia de infravermelho por transformada de Fourier (FTIR) ....................... 32 
+4.4 Análise termogravimétrica (TG) .................................................................................... 32 
+4.5 Calorimetria Exploratória Diferencial (DSC) ................................................................ 33 
+
+--- PAGE 10 ---
+ 
+4.6 Potencial Zeta ................................................................................................................ 33 
+4.7 Molhabilidade ................................................................................................................ 33 
+4.8 Ensaio mecânico de compressão .................................................................................... 34 
+4.9 Degradação hidrolítica ................................................................................................... 34 
+4.10 Cromatografia de permeação em gel ........................................................................... 34 
+4.11 Microscopia Eletrônica de Varredura (MEV) ............................................................. 34 
+5. RESULTADOS E DISCUSSÃO ......................................................................................... 36 
+5.1 Espectroscopia de infravermelho por transformada de Fourier (FTIR) ........................ 36 
+5.2 Análise termogravimétrica (TG) .................................................................................... 38 
+5.3 Calorimetria Exploratória Diferencial (DSC) ................................................................ 41 
+5.4 Potencial Zeta ................................................................................................................ 42 
+5.5 Molhabilidade ................................................................................................................ 43 
+5.6 Degradação hidrolítica ................................................................................................... 44 
+5.6.1 Aferimento de massa .............................................................................................. 44 
+5.6.2 Massa molar ........................................................................................................... 45 
+5.6.3 Microscopia eletrônica de varredura (MEV) ......................................................... 46 
+5.6.4 Análise termogravimétrica (TG) ............................................................................ 48 
+5.6.5 Calorimetria Exploratória Diferencial (DSC) ........................................................ 51 
+5.7 Compressão .................................................................................................................... 54 
+6. CONSIDERAÇÕES FINAIS ............................................................................................... 56 
+7. CRONOGRAMA ................................................................................................................. 57 
+8. REFERÊNCIAS ................................................................................................................... 58 
+
+--- PAGE 11 ---
+ 
+10 
+1. INTRODUÇÃO 
+A articulação do joelho é a maior e mais exigida do corpo humano, composta por três 
+ossos – fêmur, tíbia e patela – organizados em duas articulações sinoviais: tibiofemoral e 
+patelofemoral. Sua anatomia permite a função de dobradiça com rotação limitada, sendo 
+estabilizada por complexos ligamentares, como os ligamentos cruzados e colaterais. A 
+cartilagem hialina reveste as superfícies articulares, promovendo absorção de impactos e 
+reduzindo o atrito. Como estruturas cruciais para a biomecânica do joelho, os meniscos – medial 
+e lateral – estão interpostos entre os côndilos femorais e o platô tibial. Embora antes 
+considerados remanescentes embrionários, os meniscos hoje são reconhecidos por sua 
+participação na estabilidade articular, absorção de impactos, lubrificação e nutrição articular. O 
+menisco medial possui menor mobilidade, sendo fixado ao ligamento colateral medial, 
+enquanto o lateral é mais móvel, facilitando a adaptação às forças articulares (Mameri et al., 
+2022; Renström; Johnson, 1990). 
+No contexto estrutural, a composição meniscal envolve predominantemente água (65–
+72%), colágeno (20–25%, principalmente tipo I) e traços de proteoglicanos. Os 
+fibrocondrócitos, células híbridas entre fibroblastos e condrócitos, adaptam-se ao ambiente 
+hipóxico com perfil anaeróbico. A organização estrutural da matriz extracelular varia em 
+profundidade: fibras radiais na superfície reduzem o atrito; fibras circunferenciais profundas 
+conferem resistência às tensões. Já os proteoglicanos, embora em pequena quantidade, 
+desempenham funções biomecânicas essenciais na retenção de água e na dissipação de carga. 
+A vascularização é limitada à periferia distal do menisco que determina zonas distintas com 
+organização vascular maior (zona vermelho-vermelho), menor (zona vermelho-branco) ou 
+ausente (zona branco-branco). Essa arquitetura influencia diretamente a capacidade de reparo, 
+tornando lesões internas menos propensas à cicatrização espontânea. Os meniscos também 
+atuam como amortecedores, absorvendo cerca de 20% da energia durante a marcha, além de 
+contribuírem na redistribuição da carga e estabilização dinâmica do joelho (Havıtçıoğlu; 
+Özmanevra; Karakaşlı, 2016). 
+Do ponto de vista funcional, os meniscos diferenciam-se na transmissão de cargas: o 
+medial transmite de 40–50% da carga em extensão, enquanto o lateral absorve até 90% em 
+flexão. A incongruência anatômica do compartimento lateral exige maior mobilidade meniscal, 
+fornecida pelo menisco lateral mais frouxo. Em contraste, o compartimento medial é mais 
+congruente e estruturalmente estável, o qual embora aumente sua capacidade de estabilização, 
+também o torna mais suscetível a lesões (Kim et al., 2025). 
+
+--- PAGE 12 ---
+ 
+11 
+Lesões meniscais são altamente prevalentes e classificadas em diversos padrões 
+morfológicos com prognósticos distintos: Rupturas horizontais: degenerativas, preservam 
+parcialmente a biomecânica. Tratadas com meniscectomia parcial, que pode, entretanto, 
+agravar a sobrecarga articular. Rupturas longitudinais: geralmente traumáticas e periféricas, 
+com bom potencial de cicatrização, especialmente se tratadas precocemente. Rupturas radiais: 
+comprometem a continuidade das fibras circunferenciais e reduzem drasticamente a função 
+meniscal. Avulsões de raiz meniscal: levam à extrusão meniscal e perda completa de função 
+biomecânica, acelerando processos degenerativos. Lesões de rampa: afetam a junção 
+meniscocapsular posteromedial e são difíceis de diagnosticar, exigindo avaliação artroscópica 
+específica (Jung et al., 2012; LaPrade et al., 2014). 
+O tratamento das lesões varia de acordo com sua natureza e localização. A sutura 
+meniscal (reparo inside-out) é preferida para lesões suturáveis, embora apresente riscos como 
+ruptura residual ou irritação local. Já o tratamento conservador – baseado em fisioterapia, 
+crioterapia e anti-inflamatórios – é indicado para lesões menores ou pacientes com 
+contraindicações cirúrgicas. Em exames de imagem de alta resolução as lesões são classificadas 
+em grau de 0 a III, sendo as de grau III, lesões extensas e irreparáveis, sendo a via cirurgia a 
+única alternativa, embora seus efeitos deletérios sobre a função articular e risco de osteoartrite 
+precoce exijam alternativas mais preservadoras (Villarreal-Espinosa et al., 2024). 
+Diante das limitações das abordagens tradicionais, a medicina regenerativa propõe 
+soluções inovadoras, como o transplante alogênico e os substitutos meniscais 
+bioengenheirados. O avanço em biomateriais, particularmente na engenharia de tecidos, 
+permite o desenvolvimento de implantes personalizados com propriedades semelhantes ao 
+tecido nativo. 
+Os polímeros são os principais componentes desses biomateriais, classificados em 
+naturais (colágeno, quitosana, fibroína de seda) e sintéticos (PLA, PGA, PLGA). Entre os 
+sintéticos, o poli(ácido láctico) (PLA) e seus derivados PLLA e PDLA destacam-se por sua 
+biodegradabilidade e resistência mecânica. A cristalização e a conformação helicoidal das 
+cadeias de PLLA, por exemplo, conferem-lhe resistência mecânica, sendo amplamente 
+explorado em dispositivos ortopédicos (Rui et al., 2024). 
+Entre as abordagens recentes, o poli(L-co-D,L-ácido láctico) (PLDLA) representa um 
+copolímero com propriedades intermediárias, ajustáveis em termos de taxa de degradação e 
+flexibilidade, por meio da proporção de seus isômeros. Isso o torna apropriado para implantes 
+reabsorvíveis e scaffolds em engenharia de tecidos. Suas aplicações incluem desde substrato 
+
+--- PAGE 13 ---
+ 
+12 
+para crescimento celular até dispositivos para liberação controlada de fármacos (Coimbra; 
+Elias; Coelho, 2008). 
+Além dos polímeros estruturais, outros componentes desempenham funções 
+complementares como o trietil citrato (TEC), frequentemente utilizados como plastificantes. 
+Derivado do ácido cítrico, o TEC é biodegradável, de baixa toxicidade, e melhora as 
+propriedades mecânicas dos materiais poliméricos. É empregado na indústria alimentícia e 
+farmacêutica, e recentemente, em scaffolds biomédicos, otimizando sua flexibilidade e 
+liberação de compostos ativos (Maiza, Mounira; Benaniba, 2015). Mais recentemente, o avanço 
+da manufatura aditiva tem ampliado essas potencialidades, sobretudo a impressão 3D, que vem 
+revolucionando a produção de implantes personalizados. A impressão por extrusão via pistão 
+permite controle de deposição camada a camada, com elevada precisão e adaptabilidade a 
+geometrias complexas. Essa tecnologia tem potencial de fabricar meniscos artificiais sob 
+medida, integrando biomateriais como PLDLA com agentes plastificantes como o TEC, 
+conforme necessidades clínicas específicas. Apesar dos avanços, ainda existem desafios 
+técnicos, como compatibilidade material, resolução e tempo de produção. O futuro da 
+biofabricação aponta para a integração entre novos materiais, otimização de parâmetros de 
+processamento e consolidação da manufatura aditiva como ferramenta terapêutica na ortopedia 
+regenerativa. (Stocco et al., 2022). 
+ 
+
+--- PAGE 14 ---
+ 
+13 
+2. REFERENCIAL TEÓRICO 
+ 
+2.1 O joelho e sua anatomia, 
+O joelho é a maior e uma das articulações mais exigidas do corpo humano. Trata-se uma 
+articulação sinovial complexa que conecta três ossos: o fêmur, tíbia e a patela. Sua estrutura 
+funciona como uma dobradiça sofisticada, com duas articulações: a tibiofemoral (entre fêmur 
+e tíbia) e a patelofemoral (entre o fêmur e a patela) (Saavedra et al., 2012). 
+A disposição anatômica dos ossos nas articulações tibiofemoral e patelofemoral serve 
+como ponto de apoio para os músculos extensores e flexores. Os ligamentos que cruzam a 
+articulação atuam como estabilizadores, distribuindo as cargas biomecânicas. Por ser uma 
+articulação do tipo dobradiça, o movimento ocorre principalmente em um eixo, com rotação 
+medial e lateral limitada (Reyes Leiva; Gato; Olmedo, 2023; Saavedra et al., 2012). A figura 1 
+ilustra a anatomia do joelho, destacando os ligamentos, ossos e estruturas adjacentes. 
+ 
+Figura 1 – Anatomia da articulação do joelho: vista anterior. 
+ 
+Fonte: Adaptado de Makris et al. 2011. 
+ 
+O joelho constitui-se como uma articulação complexa formada por três componentes 
+ósseos principais: Fêmur, denominado como o osso da coxa, apresenta em sua extremidade 
+distal dois côndilos (medial e lateral), os quais se articulam com a tíbia. Tais estruturas são 
+revestidas por cartilagem articular hialina, tecido especializado que confere propriedades de 
+
+--- PAGE 15 ---
+ 
+14 
+absorção de impactos e redução de atrito durante a movimentação articular (Fotaki et al., 2021; 
+Reyes Leiva; Gato; Olmedo, 2023). Tíbia, osso de carga do membro inferior, caracteriza-se por 
+apresentar em sua extremidade proximal uma superfície articular planiforme denominado platô 
+tibial. Esta estrutura, subdividida em porções medial e lateral, estabelece interface articular com 
+os côndilos femorais e assume a função primordial de suporte ponderal do corpo (Reyes Leiva; 
+Gato; Olmedo, 2023). Patela, osso sesamoide de localização anterior à articulação femorotibial, 
+vulgarmente conhecido como rótula. Desempenha dupla função biomecânica: proteção 
+articular contra traumas diretos e otimização de braço de momento do mecanismo extensor 
+através do aumento da alavanca tendinosa (Fotaki et al., 2021). 
+Os ligamentos do joelho são estruturas fibrosas que conectam os ossos e proporcionam 
+estabilidade. Os principais ligamentos incluem: O Ligamento Cruzado Anterior (LCA), que 
+impede o deslocamento anterior da tíbia em relação ao fêmur. O Ligamento Cruzado Posterior 
+(LCP), evita o deslocamento posterior da tíbia em relação ao fêmur. O Ligamento Colateral 
+Medial (LCM), estabiliza o joelho contra forças que empurram a perna para fora. O Ligamento 
+Colateral Lateral (LCL), estabiliza o joelho contra forças que empurrar a perna para dentro 
+(Aweid; Osmani; Melton, 2019; Fotaki et al., 2021). 
+ 
+2.2 Os meniscos e sua anatomia 
+Anteriormente consideradas estruturas embrionárias remanescentes e sem função, os 
+meniscos são hoje conhecidos como essenciais para o funcionamento e a saúde de diversas 
+articulações do corpo, principalmente a do joelho. Eles desempenham funções cruciais, como 
+estabilidade articular, distribuição de carga axial, absorção de impactos, além de contribuir para 
+lubrificação e nutrição das articulações do joelho (Bryceland; Powell; Nunn, 2017; Fox; Bedi; 
+Rodeo, 2012). 
+Cada joelho possui dois meniscos, o menisco medial e o menisco lateral, localizados 
+entre o côndilo femoral e o platô tibial. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 16 ---
+ 
+15 
+Figura 2 - Anatomia do menisco: vista superior do planalto tibial. 
+ 
+ 
+Fonte: Adaptado de Makris et al. 2011. 
+ 
+O menisco medial tem formato semicircular, com 40 a 45 mm de comprimento e 
+aproximadamente 27 mm de largura, cobrindo 50 a 60% da superfície articular medial. Sua 
+mobilidade é limitada devido a força de fixação ao ligamento colateral medial. Já o menisco 
+lateral é o mais curto, medindo 32 a 35 mm de comprimento, e cobre 70 a 80% da superfície 
+articular tibial lateral. Diferentemente do menisco medial, ele não possuí fixação direta ao 
+ligamento colateral, apresentando apenas uma fixação periférica frouxa à capsula articular, 
+interrompida pelo tendão poplíteo no hiato poplíteo. Essa característica confere ao menisco 
+lateral maior mobilidade em comparação ao menisco medial (Bryceland; Powell; Nunn, 2017; 
+Gee; Posner, 2021). 
+ 
+2.2.1 Composição celular e da matriz extracelular dos meniscos 
+O menisco apresenta uma composição bioquímica característica, sendo constituído 
+principalmente por água (65 a 72%), colágeno (20 a 25%) e uma pequena quantidade de 
+proteoglicanos (<1%). Esses componentes formam uma densa matriz extracelular (ECM - 
+extracellular matrix), na qual se encontram distribuídas células meniscais (Gee; Posner, 2021; 
+Heo et al., 2016). 
+Os fibrocondrócitos são células especializadas que apresentam características híbridas, 
+possuem morfologia semelhante aos condrócitos, mas sintetizam predominantemente colágeno 
+tipo I, típico de fibroblastos. Essas células exibem um perfil metabólico anaeróbico, 
+evidenciado pela escassez de mitocôndrias e abundância de retículo endoplasmático rugoso e 
+
+--- PAGE 17 ---
+ 
+16 
+complexos de Golgi – uma adaptação que viabiliza sua sobrevivência no ambiente hipóxico do 
+menisco. A morfologia dos fibrocondrócitos varia conforme sua localização e condições 
+ambientais. As camadas superficiais apresentam células com formato fusiforme (aspecto 
+fibroblástico). As camadas mais profundas possuem células arredondadas (aspecto 
+condrocítico). Na região periférica, as células são organizadas em fileiras paralelas às fibras de 
+colágeno, otimizadas para resistir às forças de tração. Nas bordas internas as células apresentam 
+morfologia fibroblástica, adaptadas às forças compressivas predominantes nesta região 
+(Bryceland; Powell; Nunn, 2017; Furumatsu et al., 2012; Heo et al., 2016). 
+A matriz extracelular meniscal apresenta um elevado conteúdo hídrico (65 a 72% de sua 
+composição). Estudos sugerem que esta água desempenha um papel crucial, gerando forças de 
+arrasto durante a aplicação de cargas compressivas. Esse mecanismo contribuí para a dissipação 
+de energia, reduzindo significativamente as tensões compressivas sobre o tecido meniscal, e 
+consequentemente, minimizando o risco de lesões (Markes; Hodax; Ma, 2020). 
+A matriz extracelular do menisco apresenta uma composição colagenosa diversificada, 
+sendo o colágeno tipo I o principal componente, acompanhado por quantidades variáveis dos 
+tipos II, III, V e VI. A organização estrutural dessas fibras colágenas varia conforme a 
+profundidade. Na camada superficial as fibras colágenas possuem orientação radial, formando 
+uma interface lisa que reduz o atrito durante o movimento articular. Na camada profunda as 
+fibras colágenas são organizadas circunferencialmente, padrão que confere resistência às forças 
+de tensão (Fox; Bedi; Rodeo, 2012). 
+Os proteoglicanos, embora representem menos de 1% da composição da matriz 
+extracelular, exercem funções estruturais e biomecânicas fundamentais no tecido meniscal. 
+Essas macromoléculas são caracterizadas por uma estrutura molecular composta por um núcleo 
+proteico central ao que se ligam uma ou mais cadeias de glicosaminoglicanos (GAGs). Do 
+ponto de vista funcional, os proteoglicanos atuam principalmente por meio de capacidade 
+hidrofílica, atraindo e retendo moléculas de água; dinâmica de fluido tissular, facilitando a 
+transmissão de forças hidrostáticas; e proteção mecânica, reduzindo a tensão compressiva e 
+minimizando riscos de lesão tecidual. (Aagaard; Verdonk, 1999; Fox; Bedi; Rodeo, 2012; 
+Markes; Hodax; Ma, 2020). 
+ 
+2.2.2 Vascularização e inervação dos meniscos 
+A vascularização dos meniscos tem sua origem nas artérias geniculares lateral e medial, 
+tanto nas porções inferiores e superiores, as quais formam um plexo copilar perimeniscal 
+
+--- PAGE 18 ---
+ 
+17 
+responsável pela irrigação sanguínea. Durante o processo de desenvolvimento e 
+envelhecimento, ocorre uma progressiva redução da vascularização meniscal, resultando em 
+tecidos adultos com apenas 10 a 25% de sua área total efetivamente perfundida (Bryceland; 
+Powell; Nunn, 2017). 
+Quanto à distribuição vascular, observa-se três regiões anatomicamente distintas. A 
+região periférica, denominada zona vermelha-vermelha, apresenta relativa vascularização. Em 
+contraste, a zona interna, conhecida como zona branco-branco, caracteriza-se por ser 
+completamente avascular. Entre essas duas áreas, encontra-se uma zona de transição 
+denominada vermelho-branco, que representa a interface gradual entre o tecido vascularizado 
+e o avascular, como demonstrado na figura 3. Esta organização vascular apresenta importantes 
+implicações clínicas, uma vez que existe uma correlação direta entre a densidade vascular e a 
+capacidade de reparo tecidual. Consequentemente, a zona branco-branco, apresenta maior 
+suscetibilidade a lesões pós-traumáticas e degenerativas e caráter permanente, com reduzida 
+capacidade de cicatrização espontânea. Por outro lado, as regiões com maior aporte vascular 
+demonstram melhor potencial regenerativo frente a injúrias (Bryceland; Powell; Nunn, 2017; 
+Makris; Hadidi; Athanasiou, 2011). 
+ 
+Figura 3 – Anatomia vascular do menisco. 
+ 
+Fonte: Próprio autor. 
+ 
+ 
+2.2.3 Propriedades funcionais e biomecânicas dos meniscos 
+Os meniscos desempenham um papel na proteção da cartilagem articular tibiofemoral 
+através de três mecanismos biomecânicos principais. Em primeiro lugar, atuam na modificação 
+da transmissão de cargas, redistribuindo as forças compressivas de maneira mais uniforme pela 
+superfície articular. Em segundo lugar, funcionam como amortecedores de impacto, absorvendo 
+
+--- PAGE 19 ---
+ 
+18 
+e dissipando a energia gerada durante atividades de carga. Por fim, contribuem para a 
+estabilização articular, aumentando a congruência entre côndilos femorais e o platô tibial, o que 
+reduz os movimentos anormais e potencialmente lesivos. 
+A conformação anatômica da articulação do joelho apresenta características geométricas 
+distintas entre seus componentes: os côndilos femorais exibem uma superfície convexa, 
+enquanto o platô tibial apresenta uma ligeira concavidade e o lateral mantém uma convexidade 
+(Gee; Posner, 2021). Do ponto de vista funcional, os meniscos desempenham um papel crucial 
+na transmissão de carga durante diferentes graus de flexão articular. Com o joelho em extensão 
+completa, o menisco medial é responsável pela transmissão de 40 a 50% da carga aplicada à 
+articulação, enquanto o menisco lateral assume uma parcela maior, correspondendo a 65 a 70% 
+da carga total. Durante a flexão articular, ocorre um aumento progressivo na participação dos 
+meniscos na transmissão de carga, atingindo níveis particularmente elevados no compartimento 
+lateral, onde o menisco lateral pode chegar a absorver até 90% das forças aplicadas (Fox et al., 
+2015). 
+Durante a marcha, as forças vibratórias decorrentes do impacto com o solo propagam-
+se axialmente através da articulação do joelho, gerando cargas dinâmicas. Nesse processo 
+biomecânico, os meniscos desempenham uma função crucial como elementos dissipadores de 
+energia, sendo capazes de absorver cerca de 20% das forças de impacto em condições 
+articulares normais. Esse mecanismo de atenuação energética é possibilitado por duas 
+características fundamentais do tecido meniscal: suas propriedades viscoelásticas intrínsecas e 
+o fenômeno de fluxo intersticial (Voloshin; Wosk, 1983). 
+As propriedades viscoelásticas conferem aos meniscos a capacidade de sofrer 
+deformações graduais e controladas quando submetidos a cargas, convertendo energia 
+mecânica em calor através de processos de histerese. Paralelamente, o fluxo intersticial permite 
+a redistribuição do líquido tissular através da matriz extracelular densa, gerando forças 
+dissipativas por meio de efeitos de arrasto viscoso. Esse sistema combinado de amortecimento 
+passivo atua de forma continua durante o ciclo de marcha, protegendo as superfícies articulares 
+contra os efeitos deletérios das cargas cíclicas repetitivas (Gee; Posner, 2021; Voloshin; Wosk, 
+1983). 
+A análise biomecânica revela diferenças na mobilidade entre os meniscos medial e 
+lateral, decorrentes de suas características anatômicas distintas. O menisco lateral apresenta 
+consideravelmente maior liberdade de movimento em comparação ao seu homólogo medial, 
+variação esta que pode ser atribuída a diferenças estruturais fundamentais. O menisco medial, 
+com suas inserções capsulares mais extensas e firmes, estabelece uma conexão direta com o 
+
+--- PAGE 20 ---
+ 
+19 
+ligamento colateral medial, resultando em mobilidade naturalmente limitada e conferindo-lhe 
+a função adicional de estabilizador secundário da articulação (Fox et al., 2015). 
+Em contraste, o menisco lateral caracteriza-se por apresentar fixações periféricas menos 
+numerosas e ausência de aderência ao ligamento colateral lateral, características que permitem 
+maior amplitude de movimento e capacidade de adaptação dinâmica aos complexos 
+movimentos femorais durante a articulação. Estas diferenças funcionais refletem a distinta 
+anatomia articular dos compartimentos medial e lateral. No aspecto lateral, a convexidade do 
+côndilo femoral em contraste com a planicidade do platô tibial lateral cria uma incongruência 
+articular, exigindo maior mobilidade meniscal para manter a congruência articular durante os 
+movimentos de translação anteroposterior (Allen et al., 2000). 
+Por outro lado, o compartimento medial apresenta um sistema articular mais estável 
+devido à melhor congruência entre as superfícies articulares e às fixações meniscais mais 
+rígidas. Esta configuração resulta em um mecanismo menos adaptável, porém estruturalmente 
+mais estável, que limita a mobilidade do menisco medial, mas proporciona maior suporte 
+estático à articulação (Gee; Posner, 2021). 
+ 
+2.2.4 Lesões meniscais e suas implicações 
+As lesões meniscais constituem uma das patologias mais prevalentes do joelho, 
+acometendo a saúde articular e a capacidade funcional de uma ampla população. Estas lesões 
+apresentam uma complexa variedade de padrões de ruptura, os quais podem ser classificados 
+segundo diferentes critérios morfológicos e etiológicos, cada qual com implicações terapêuticas 
+específicas e distintos perfis prognósticos. 
+As rupturas horizontais do menisco caracterizam-se por apresentar um padrão de 
+fissuração paralelo tanto à orientação das fibras circunferenciais quanto à superfície do platô 
+tibial. Essas lesões, de natureza tipicamente degenerativa, mantendo a capacidade de resistir às 
+tensões do arco meniscal, preservando a função biomecânica do tecido. Do ponto de vista 
+terapêutico, a meniscectomia parcial tem sido considerada o tratamento padrão para este tipo 
+de lesão. Contudo, evidências científicas recentes demonstram que tal procedimento pode 
+resultar em alterações significativas na distribuição de pressões intra-articulares, com aumento 
+das cargas compartimentais pós-operatórias, o que potencialmente pode acelerar processos 
+degenerativos articulares. (Ina et al., 2025; Pearsall et al., 2025). 
+As rupturas longitudinais representam um padrão específico de lesão meniscal que 
+acomete as fibras superficiais do tecido. Este tipo de ruptura apresenta uma etiologia traumática, 
+
+--- PAGE 21 ---
+ 
+20 
+associada a mecanismos de lesão semelhantes aos que causam rupturas do ligamento cruzado 
+anterior. Anatomicamente, essas lesões localizam-se na região periférica do menisco, em 
+proximidade com a rede capilar perimeniscal, característica que confere a essas rupturas um 
+potencial intrínseco de cicatrização melhorado quando comparado a outros padrões de lesão. 
+Rupturas com duração superior a três meses, classificadas como crônicas, apresentam 
+probabilidade reduzida de cicatrização espontânea. Entre as manifestações mais graves deste 
+tipo de lesão, destaca-se a ruptura em alça de balde, caracterizada por uma extensa fissura 
+longitudinal com deslocamento do fragmento meniscal (Arner et al., 2022; Baratz; Fu; 
+Mengato, 1986; Ina et al., 2025; Masoudi et al., 2015). 
+As rupturas radiais constituem um padrão específico de lesão meniscal caracterizado 
+por fissuras verticais de clivagem que se desenvolvem perpendicularmente à orientação das 
+fibras circunferenciais. Essas lesões se originam na região avascular branco-branco, 
+propagando-se em direção à periferia do menisco. Quando completas, as rupturas radiais 
+apresentam consequências funcionais particularmente graves, o que pode precipitar um 
+processo acelerado de degeneração articular caso não seja instituído tratamento adequado. O 
+manejo cirúrgico das rupturas radiais enfrenta desafios técnicos, particularmente no que 
+concerne ao período pós-operatório. A aplicação de carga de peso gera forças de tensão ao 
+longo do arco meniscal que tendem a distrair as margens da reparação, criando um ambiente 
+desfavorável ao processo de cicatrização tecidual. Este fenômeno representa um dos principais 
+fatores limitantes para o sucesso do reparo meniscal neste tipo específico de lesão (Arner et al., 
+2022; Bhatia et al., 2016; Nakanishi et al., 2020). 
+As avulsões da raiz meniscal, caracterizadas pelo desprendimento completo da inserção 
+óssea, representam uma condição patológica grave devido à perda integral da capacidade de 
+resistência às tensões do arco meniscal. Esta lesão está associada ao fenômeno de extrusão 
+meniscal, que compromete as funções biomecânicas essenciais do menisco, sua capacidade de 
+absorção e distribuição de carga na articulação do joelho. Estudos demonstram que as rupturas 
+da raiz meniscal resultam em um aumento das forças de contato tibiofemoral, criando um 
+padrão anormal de distribuição de pressões articulares. Na ausência de intervenção cirúrgica, 
+essa alteração articular pode evoluir para um processo degenerativo acelerado, com 
+desenvolvimento precoce de alterações osteoartríticas (Ina et al., 2025; Krych et al., 2017) 
+As lesões de rampa correspondem a um padrão específico de lesão meniscocapsular que 
+envolve a separação estrutural na região posteromedial do menisco, afetando tanto a junção 
+meniscocapsular posterior quanto o ligamento meniscotibial. Do ponto de vista prognóstico, 
+estas lesões apresentam um potencial de cicatrização melhorado quando comparadas a outros 
+
+--- PAGE 22 ---
+ 
+21 
+padrões de ruptura meniscal, vantagem esta atribuível à sua localização periférica, onde o 
+suprimento sanguíneo é mais abundante e eficiente (Brophy et al., 2022). 
+O aspecto mais crítico no manejo das lesões de rampa reside no diagnóstico, uma vez 
+que essas lesões passam despercebidas durante a avaliação convencional. A identificação 
+adequada exige uma avaliação artroscópica minuciosa, com atenção especial ao compartimento 
+posteromedial. A técnica de visualização trans-notch tem se mostrado uma avaliação completa 
+dessas lesões, permitindo a inspeção adequada da região posteromedial do joelho e a detecção 
+de lesões que poderiam permanecer não diagnosticadas. Esta abordagem diagnóstica meticulosa 
+é fundamental para orientar a estratégia terapêutica mais adequada e garantir os melhores 
+resultados funcionais (Ina et al., 2025; Sonnery-Cottet et al., 2020). 
+ 
+2.2.5 Terapêutica atual para lesões meniscais 
+O reparo por sutura constitui uma abordagem terapêutica convencional e amplamente 
+difundida na prática ortopédica contemporânea, sendo indicado para lesões meniscais de 
+pequena extensão e com potencial de cicatrização. Dentre as diversas técnicas disponíveis, o 
+reparo inside-out destaca-se como padrão-ouro atual, por sua capacidade de restauração 
+anatômica sem a necessidade de implantes que possam modificar a conformação meniscal ou 
+lesar a cartilagem articular adjacente. Contudo, esta técnica apresenta limitações que devem ser 
+consideradas no planejamento terapêutico. Os principais riscos associados ao reparo inside-out 
+incluem: maior probabilidade de ruptura ou extensão da lesão original, potencial para dano 
+condral durante o procedimento e ocorrência de irritação tecidual local no pós-operatório. 
+(Bansal et al., 2021). 
+O tratamento conservador representa uma alternativa terapêutica amplamente 
+empregada na prática clínica, sendo indicado para pacientes com lesões meniscais de menor 
+magnitude ou que apresentam contraindicações para intervenção cirúrgica. Esta modalidade de 
+tratamento tem como objetivos principais o alívio sintomático da dor, a redução do processo 
+inflamatório e a recuperação progressiva da função articular. Caracterizada por sua natureza 
+multidisciplinar, a abordagem conservadora integra diversas estratégias terapêuticas, incluindo 
+protocolos de fisioterapia especializada, farmacoterapia anti-inflamatória, períodos 
+programados de repouso relativo e medidas de autocuidado como a aplicação de crioterapia 
+(compressas de gelo) (Luo et al., 2024; Smeets et al., 2024). 
+Nas situações de lesões meniscais extensas e irreparáveis, a meniscectomia total surge 
+como opção terapêutica para alívio imediato da dor e melhora da função articular. Este 
+
+--- PAGE 23 ---
+ 
+22 
+procedimento, que consiste na remoção completa do tecido meniscal danificado, apresenta, 
+contudo, implicações a longo prazo para a biomecânica do joelho. A ausência do menisco altera 
+a distribuição de cargas na articulação, resultando em aumento da pressão de contato sobre a 
+cartilagem articular e redução da área efetiva de suporte de carga. Estas alterações predispõem 
+ao desenvolvimento precoce de osteoartrite, instabilidade articular, dor crônica e 
+comprometimento funcional progressivo, evidenciando a importância de se considerar 
+alternativas de preservação meniscal sempre que possível (de Roy et al., 2021; Doral et al., 
+2015). 
+Diante das consequências adversas associadas à meniscectomia total, a medicina tem 
+desenvolvido alternativas inovadoras para preservar ou substituir o tecido meniscal. Dentre as 
+abordagens mais promissoras destacam-se o transplante meniscal alogênico e o uso de 
+substitutos sintéticos ou biológicos. O transplante de menisco, tem como objetivo principal 
+restaurar a biomecânica articular e a adequada distribuição de cargas no joelho. Os avanços em 
+engenharia tecidual têm permitido o desenvolvimento de substitutos meniscais inovadores, com 
+destaque para a tecnologia de impressão 3D de meniscos artificiais personalizados. Estas 
+abordagens buscam reproduzir com maior fidelidade a estrutura e função do menisco nativo, 
+oferecendo perspectivas promissoras para o tratamento de lesões meniscais irreparáveis. Os 
+materiais utilizados variam entre polímeros sintéticos e matrizes biológicas, cada um com 
+características específicas de biocompatibilidade e resistência mecânica (Bedrin et al., 2021; 
+Dianat et al., 2021; Wang, Bin et al., 2023; Zhang et al., 2019). 
+ 
+2.3 Biomateriais direcionados a regeneração meniscal 
+Os biomateriais assumem papel no manejo terapêutico das lesões meniscais, oferecendo 
+alternativas para preservação, reparo ou substituição do tecido danificado. A seleção do 
+biomaterial adequado requer consideração criteriosa de múltiplos fatores, incluindo tanto 
+características intrínsecas ao paciente quanto parâmetros técnicos, tais como a natureza da 
+lesão, as propriedades físico-químicas do material e os requisitos funcionais necessários para 
+promover a regeneração tecidual ou a adequada substituição. Esta decisão clínica deve 
+equilibrar aspectos biológicos, mecânicos e funcionais para garantir os melhores resultados 
+terapêuticos. 
+ 
+
+--- PAGE 24 ---
+ 
+23 
+2.3.1 Biomateriais poliméricos 
+Os polímeros desempenham função essencial na regeneração e substituição tecidual do 
+menisco, atuando tanto como arcabouços (scaffolds) para proliferação celular quanto como 
+veículos para liberação controlada de fármacos, potencializando os processos regenerativos. A 
+complexidade estrutural e os requisitos de biocompatibilidade do tecido meniscal natural 
+representam desafios significativos no desenvolvimento de materiais artificiais adequados. Na 
+prática da engenharia de tecidos, diversos sistemas poliméricos têm sido investigados como 
+substitutos 
+meniscais, 
+apresentando 
+perfis 
+distintos 
+de 
+propriedades 
+mecânicas, 
+biodegradabilidade e interação celular, com características específicas que devem ser 
+ponderadas conforme a aplicação clínica pretendida. (Li, Hao et al., 2021; Pillai et al., 2018).  
+Os polímeros utilizados em aplicações biomédicas podem ser categorizados em naturais 
+e sintéticos, cada grupo apresentando características distintas adequadas a diferentes finalidades 
+terapêuticas. Entre os polímeros naturais, destacam-se o colágeno, reconhecido por sua 
+excelente capacidade de promover adesão e proliferação celular (Sousa; Ruben; Viana, 2024); 
+a quitosana, que combina biocompatibilidade, biodegradabilidade e propriedades 
+antibacterianas; e a fibroína de seda, material versátil que alia resistência mecânica à 
+biocompatibilidade e baixa imunogenicidade (DeFoor et al., 2024).  
+No âmbito dos polímeros sintéticos, o poli(ácido láctico) (PLA) se destaca por sua 
+resistência mecânica e propriedades biodegradáveis, enquanto o poli(ácido glicólico) (PGA) 
+apresenta elevada cristalinidade e taxa de degradação controlada, sendo particularmente 
+adequado para estruturas de suporte temporário. (Wang, Wentao et al., 2022). O copolímero 
+poli(ácido láctico-co-glicólico) (PLGA) emerge como sistema versátil, combinando as 
+vantagens do PLA e PGA com capacidade de modular tanto a degradação quanto a liberação 
+de fármacos, tornando-se particularmente útil em estratégias combinadas de engenharia tecidual 
+e terapia medicamentosa. (DeFoor et al., 2024; Sousa; Ruben; Viana, 2024; Wang, Wentao et 
+al., 2022). 
+ 
+2.3.1.1 Poli(ácido láctico) 
+O poli(ácido láctico) (PLA) constitui um poliéster alifático obtido a partir de fontes 
+renováveis mediante processo fermentativo de polissacarídeos (Murariu; Dubois, 2016). Este 
+polímero apresenta dois estereoisômeros principais (D e L), cuja configuração molecular resulta 
+diretamente do processo de fermentação (Figura 4). A síntese do PLA ocorre através de 
+policondensação do ácido lático, formando um diéster cíclico que pode gerar quatro 
+
+--- PAGE 25 ---
+ 
+24 
+configurações estereoisoméricas distintas: LLA, DLA, MLA e DLLA. O processo de 
+polimerização por abertura de anel desses dímeros cíclicos permite a produção de 
+macromoléculas com elevada massa molar, destacando-se como produtos principais o poli(L-
+ácido láctico) (PLLA) e o poli(D-ácido láctico) (PDLA), cada qual apresentando características 
+físico-químicas e propriedades mecânicas específicas. (Khouri et al., 2024). 
+ 
+Figura 4 - Estereoisômeros do ácido láctico (L e D) 
+ 
+Fonte: Próprio autor. 
+ 
+O poli(L-ácido láctico) (PLLA) apresenta características físico-químicas notáveis, 
+destacando-se por sua elevada cristalinidade (30-40%) e excelentes propriedades mecânicas, 
+incluindo resistência à tração e força de retenção, combinadas com destacada 
+biocompatibilidade. (Sangroniz et al., 2018). Este polímero é sintetizado a partir do dímero 
+cíclico LL-lactídeo e pode apresentar quatro formas polimórficas distintas (α, α', β e γ). Entre 
+estas, a forma α se destaca como a mais termodinamicamente estável, devido à sua organização 
+molecular em célula unitária pseudo-ortorrômbica, onde as cadeias poliméricas adotam uma 
+conformação helicoidal característica. Esta estrutura molecular particular confere ao PLLA suas 
+propriedades mecânicas superiores e estabilidade dimensional, características fundamentais 
+para suas aplicações biomédicas.(Capuana et al., 2022; Tashiro et al., 2017). 
+Em contraste com o PLLA, o poli(D-ácido láctico) (PDLA) apresenta características 
+cristalinas distintas e propriedades mecânicas menos pronunciadas, particularmente no que diz 
+respeito à tensão e módulo de elasticidade. Como polímero quiral constituído por monômeros 
+de D-ácido láctico ligados por ésteres, o PDLA exibe atividade óptica devido à presença de 
+carbonos quirais em sua unidade de repetição estrutural (Chong et al., 2023). Sua organização 
+cristalina demonstra sensibilidade a diversos parâmetros, incluindo peso molecular, grau de 
+
+--- PAGE 26 ---
+ 
+25 
+pureza óptica e condições específicas de processamento, fatores que coletivamente determinam 
+suas propriedades físico-químicas finais e comportamento mecânico. (Wang, Liying et al., 
+2018). 
+ 
+2.3.1.1.1 Poli(L-co-D,L-ácido láctico) 
+Visando aprimorar as propriedades dos polímeros individuais, desenvolveu-se o 
+copolímero poli(L-co-D,L-ácido láctico) (PLDLA), que combina os isômeros L e D,L do ácido 
+láctico. Este material tem atraído significativo interesse científico para aplicações biomédicas 
+devido à sua capacidade única de oferecer biodegradabilidade controlada aliada a excelente 
+biocompatibilidade. 
+Copolímeros consistem em macromoléculas constituídas por dois ou mais tipos de 
+unidades monoméricas distintas, cujas propriedades físico-químicas são determinadas pela 
+composição e arranjo espacial desses meros ao longo da cadeia polimérica. Esses parâmetros 
+estruturais - concentração relativa dos monômeros e padrão de distribuição molecular – 
+influenciam o comportamento do material, permitindo a obtenção de uma ampla variedade de 
+características através do processo de copolimerização (Motta, Adriana C.; Duek, 2007). Dentre 
+os copolímeros com aplicação biomédica, o poli(L-co-D,L-ácido láctico) (PLDLA) destaca-se 
+como um material bioabsorvível e biocompatível, sintetizado pela polimerização dos isômeros 
+ópticos L e D,L do ácido láctico, a estrutura química está representada na figura 5 (Leal et al., 
+2019). Esta combinação molecular confere ao PLDLA propriedades intermediárias entre o 
+PLLA e PDLA, possibilitando o ajuste fino de características como taxa de degradação e 
+propriedades mecânicas para aplicações específicas em medicina regenerativa. 
+ 
+Figura 5 – Estrutura química do poli(L-co-D,L-ácido láctico) (PLDLA). 
+ 
+Fonte: Próprio autor 
+ 
+
+--- PAGE 27 ---
+ 
+26 
+O PLDLA apresenta três características que o tornam adequado para aplicações 
+biomédicas: biodegradabilidade controlada, biocompatibilidade e flexibilidade ajustável. Sua 
+biodegradabilidade permite a decomposição gradual em subprodutos não tóxicos no organismo, 
+sendo a taxa de degradação modulável através da variação da proporção entre os isômeros L e 
+D,L do ácido láctico (Chong et al., 2023; Leal et al., 2019). A biocompatibilidade intrínseca do 
+material garante a ausência de reações adversas quando em contato com tecidos vivos, requisito 
+para implantes e dispositivos médicos. A flexibilidade do PLDLA resulta da presença 
+combinada dos isômeros D e L, que promovem a desorganização da estrutura cristalina das 
+cadeias poliméricas. Esta propriedade é valiosa em aplicações que demandam materiais com 
+maior maleabilidade e capacidade de adaptação mecânica (Chong et al., 2023; Yang et al., 
+2023). A possibilidade de ajustar essas propriedades através da composição isomérica torna o 
+PLDLA um material versátil para diversas aplicações na engenharia tecidual e medicina 
+regenerativa. 
+O PLDLA tem se destacado como material promissor para diversas aplicações em 
+medicina regenerativa, atendendo a requisitos tanto mecânicos quanto biológicos. Suas 
+propriedades o tornam adequado para três principais aplicações: (1) como substrato para 
+engenharia tecidual, (2) como sistema de liberação controlada de fármacos, e (3) como material 
+base para implantes meniscais e substitutos dérmicos. Essa versatilidade decorre da capacidade 
+do PLDLA em combinar características de biodegradabilidade controlada com propriedades 
+mecânicas ajustáveis, permitindo sua adaptação a diferentes necessidades clínicas (Jeong et al., 
+1997; Kenar; Köse; Hasirci, 2006; Komatsu et al., 2019; Sheikhi; Nemayandeh; Shirangi, 
+2024). 
+O PLDLA tem se mostrado um material versátil para aplicações em engenharia tecidual, 
+particularmente na fabricação de scaffolds tridimensionais destinados ao crescimento de células 
+ósseas e cartilaginosas. Estudos demonstram que a microarquitetura desses scaffolds - 
+especialmente sua porosidade e organização estrutural - exerce influência direta nos processos 
+de adesão, proliferação e diferenciação celular (Esposito et al., 2013). Paralelamente, o PLDLA 
+tem ganhado destaque na manufatura aditiva, onde sua processabilidade permite a produção de 
+dispositivos personalizados com geometrias complexas. Esta característica possibilita a criação 
+de implantes com alta precisão dimensional, adaptados às necessidades anatômicas específicas 
+de cada paciente (Crapnell et al., 2023; Pedrini et al., 2024). A combinação dessas propriedades 
+posiciona o PLDLA como um material estratégico para o desenvolvimento de soluções 
+personalizadas em medicina regenerativa. 
+ 
+
+--- PAGE 28 ---
+ 
+27 
+2.3.2 Ésteres do ácido cítrico 
+Os ésteres derivados do ácido cítrico são obtidos através de reações de esterificação, nas 
+quais um ou mais de seus três grupos carboxílicos reagem com grupos hidroxila de álcoois, 
+formando ligações éster e liberando moléculas de água como subproduto (Haseeb et al., 2023). 
+Essa capacidade de reação multifuncional permite a formação de três classes distintas de ésteres 
+- monoésteres, diésteres e triésteres - conforme o número de grupos carboxílicos que participam 
+da reação (Alvarez et al., 2023). A versatilidade química do ácido cítrico, decorrente de sua 
+estrutura molecular com três sítios reativos, torna-o particularmente adequado para a síntese de 
+diversos compostos com propriedades físico-químicas ajustáveis. 
+Os ésteres derivados do ácido cítrico apresentam ampla utilização em diversos setores 
+industriais devido às suas propriedades físico-químicas singulares. Na indústria alimentícia e 
+de embalagens, o tributil citrato (TB) é empregado como plastificante para o poli(ácido láctico), 
+melhorando significativamente suas características térmicas e mecânicas (Fiume et al., 2014; 
+Malbos et al., 2024). Paralelamente, os mono e diglicerídeos (CITREM) atuam como eficientes 
+agentes emulsificantes, contribuindo para a estabilização e texturização de produtos 
+alimentícios (Gaupp; Adams, 2004). Esses compostos também encontram aplicações relevantes 
+nas indústrias farmacêutica e cosmética, onde são valorizados por sua biocompatibilidade e 
+versatilidade funcional (Fiume et al., 2014). 
+ 
+2.3.2.1 Trietil Citrato 
+O citrato de trietila (TEC), também denominado de trietil citrato, é um éster orgânico 
+obtido por meio da esterificação completa dos três grupos carboxílicos do ácido cítrico com 
+moléculas de etanol. Caracterizado pela fórmula molecular C₁₂H₂₀O₇ e pela estrutura química 
+ilustrada na figura 6, esse composto apresenta propriedades físico-químicas específicas que o 
+tornam relevante para aplicações industriais e biomédicas. Destaca-se como um plastificante de 
+baixa toxicidade, exibindo compatibilidade com diversos polímeros. Sua principal vantagem 
+reside na capacidade de modificar propriedades mecânicas e térmicas dos materiais, sem 
+comprometer a segurança do produto final (Malbos et al., 2024). 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 29 ---
+ 
+28 
+Figura 6 – Estrutura química do trietil citrato. 
+ 
+Fonte: Próprio autor. 
+ 
+O citrato de trietila (TEC) é um composto líquido incolor, inodoro e de aspecto oleoso 
+em condições ambientais. Apresenta solubilidade tanto em água quanto em solventes orgânicos 
+(Lee et al., 2020), característica que amplia sua aplicabilidade. Por ser derivado do ácido cítrico, 
+o TEC demonstra propriedades biodegradáveis (Malbos et al., 2024). Do ponto de vista térmico, 
+exibe boa estabilidade, suportando taxas de aquecimento sem sofrer degradação significativa 
+(Shi et al., 2022). Adicionalmente, sua baixa toxicidade o torna um ingrediente seguro, 
+amplamente utilizado em setores alimentícios e farmacêuticos (Jennings et al., 2017). 
+O TEC desempenha a função de plastificante, conferindo maior flexibilidade e 
+promovendo uma melhor dispersibilidade em matrizes poliméricas (Lee et al., 2020; Rabek et 
+al., 2014). Na indústria farmacêutica, seu emprego é amplamente difundido, contribuindo para 
+a estabilização e a liberação controlada de princípios ativos (Jennings et al., 2017). 
+Recentemente, sua aplicação tem se expandido para a área de engenharia de tecidos, onde o 
+TEC é utilizado para otimizar as propriedades físico-químicas de scaffolds, aumentando sua 
+eficácia em aplicações biomédicas (Demirbilek, 2015). 
+ 
+2.4 Manufatura de aditiva de biomateriais 
+A manufatura aditiva, comumente denominada impressão 3D, consiste em um processo 
+de fabricação que constrói objetos tridimensionais por meio da deposição sequencial de 
+material, possibilitando a produção de geometrias complexas e designs personalizados com 
+elevado grau de precisão. Essa tecnologia fundamenta-se no uso de sistemas de design auxiliado 
+por computador (CAD) para a modelagem e preparação dos arquivos digitais necessários à 
+
+--- PAGE 30 ---
+ 
+29 
+impressão (Zahidin et al., 2023). Caracteriza-se por seu caráter digital e inteligente, com um 
+fluxo de trabalho que envolve duas etapas principais: o processamento de dados e a construção 
+por deposição camada por camada (Li, Zeyuan et al., 2025). 
+A manufatura aditiva de polímeros emprega diversas técnicas de processamento, entre 
+as quais se destaca a impressão por extrusão via pistão. Nesse método, o material termoplástico 
+é aquecido e extrudado através de um bico extrusor, sendo subsequentemente depositado 
+camada por camada para formar a peça tridimensional. O sistema incorpora um mecanismo de 
+pistão que exerce pressão controlada sobre o material fundido, garantindo sua extrusão precisa 
+através do bico. Essa configuração proporciona maior controle do fluxo de material durante o 
+processo de deposição, resultando em maior precisão dimensional e qualidade de impressão 
+quando comparado a sistemas convencionais de extrusão por gravidade (Patel; Taufik, 2024). 
+Apesar dos notáveis progressos alcançados, a manufatura aditiva de biomateriais 
+poliméricos ainda se depara com desafios consideráveis, incluindo questões relacionadas à 
+compatibilidade de materiais, limitações na resolução de impressão e restrições quanto à 
+velocidade de produção (Zhu et al., 2025). Pesquisas recentes sugerem que os esforços futuros 
+nessa área deverão concentrar-se em três eixos principais: o desenvolvimento de novos 
+biomateriais com propriedades otimizadas, a aprimoramento dos parâmetros de processamento 
+e a expansão das aplicações clínicas (Bose et al., 2018; Pesode; and Barve, 2023). A 
+convergência entre a síntese de materiais inovadores e o refinamento das técnicas de fabricação 
+aditiva posiciona a impressão 3D como uma tecnologia disruptiva com potencial para 
+revolucionar a prática médica e promover avanços significativos na qualidade de vida de 
+pacientes. 
+ 
+
+--- PAGE 31 ---
+ 
+30 
+3. OBJETIVOS 
+ 
+3.1 Objetivo geral 
+Este estudo propõe o desenvolvimento de um dispositivo protético por impressão 3D 
+utilizando poli(L-co-D,L-ácido lático) com trietil citrato (PLDLA/TEC) em diferentes 
+concentrações, visando sua aplicação como substituto artificial para reposição meniscal. A 
+abordagem busca combinar as propriedades biomecânicas adequadas e a biocompatibilidade 
+necessária para mimetizar a função do menisco natural, oferecendo uma alternativa terapêutica 
+inovadora para lesões irreparáveis. 
+ 
+3.2 Objetivos específicos 
+- Produzir PLDLA puro e PLDLA-TEC nas concentrações de 1% e 2% (PLDLA, 
+PLDLA-TEC1% e PLDLA-TEC2%); 
+- Desenvolver modelos computacionais e imprimir scaffolds de PLDLA, PLDLA-
+TEC1% e PLDLA-TEC2%; 
+- Avaliar propriedades químicas dos scaffolds nas diferentes concentrações; 
+- Avaliar comportamento térmico dos scaffolds impressos; 
+- Avaliar características mecânicas compressivas dos materiais impressos; 
+- Avaliar a degradabilidade dos scaffolds impressos por 90 dias; 
+- Avaliar a citocompatibilidade dos scaffolds nas diferentes concentrações definidas; 
+- Avaliar a viabilidade e organização fenotípica por identificação da organização do 
+citoesqueleto e do complexo focal de célula aderidas aos scaffolds impressos.
+
+--- PAGE 32 ---
+ 
+31 
+4. METODOLOGIA 
+ 
+4.1 Síntese do material 
+Para a síntese dos materiais, empregou-se 4 g do polímero poli(L-co-D,L-ácido lático) 
+(PLDLA) e o éster vegetal trietil-citrato (TEC) (Sigma-Aldrich) em concentrações de 1% e 2% 
+em relação à massa do PLDLA, correspondendo a 0,04 g e 0,08 g de TEC, respectivamente. 
+Estas concentrações foram selecionadas com base em referências prévias da literatura 
+especializada (Maiza, Mounira; Hamam, 2022; Martín-Illana et al., 2022; Ramos et al., 2024; 
+Zuber; Rusli; Ismail, 2019). 
+O PLDLA e o TEC foram dissolvidos em clorofórmio P.A. (Synth) na proporção de 
+1:10 (1 g de material para 10 mL de solvente), mantendo-se a solução sob agitação constante 
+por 2 horas ou até completa dissolução. A solução homogênea foi então vertida em placas de 
+vidro (16,5 × 6,5 cm) e submetida a secagem em ambiente controlado, saturado com vapores 
+de clorofórmio, para obtenção de membranas uniformes e isentas de bolhas. Este procedimento 
+resultou na produção de três tipos de amostras: PLDLA, PLDLA-TEC1% e PLDLA-TEC2%. 
+ 
+4.2 Impressão do biomaterial de PLDLA e PLDLA-TEC 
+A fabricação dos scaffolds foi realizada mediante bioimpressão 3D por extrusão via 
+pistão, utilizando-se a impressora OctopusTM da 3D Biotechnology Solutions. Para tanto, 
+empregou-se como matérias-primas o PLDLA puro e suas formulações modificadas com TEC 
+(PLDLA-TEC1% e PLDLA-TEC2%). O desenho geométrico dos scaffolds foi elaborado no 
+software Slic3rTM (v1.3.0), que permitiu a definição dos parâmetros de impressão e das 
+características dimensionais dos espécimes, estabelecendo-se diâmetros de aproximadamente 
+10 mm e espessuras de 5 mm, conforme observado na modelagem computacional da figura 7. 
+O processo de impressão foi conduzido à temperatura ambiente, sem aquecimento da mesa de 
+impressão, com velocidades de extrusão de 4 e 8 mm/s e espaçamento entre camadas de 0,4 
+mm. Esta configuração possibilitou a obtenção de estruturas tridimensionais com geometria 
+controlada e características adequadas para as subsequentes análises. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+--- PAGE 33 ---
+ 
+32 
+Figura 7 - Modelagem computacional realizada dos scaffolds. Cada impressão produziu quatro scaffolds. 
+ 
+ 
+4.3. Espectroscopia de infravermelho por transformada de Fourier (FTIR) 
+A caracterização química dos materiais PLDLA, PLDLA-TEC1% e PLDLA-TEC2% 
+foi realizada por espectroscopia no infravermelho com transformada de Fourier (FTIR) 
+utilizando o espectrômetro FTIR-ATR Spectrum 65 da Perkin Elmer. As análises foram 
+conduzidas no modo de reflectância total atenuada (ATR), com 32 varreduras acumuladas para 
+cada amostra, abrangendo a faixa espectral de 4000 a 500 cm⁻¹ e resolução de 4 cm⁻¹. Esta 
+técnica permitiu a identificação dos grupos funcionais característicos e a verificação das 
+possíveis interações químicas entre o PLDLA e o plastificante TEC nas diferentes formulações. 
+ 
+4.4 Análise termogravimétrica (TG) 
+A avaliação da estabilidade térmica dos materiais PLDLA, PLDLA-TEC1% e PLDLA-
+TEC2% foi realizada por termogravimetria (TGA) utilizando o equipamento TA Instruments, 
+modelo TGA 55. As amostras foram submetidas a um gradiente de temperatura de 25 a 500 °C 
+em atmosfera controlada de nitrogênio gasoso, com fluxo constante de 40 mL/min e taxa de 
+aquecimento de 10 °C/min. Esta metodologia permitiu a caracterização do comportamento 
+
+--- PAGE 34 ---
+ 
+33 
+térmico dos materiais, incluindo etapas de decomposição e perda de massa em função da 
+temperatura. 
+ 
+4.5 Calorimetria Exploratória Diferencial (DSC) 
+A caracterização térmica dos materiais PLDLA, PLDLA-TEC1% e PLDLA-TEC2% foi 
+realizada por calorimetria exploratória diferencial (DSC) com o objetivo de determinar as 
+temperaturas de transição vítrea (Tg) e de fusão (Tm). Amostras com massas entre 5 e 10 mg 
+foram acondicionadas em cadinhos hermeticamente fechados e submetidas ao seguinte ciclo 
+térmico: aquecimento inicial de 20°C a 200°C, resfriamento até -100°C e novo aquecimento 
+até 200°C, mantendo-se em taxa constante de 10°C/min em todas as etapas. Este protocolo 
+permitiu a obtenção dos parâmetros termodinâmicos relevantes, eliminando possíveis efeitos 
+do histórico térmico prévio dos materiais. 
+ 
+4.6 Potencial Zeta 
+A caracterização das propriedades eletrostáticas superficiais dos materiais foi realizada 
+utilizando um analisador eletrocinético SurPASS (Anton Paar GmbH, Áustria). As medidas do 
+potencial zeta foram conduzidas em faixa de pH variável entre 3 e 9, com ajustes pontuais 
+realizados mediante adição de soluções de HCl 0,05 M (para acidificação) e NaOH 0,05 M 
+(para alcalinização). Este procedimento permitiu a avaliação quantitativa da magnitude e 
+comportamento das interações eletrostáticas superficiais em função do pH, fornecendo dados 
+essenciais sobre a estabilidade coloidal e propriedades de superfície dos materiais estudados. 
+ 
+4.7 Molhabilidade 
+As membranas impressas de PLDLA, PLDLA-TEC1% e PLDLA-TEC2%, com 
+dimensões padronizadas de 2 cm (comprimento) × 1 cm (largura), foram submetidas à análise 
+do ângulo de contato utilizando um goniômetro Rammé-Hart 100-00 acoplado ao software 
+DROPimage Standard. Para cada amostra, depositaram-se aproximadamente 20 µL de água 
+deionizada (líquido padrão polar) sobre a superfície das membranas, utilizando um sistema de 
+dosagem automatizado controlado por software. As medições foram realizadas em triplicata, 
+sendo os valores finais do ângulo de contato determinados pela média de vinte medidas 
+independentes para cada réplica, garantindo assim a reprodutibilidade dos resultados. 
+ 
+
+--- PAGE 35 ---
+ 
+34 
+4.8 Ensaio mecânico de compressão 
+O ensaio mecânico de compressão foi realizado seguindo as diretrizes preconizadas pela 
+norma ASTM D575-91. A análise foi realizada em quintuplicata usando a máquina universal 
+de ensaios INSTRON EMIC 23-30 a temperatura ambiente com taxa de deslocamento do 
+travessão de 12 mm/min. Os scaffolds impressos apresentaram diâmetros de aproximadamente 
+10 mm e espessuras de 5 mm. 
+ 
+4.9 Degradação hidrolítica 
+O estudo da degradação hidrolítica dos materiais PLDLA, PLDLA-TEC1% e PLDLA-
+TEC2% foi conduzido seguindo os parâmetros estabelecidos pela norma ISO 10993-13:2010. 
+As amostras foram imersas em solução tampão fosfato salino (PBS) mantida a 37°C, utilizando 
+uma proporção mássica de 1 g de material para cada 10 mL de solução. O período total de 
+avaliação correspondeu a 180 dias, durante os quais o volume do meio foi mantido constante 
+através da reposição periódica de PBS para compensar eventuais perdas por evaporação. A 
+caracterização do processo degradativo foi realizada através de análises termogravimétricas 
+(TG), calorimetria diferencial de varredura (DSC), espectroscopia no infravermelho com 
+transformada de Fourier (FTIR), cromatografia por exclusão de tamanho (GPC) e medidas de 
+massa, realizadas nos intervalos de 30, 60, 90 e 180 dias. 
+ 
+4.10 Cromatografia de permeação em gel 
+Como complemento ao estudo de degradação hidrolítica, realizou-se a caracterização 
+do peso molecular e do índice de polidispersividade das amostras PLDLA, PLDLA-TEC1% e 
+PLDLA-TEC2% por cromatografia de permeação em gel (GPC). Utilizou-se um sistema GPC 
+da Waters (EUA) equipado com duas colunas e detector de índice de refração. O tetraidrofurano 
+(THF) foi empregado como fase móvel em fluxo constante de 1 mL/min. Esta análise permitiu 
+o monitoramento quantitativo das alterações na distribuição de massa molar dos materiais ao 
+longo do processo degradativo. 
+ 
+4.11 Microscopia Eletrônica de Varredura (MEV) 
+As análises morfológicas dos scaffolds de PLDLA, PLDLA-TEC 1% e PLDLA-TEC 
+2% foram realizadas em microscópio eletrônico de varredura de alta resolução (JEOL JSM-
+7100F), equipado com canhão de emissão por campo (Field Emission Gun – FEG), o que 
+
+--- PAGE 36 ---
+ 
+35 
+confere elevada estabilidade do feixe, alta corrente e excelente resolução espacial, viabilizando 
+eletrónmicrografias com riqueza de detalhes ultraestruturas.  
+As amostras foram previamente preparadas por remoção da umidade em ambiente 
+fechado contendo sílica gel e, em seguida, submetidas à metalização sob vácuo por pulverização 
+catódica (sputtering) com paládio, utilizando o equipamento Denton Vacuum Desk V. O 
+processo foi conduzido sob corrente de 40 mA durante 4 min, resultando em um revestimento 
+homogêneo com espessura entre 20 e 30 nm, de modo a favorecer a interação do feixe de 
+elétrons com a superfície e garantir a obtenção de imagens de alta qualidade, conforme 
+metodologias amplamente estabelecidas para microscopia eletrônica de varredura (Goldstein et 
+al., 1992) 
+As observações foram realizadas sob tensão de aceleração de 1 kV, com distância de 
+trabalho entre 12 e 15 mm e ampliações de 20× e 100×, utilizando elétrons secundários. Essas 
+condições experimentais permitiram a caracterização detalhada da microarquitetura dos 
+scaffolds minimizando degradação por carregamento de elétrons. 
+ 
+
+--- PAGE 37 ---
+ 
+36 
+5. RESULTADOS E DISCUSSÃO 
+5.1 Espectroscopia de infravermelho por transformada de Fourier (FTIR) 
+Os espectros obtidos pela análise de FTIR para as amostras de PLDLA, TEC, 
+PLDLA/TEC1% e PLDLA/TEC2% são apresentados na figura 8A. 
+ 
+Figura 8 – Análise de FTIR do PLDLA, TEC, PLDLA/TEC1% e PLDLA/TEC2%. Espectros por transmitância 
+(A) e por deconvolução dos espectros em absorbância (B). 
+ 
+ 
+
+--- PAGE 38 ---
+ 
+37 
+O espectro em transmitância, evidencia o PLDLA (figura 8A) em picos em 2995 e 2942 
+cm-1, que são atribuídos à deformação axial simétrica e assimétrica dos grupos C-H do CH3 e 
+C-H da cadeia do poliéster. O pico em 1748 cm-1 é atribuído à deformação axial do grupo 
+carbonila C=O dos poliésteres. Os picos 1450 e 1360 cm-1 são associados à deformação angular 
+dos hidrocarbonetos presentes no grupo CH2, enquanto em 1181 cm-1 é atribuído ao estiramento 
+axial e simétrico de C-C. O pico em 1080 cm-1 está associado aos grupos C-O presentes no 
+polilactídeo (Pedrini et al., 2024; Pinto et al., 2024). O espectro do TEC (figura 8A) exibiu 
+picos em 3502 e 2983 cm-1 que estão relacionado à vibração de alongamento O-H e C-H 
+(Teixeira et al., 2021). A escolha do pico estreito para apresentação por deconvolução em 
+absorbância na Figura 8B está atrelada ao direcionamento do pico resolvido para o O-H do TEC 
+observado na Figura 8A a fim de certificar a acurácia para identificação da incorporação de 
+TEC ao PLDLA. Deste modo, a confirmação da presença de TEC nas diferentes formulações 
+foi realizada através de deconvolução espectral na região de 3495-3506 cm⁻¹ (Figura 7B), com 
+posterior cálculo das áreas das curvas obtidas. O ajuste Gaussiano e os valores R² sendo todos 
+superiores a 0,96 reforçam a validade da análise.  Os resultados demonstraram que o TEC puro 
+apresentou área de 6,089 e coeficiente de determinação (R²) de 0,9608. Para as formulações 
+com PLDLA, observou-se área de 0,146 (R²=0,9949) no PLDLA/TEC1% e 0,339 (R²=0,9836) 
+no PLDLA/TEC2%, indicando a efetiva incorporação do plastificante na matriz polimérica. A 
+análise revelou ainda uma relação direta entre a concentração de TEC e o aumento da área 
+espectral, confirmando a proporcionalidade esperada entre a quantidade de plastificante 
+adicionado e a banda detectado. 
+ 
+ 
+ 
+
+--- PAGE 39 ---
+ 
+38 
+5.2 Análise termogravimétrica (TG) 
+A avaliação da estabilidade térmica das amostras de PLDLA, TEC e suas formulações 
+(PLDLA/TEC1% e PLDLA/TEC2%) foi realizada através das análises TG e DTG, conforme é 
+demonstrado na figura 9. 
+ 
+Figura 9 – Análise termogravimétrica de PLDLA, TEC e PLDLA/TEC. Curvas de (A) TG e (B) DTG das 
+amostras PLDLA (vermelho), TEC (azul), PLDLA/TEC1% (roxo) e PLDLA/TEC2% (verde).
+ 
+
+--- PAGE 40 ---
+ 
+39 
+O PLDLA exibiu dois eventos térmicos distintos: o primeiro compreendido entre 102°C 
+e 154°C (Tonset e Tendset, respectivamente), e o segundo entre 290°C e 352°C, com temperatura 
+de máxima perda de massa (Tmáx) em 340°C correspondendo a 86% de perda de massa (Figura 
+9B) e essa perda é associada à degradação do material (Pinto et al., 2024). O TEC apresentou 
+um único evento térmico entre 130°C e 188°C, com Tmáx em 182°C e perda de massa total 
+(100%), já no trabalho de Teixeira et al. (2021), dois eventos térmicos foram identificados em 
+diversas molaridades de filmes de TEC com acetato de celulose no qual a perda de massa 
+associada a volatilização total foi observada entre 138 a 328ºC. A degradação térmica de filmes 
+de PLA conforme observado por Maiza et al. (2015) apresentou efeitos de perda de massa 
+semelhantes aos aqui apresentados. 
+Todos os parâmetros térmicos relevantes encontram-se detalhados na Tabela 1, 
+evidenciando as alterações nas propriedades térmicas decorrentes da adição do plastificante 
+TEC ao polímero PLDLA. 
+ 
+Tabela 1 - Propriedades térmicas determinadas por TG e DTG nas amostras PLDLA, PLDLA/TEC1% e 
+PLDLA/TEC2%. 
+Amostra 
+Evento 
+Tonset (ºC) 
+Tendset (ºC) 
+Tmáx (ºC) 
+Perda de massa (%) 
+PLDLA 
+1 
+102 
+154 
+120 
+12 
+2 
+290 
+352 
+340 
+86 
+TEC 
+1 
+130 
+188 
+182 
+100 
+PLDLA/TEC1% 
+1 
+98 
+144 
+120 
+11 
+ 
+2 
+288 
+356 
+346 
+86 
+ 
+PLDLA/TEC2% 
+1 
+92 
+138 
+113 
+10 
+ 
+2 
+290 
+350 
+339 
+84 
+ 
+ 
+As formulações PLDLA/TEC demonstraram comportamento térmico similar aos 
+componentes individuais, porém com variações significativas nos parâmetros térmicos. Para 
+PLDLA/TEC1%, observou-se o primeiro evento entre 98°C e 144°C, e o segundo entre 288°C 
+e 256°C, com Tmáx em 346°C (86% de perda de massa). A formulação PLDLA/TEC2% 
+apresentou o primeiro evento entre 92°C e 138°C, e o segundo entre 290°C e 350°C, com Tmáx 
+em 339°C (84% de perda de massa). No primeiro evento térmico, observou-se uma redução na 
+temperatura do PLDLA/TEC1% em comparação com o PLDLA/TEC2%. Esse comportamento 
+sugere uma maior distância entre as cadeias poliméricas na amostra com menor concentração 
+de TEC, o que pode levar a uma maior mobilidade da água, conforme descrito em filmes de 
+
+--- PAGE 41 ---
+ 
+40 
+TEC por Teixeira et al. (2021). Além disso, a análise revelou que o aumento na concentração 
+de TEC resultou em uma diminuição da Tmáx para as amostras PLDLA/TEC1% e 
+PLDLA/TEC2%. Esse efeito é atribuído à volatilização do plastificante TEC, indicando que, 
+em baixas concentrações, o TEC não promoveu um aumento na resistência térmica do PLDLA 
+(Maiza et al., 2015). 
+ 
+ 
+
+--- PAGE 42 ---
+ 
+41 
+5.3 Calorimetria Exploratória Diferencial (DSC) 
+O comportamento térmico dos scaffolds de PLDLA, TEC, PLDLA/TEC1% e 
+PLDLA/TEC2% foi analisado por DSC, conforme mostra a figura 10. 
+ 
+Figura 10 – Curvas de DSC das amostras de PLDLA (vermelho), TEC (azul), PLDLA/TEC1% (roxo) e 
+PLDLA/TEC2% (verde). 
+ 
+ 
+Os resultados de DSC revelaram que todas as amostras - PLDLA, TEC, 
+PLDLA/TEC1% e PLDLA/TEC2% - apresentaram exclusivamente temperatura de transição 
+vítrea (Tg), confirmando sua natureza amorfa. O PLDLA exibiu uma Tg em 54°C (Pinto et al., 
+2024), enquanto o TEC apresentou valor menor em -85°C, como demonstrado na literatura 
+(Safandowska; Rozanski; Galeski, 2020). Nas formulações com TEC, observou-se um efeito 
+plastificante caracterizado pela redução progressiva da Tg em função da concentração do TEC: 
+a formulação PLDLA/TEC1% demonstrou Tg de 49°C (redução de 5°C em relação ao PLDLA), 
+enquanto a PLDLA/TEC2% apresentou Tg de 46°C (redução de 8°C). Foi demonstrando porque 
+o TEC reduz a temperatura da Tg do material a base de poli(ácido láctico), essa redução é 
+atribuída ao fato do TEC agir como um plastificante ao PLDLA. 
+ 
+ 
+
+--- PAGE 43 ---
+ 
+42 
+5.4 Potencial Zeta 
+A carga superficial das amostras PLDLA, PLDLA/TEC1% e PLDLA/TEC2% foi 
+realizada por potencial zeta, conforme demonstrado na figura 11. 
+ 
+Figura 11 – Análise da carga superficial, potencial Zeta, das amostras PLDLA, TEC, PLDLA/TEC1% e 
+PLDLA/TEC2% em função do pH. 
+ 
+ 
+Os resultados do potencial zeta revelaram um comportamento dependente do pH para 
+todas as amostras analisadas. O PLDLA apresentou aumento progressivo na carga superficial 
+negativa com a elevação do pH, atingindo -23 mV no pH de 9 (Pinto et al., 2024). A formulação 
+de PLDLA/TEC1% exibiu tendência semelhante, porém com valores menos negativos em toda 
+a faixa de pH, alcançando -22 mV em pH 9. Em contraste, a amostra PLDLA/TEC2% 
+demonstrou maior negatividade superficial comparada ao PLDLA, registrando -31 mV no 
+mesmo pH (9,0).  
+O aumento da concentração de TEC nas diferentes amostras apresentou potencial zeta 
+mais negativo e isso se deve ao fato da ocorrência da desprotonação de grupos funcionais -
+COOH de derivados do ácido cítrico. Isso ocorre devido ao aumento do pH do meio onde os  
+grupos funcionais são desprotonados de -COOH para -COO-, assim tornando a superfície das 
+amostras altamente carregadas negativamente (Liu; Dai; Hu, 2018). 
+
+--- PAGE 44 ---
+ 
+43 
+5.5 Molhabilidade 
+A molhabilidade das amostras PLDLA, PLDLA/TEC1% e PLDLA/TEC2% foi 
+realizada pela técnica de ângulo de contato, conforme demonstrado na figura 12. 
+ 
+Figura 12 – Análise da molhabilidade, ângulo de contato, das amostras PLDLA, PLDLA/TEC1% e 
+PLDLA/TEC2%. 
+ 
+ 
+Os resultados do ângulo de contato, figura 12, evidenciaram o efeito da adição do 
+plastificante TEC nas propriedades de superfície dos materiais. O PLDLA apresentou ângulo 
+médio de 75,75° (±3,11), enquanto as amostras PLDLA/TEC1% e PLDLA/TEC2% registraram 
+valores de 53,13° (±0,05) e 69,91° (±0,36), respectivamente. Todos os materiais demonstraram 
+comportamento hidrofílico (ângulos de contato <90°), com variação no grau de molhabilidade 
+conforme a concentração de TEC. O PLDLA exibiu a maior hidrofilicidade intrínseca, seguido 
+pelo PLDLA/TEC2%, sendo o PLDLA/TEC1% o menos hidrofílico entre as amostras testadas. 
+Estes resultados sugerem que a concentração do plastificante influencia diretamente as 
+propriedades de superfície do material, modificando sua interação com meio aquoso, tornando-
+o mais hidrofílico conforme aumenta a concentração de plastificante (Malbos et al., 2024). 
+ 
+ 
+
+--- PAGE 45 ---
+ 
+44 
+5.6 Degradação hidrolítica 
+5.6.1 Aferimento de massa 
+A massa das amostras PLDLA, PLDLA/TEC1% e PLDLA/TEC2% foi aferida em 
+balança analítica digital nos períodos de 0, 30, 60 e 90 dias, conforme demonstrado na figura 
+13. 
+ 
+Figura 13 – Massa das amostras de PLDLA, PLDLA/TEC1% e PLDLA/TEC2% no período de degradação de 
+90 dias. 
+ 
+ 
+A incorporação de TEC ao PLDLA resultou em uma redução da massa do material em 
+comparação à amostra de PLDLA puro, sendo essa diminuição mais evidente com o aumento 
+da concentração de TEC. A amostra de PLDLA puro apresentou intumescimento de massa até 
+60 dias de degradação, seguido por uma leve perda de massa aos 90 dias. Já a amostra de 
+PLDLA/TEC1% demonstrou maior estabilidade, com variações mínimas ao longo do período 
+de análise, caracterizando-se por uma tendência quase linear, com discreta perda de massa aos 
+60 dias. Por sua vez, a amostra de PLDLA/TEC2% exibiu intumescimento até os 60 dias, 
+apresentando redução de massa apenas aos 90 dias. Esses resultados indicam uma boa 
+estabilidade de degradação das amostras quando avaliada a variação de massa ao longo do 
+tempo. Com isso, mesmo havendo redução de massa molar, como descrito no item 5.6.2, nota-
+
+--- PAGE 46 ---
+ 
+45 
+se que não houve perda de massa significativa dos scaffolds submetidos à degradação durante 
+o período todo de 90 dias (Komatsu et al., 2024). 
+ 
+5.6.2 Massa molar 
+A massa molar das amostras PLDLA (tabela 2), PLDLA/TEC1% (tabela 3) e 
+PLDLA/TEC2% (tabela 4) foi aferida por cromatografia de permeação em gel (GPC) nos 
+períodos de 0, 30, 60 e 90 dias. 
+ 
+Tabela 2 – Massas molares médias dos scaffolds de PLDLA. Mn – Massa molar numérica média. Mw – Massa 
+molar ponderal média. PDI – Indice de polidispersão.  
+PLDLA 
+Período 
+Mn (kg/mol-1) 
+Mw (kg/mol-1) 
+PDI 
+0 dia 
+51285 
+94432 
+1,84 
+30 dias 
+25447 
+52738 
+2,07 
+60 dias 
+18313 
+35861 
+1,95 
+90 dias 
+7904 
+11801 
+1,49 
+ 
+Tabela 3 - Massas molares médias dos scaffolds de PLDLA/TEC1%. Mn – Massa molar numérica média. Mw – 
+Massa molar ponderal média. PDI – Indice de polidispersão. 
+PLDLA/TEC1% 
+Período 
+Mn (kg/mol-1) 
+Mw (kg/mol-1) 
+PDI 
+0 dia 
+44998 
+85759 
+1,90 
+30 dias 
+19257 
+31598 
+1,64 
+60 dias 
+11749 
+22409 
+1,90 
+90 dias 
+8122 
+12114 
+1,49 
+ 
+Tabela 4 - Massas molares médias dos scaffolds de PLDLA/TEC2%. Mn – Massa molar numérica média. Mw – 
+Massa molar ponderal média. PDI – Indice de polidispersão. 
+PLDLA/TEC2% 
+Período 
+Mn (kg/mol-1) 
+Mw (kg/mol-1) 
+PDI 
+0 dia 
+32733 
+68364 
+2,08 
+30 dias 
+15040 
+26926 
+1,79 
+60 dias 
+12616 
+19417 
+1,53 
+90 dias 
+6636 
+8391 
+1,26 
+ 
+As amostras de PLDLA, PLDLA/TEC1% e PLDLA/TEC2% apresentaram 
+comportamentos de degradação similares ao longo dos períodos analisados. Observou-se que o 
+aumento na concentração de TEC esteve associado à redução da massa molar das amostras, 
+sendo que o PLDLA/TEC2% apresentou o menor valor de massa molar inicial (0 dia) entre as 
+amostras. Ao comparar os valores obtidos nos tempos de 0 e 90 dias, verificou-se uma perda 
+
+--- PAGE 47 ---
+ 
+46 
+expressiva da massa molar em todas as amostras, sendo 85% para o PLDLA puro, 82% para o 
+PLDLA/TEC1% e 80% para o PLDLA/TEC2%. Assim, a amostra com maior concentração de 
+TEC (PLDLA/TEC2%) apresentou a menor perda de massa molar ao longo do período de 
+degradação. Ao analisar o índice de polidispersividade (PDI) notou-se que as amostras 
+apresentaram cadeias heterogêneas, devido aos resultados de PDI ficaram acima de 1,00. 
+Estudos afirmam que o comportamento de queda da massa molar, no processo de hidrólise dos 
+poliésteres alifáticos, ocorre devido a entrada de moléculas de água nas cadeias amorfas do 
+polímero, a queda da massa molar se mostra mais intensa quando há maior concentração de 
+partes amorfas DL-lactídeo em sua sequência (Motta; Duek, 2008). 
+ 
+5.6.3 Microscopia eletrônica de varredura (MEV) 
+A estrutura microscópica das amostras PLDLA, PLDLA/TEC1% e PLDLA/TEC2% foi 
+observada por microscopia eletrônica de varredura nas aplicações de 20 e 100x, conforme 
+figuras 14 e 15, respectivamente.  
+ 
+Figura 14 – Microscopia eletrônica de varredura das superfícies dos scaffolds de PLDLA, PLDLA/TEC1% e 
+PLDLA/TEC2% ao longo do tempo de degradação com ampliação de 20x. 
+ 
+ 
+ 
+ 
+
+--- PAGE 48 ---
+ 
+47 
+Figura 15 – Microscopia eletrônica de varredura das superfícies dos scaffolds de PLDLA, PLDLA/TEC1% e 
+PLDLA/TEC2% ao longo do tempo de degradação com ampliação de 100x. 
+ 
+ 
+Todas as amostras analisadas apresentaram evidências de degradação ao longo dos 
+períodos avaliados. Observou-se que os filamentos da amostra de PLDLA são mais espessos, 
+enquanto aqueles das amostras contendo TEC apresentam-se mais finos. Na amostra de 
+PLDLA, verificou-se a formação de poros a partir de 30 dias (Figura 14B). Após 90 dias, parte 
+da estrutura encontrava-se degradada (Figura 14D), com poros mais evidentes (Figura 15D). 
+Na amostra PLDLA/TEC1%, observou-se que, aos 30 dias, há presença de pequenos poros, 
+embora a superfície ainda mantenha aspecto liso e homogêneo (Figura 15F). Entretanto, nos 
+tempos subsequentes (60 e 90 dias), verificou-se aumento na quantidade de poros (Figura 15G) 
+e o surgimento de protuberâncias semelhantes a bolhas (Figura 15H). Além disso, a partir de 
+30 dias, a estrutura da amostra iniciou processo de desintegração (Figura 14F). Por sua vez, a 
+amostra PLDLA/TEC2% apresentou degradação mais acentuada. Aos 30 dias, os filamentos já 
+demonstravam desorganização estrutural (Figura 14J), culminando em colapso total da 
+estrutura aos 90 dias (Figura 14L). Também foi possível observar maior ocorrência de poros e 
+de protuberâncias em formato de bolhas nos tempos de 60 (Figura 15K) e 90 dias (Figura 15L), 
+sendo que, neste último, os poros se apresentaram mais amplos e numerosos. As erosões 
+observadas é característica da degradação em polímeros bioabsorvíveis, devido à hidrolise de 
+ligações éster inerentes à estrutura química do PLDLA (Komatsu et al., 2024; Motta et al., 
+2018). 
+
+--- PAGE 49 ---
+ 
+48 
+5.6.4 Análise termogravimétrica (TG) 
+A avaliação da estabilidade térmica das amostras de PLDLA, PLDLA/TEC1% e 
+PLDLA/TEC2% foi realizada através das análises TG e DTG, conforme é demonstrado na 
+figura 16. 
+ 
+Figura 16 – Análise termogravimétrica das amostras PLDLA, PLDLA/TEC1% e PLDLA/TEC2%. Curvas de 
+(A, C e E) TG e (B, D e F) DTG das amostras submetidas a degradação por 90 dias. 0 dias (vermelho), 30 dias 
+(amarelo), 60 dias (verde) e 90 dias (azul).
+ 
+
+--- PAGE 50 ---
+ 
+49 
+Tabela 5 - Propriedades térmicas determinadas por TG e DTG nas amostras PLDLA durante o período de 
+degradação de 90 dias. 
+PLDLA 
+Período 
+Evento 
+Tonset (ºC) 
+Tendset (ºC) 
+Tmáx (ºC) 
+Perda de massa (%) 
+0 dia 
+1 
+102 
+154 
+120 
+12 
+2 
+290 
+352 
+340 
+86 
+30 dias 
+1 
+282 
+338 
+328 
+97 
+60 dias 
+1 
+253 
+316 
+297 
+95 
+ 
+90 dias 
+1 
+232 
+295 
+273 
+99 
+ 
+ 
+Tabela 6 - Propriedades térmicas determinadas por TG e DTG nas amostras PLDLA/TEC1% durante o período 
+de degradação de 90 dias. 
+PLDLA/TEC1% 
+Período 
+Evento 
+Tonset (ºC) 
+Tendset (ºC) 
+Tmáx (ºC) 
+Perda de massa (%) 
+0 dia 
+1 
+76 
+142 
+134 
+9 
+2 
+281 
+339 
+323 
+90 
+30 dias 
+1 
+258 
+317 
+299 
+99 
+60 dias 
+1 
+237 
+299 
+287 
+96 
+ 
+90 dias 
+1 
+237 
+296 
+281 
+100 
+ 
+ 
+Tabela 7 - Propriedades térmicas determinadas por TG e DTG nas amostras PLDLA/TEC2% durante o período 
+de degradação de 90 dias. 
+PLDLA/TEC2% 
+Período 
+Evento 
+Tonset (ºC) 
+Tendset (ºC) 
+Tmáx (ºC) 
+Perda de massa (%) 
+0 dia 
+1 
+75 
+156 
+141 
+8 
+2 
+269 
+334 
+320 
+91 
+30 dias 
+1 
+260 
+322 
+301 
+98 
+60 dias 
+1 
+234 
+296 
+277 
+96 
+ 
+90 dias 
+1 
+241 
+300 
+284 
+99 
+ 
+ 
+A amostra PLDLA no 0 dia exibiu dois eventos térmicos distintos: o primeiro 
+compreendido entre 102°C e 154°C (Tonset e Tendset, respectivamente), e o segundo entre 290°C 
+e 352°C, com temperatura de máxima perda de massa (Tmáx) em 340°C correspondendo a 86% 
+de perda de massa (tabela 5). O PLDLA nos 30 dias de degradação exibiu um evento térmico 
+compreendido entre 282°C (Tonset) e 338°C (Tendset) com temperatura de máxima perda de massa 
+(Tmáx) em 328°C correspondendo a 97% de perda de massa (tabela 5). O PLDLA nos 60 dias 
+de degradação exibiu um evento térmico compreendido entre 253°C (Tonset) e 316°C (Tendset) 
+com temperatura de máxima perda de massa (Tmáx) em 297°C correspondendo a 95% de perda 
+
+--- PAGE 51 ---
+ 
+50 
+de massa (tabela 5). O PLDLA nos 90 dias de degradação exibiu um evento térmico 
+compreendido entre 232°C (Tonset) e 295°C (Tendset) com temperatura de máxima perda de massa 
+(Tmáx) em 295°C correspondendo a 99% de perda de massa (tabela 5).  
+A amostra PLDLA/TEC1% no 0 dia exibiu dois eventos térmicos distintos: o primeiro 
+compreendido entre 76°C e 142°C (Tonset e Tendset, respectivamente), e o segundo entre 281°C 
+e 339°C, com temperatura de máxima perda de massa (Tmáx) em 323°C correspondendo a 90% 
+de perda de massa (tabela 6). O PLDLA/TEC1% nos 30 dias de degradação exibiu um evento 
+térmico compreendido entre 258°C (Tonset) e 317°C (Tendset) com temperatura de máxima perda 
+de massa (Tmáx) em 299°C correspondendo a 99% de perda de massa (tabela 6). O 
+PLDLA/TEC1% nos 60 dias de degradação exibiu um evento térmico compreendido entre 
+237°C (Tonset) e 299°C (Tendset) com temperatura de máxima perda de massa (Tmáx) em 287°C 
+correspondendo a 96% de perda de massa (tabela 6). O PLDLA/TEC1% nos 90 dias de 
+degradação exibiu um evento térmico compreendido entre 237°C (Tonset) e 296°C (Tendset) com 
+temperatura de máxima perda de massa (Tmáx) em 281°C correspondendo a 100% de perda de 
+massa (tabela 6).  
+A amostra PLDLA/TEC2% no 0 dia exibiu dois eventos térmicos distintos: o primeiro 
+compreendido entre 75°C e 156°C (Tonset e Tendset, respectivamente), e o segundo entre 269°C e 
+334°C, com temperatura de máxima perda de massa (Tmáx) em 320°C correspondendo a 91% 
+de perda de massa (tabela 7). O PLDLA/TEC2% nos 30 dias de degradação exibiu um evento 
+térmico compreendido entre 260°C (Tonset) e 322°C (Tendset) com temperatura de máxima perda 
+de massa (Tmáx) em 301°C correspondendo a 98% de perda de massa (tabela 7). O 
+PLDLA/TEC2% nos 60 dias de degradação exibiu um evento térmico compreendido entre 
+234°C (Tonset) e 296°C (Tendset) com temperatura de máxima perda de massa (Tmáx) em 277°C 
+correspondendo a 96% de perda de massa (tabela 7). O PLDLA/TEC2% nos 90 dias de 
+degradação exibiu um evento térmico compreendido entre 241°C (Tonset) e 300°C (Tendset) com 
+temperatura de máxima perda de massa (Tmáx) em 284°C correspondendo a 99% de perda de 
+massa (tabela 7).  
+Nota-se que houve uma diminuição nas temperaturas de Tonset, Tendset e Tmáx 
+conforme os dias de degradação foram passando para todas as mostras, demonstrando que há 
+degradação dos materiais nos dias analisados. Observa-se que entre as amostras, as menores 
+temperaturas foram registradas para as amostras com maior concentração de TEC 
+(PLDLA/TEC2%). 
+Contudo, quando se analisa as amostras PLDLA, PLDLA/TEC1% e PLDLA/TEC2%, 
+observa-se um ligeiro aumento no Tonset, isso pode ter ocorrido devido ao efeito do plastificante 
+
+--- PAGE 52 ---
+ 
+51 
+exercido pela água sobre o TEC durante a degradação, conforme demonstrado por trabalhos 
+anteriores (Motta et al., 2018). 
+ 
+5.6.5 Calorimetria Exploratória Diferencial (DSC) 
+O comportamento térmico dos scaffolds de PLDLA, PLDLA/TEC1% e 
+PLDLA/TEC2% foi analisado por DSC, conforme mostra a figura 17. 
+ 
+Figura 17 - Análise de DSC das amostras PLDLA (A), PLDLA/TEC1% (B) e PLDLA/TEC2% (C) submetidas 
+a degradação por 90 dias. 0 dias (vermelho), 30 dias (amarelo), 60 dias (verde) e 90 dias (azul). 
+ 
+
+--- PAGE 53 ---
+ 
+52 
+Tabela 8 - Propriedades térmicas determinadas por DSC nas amostras PLDLA durante o período de degradação 
+de 90 dias. Tg – Temperatura de transição vítrea; Tm – Temperatura de fusão endotérmica; Tc – Temperatura de 
+cristalização exotérmica. 
+PLDLA/TEC2% 
+Período 
+Tg (ºC) 
+Tm (ºC) 
+Tc (ºC) 
+0 dia 
+54 
+- 
+- 
+30 dias 
+54 
+- 
+- 
+60 dias 
+48 
+- 
+- 
+90 dias 
+36 
+113 
+100 
+121 
+ 
+Tabela 9 - Propriedades térmicas determinadas por DSC nas amostras PLDLA/TEC1% durante o período de 
+degradação de 90 dias. Tg – Temperatura de transição vítrea; Tm – Temperatura de fusão endotérmica; Tc – 
+Temperatura de cristalização exotérmica. 
+PLDLA/TEC2% 
+Período 
+Tg (ºC) 
+Tm (ºC) 
+Tc (ºC) 
+0 dia 
+49 
+- 
+- 
+30 dias 
+49 
+- 
+- 
+60 dias 
+38 
+- 
+- 
+90 dias 
+41 
+- 
+- 
+ 
+Tabela 10 - Propriedades térmicas determinadas por DSC nas amostras PLDLA/TEC2% durante o período de 
+degradação de 90 dias. Tg – Temperatura de transição vítrea; Tm – Temperatura de fusão endotérmica; Tc – 
+Temperatura de cristalização exotérmica. 
+PLDLA/TEC2% 
+Período 
+Tg (ºC) 
+Tm (ºC) 
+Tc (ºC) 
+0 dia 
+46 
+- 
+- 
+30 dias 
+44 
+- 
+- 
+60 dias 
+22 
+103 
+89 
+105 
+90 dias 
+35 
+111 
+100 
+120 
+ 
+Os resultados de calorimetria exploratória diferencial (DSC) revelaram que todas as 
+amostras — PLDLA, PLDLA/TEC1% e PLDLA/TEC2% — apresentaram temperatura de 
+transição vítrea (Tg) nos diferentes tempos de degradação (0, 30, 60 e 90 dias), confirmando a 
+natureza amorfa dos materiais analisados. 
+A amostra de PLDLA apresentou valores de Tg de 54°C no tempo inicial (0 dia) e 54°C 
+após 30 dias de degradação. Aos 60 dias, observou-se redução da Tg para 48°C, e após 90 dias, 
+a Tg atingiu 36°C, evidenciando uma tendência de diminuição progressiva da Tg com o avanço 
+do processo de degradação. Para a amostra PLDLA/TEC1%, a Tg foi de 49°C no tempo inicial 
+e permaneceu em 49°C aos 30 dias. Aos 60 dias, a Tg reduziu para 38°C, e aos 90 dias 
+apresentou leve aumento para 41°C. Já a amostra PLDLA/TEC2% apresentou Tg de 46°C no 
+tempo inicial, 44°C aos 30 dias, 22°C aos 60 dias e 35°C após 90 dias de degradação, indicando 
+maior variação térmica ao longo do tempo, possivelmente associada à presença e à concentração 
+mais elevada do plastificante TEC. Essa queda na temperatura da Tg é consistente com a 
+
+--- PAGE 54 ---
+ 
+53 
+diminuição substancial no peso molecular identificada na análise de GPC (tabela 2, 3 e 4), 
+conforme demonstrado em outros trabalhos (Komatsu et al., 2024). 
+Além disso, a amostra de PLDLA aos 90 dias de degradação apresentou um pico 
+exotérmico correspondente à temperatura de cristalização (Tc) em 100°C e dois picos 
+endotérmicos de fusão (Tm) em 113°C e 121°C, sugerindo o início de processos de 
+reorganização cristalina durante a degradação. De forma semelhante, a amostra 
+PLDLA/TEC2% apresentou um pico exotérmico (Tc) em 89°C após 60 dias de degradação, 
+acompanhado de dois picos endotérmicos (Tm) em 103°C e 105°C. Após 90 dias, observou-se 
+novamente um pico exotérmico (Tc) em 100°C, e dois picos endotérmicos (Tm) em 111°C e 
+120°C, indicando a ocorrência simultânea de processos de cristalização e fusão nas fases 
+avançadas de degradação. Este processo é explicado por Duek et al (1999) como sendo devido 
+à hidrolise de ligações éster ocorrendo nas regiões amorfas do polímero, com consequente 
+clivagem das ligações éster, o que explicaria o aumento da cristalinidade observada ao longo 
+do processo de degradação. 
+ 
+
+--- PAGE 55 ---
+ 
+54 
+5.7 Compressão 
+As propriedades mecânicas das amostras PLDLA, PLDLA/TEC1% e PLDLA/TEC2% 
+foi realizada por ensaio de compressão, conforme demonstrado na figura 17. O módulo de 
+Young e a tensão à compressão são demonstrados na figura 18 A e B, respectivamente. 
+ 
+Figura 18 – Compressão mecânica do scaffolds de PLDLA (laranja), PLDLA/TEC1% (verde) e 
+PLDLA/TEC2% (roxo) apresentada em tensão por deformação. 
+ 
+ 
+Figura 19 – Compressão mecânica do scaffolds de PLDLA (laranja), PLDLA/TEC1% (verde) e 
+PLDLA/TEC2% (roxo). Módulo de Young (A) e Tensão à compressão (B). 
+ 
+ 
+ 
+
+--- PAGE 56 ---
+ 
+55 
+A figura 18 apresenta a típica curva de tensão por deformação resultante do ensaio de 
+compressão das amostras PLDLA, PLDLA/TEC1% e PLDLA/TEC2%.  A adição de TEC   
+afetou o comportamento mecânico do PLDLA. Todas as amostras atingiram uma porcentagem 
+de deformação de 45%, no entanto, para o PLDLA/TEC2% foi necessária uma tensão menor 
+para atingir esse valor. Ao calcular o módulo de Young, figura 19A, foi constatada que a 
+influência do TEC diminuiu a rigidez dos scaffolds, sendo que as amostras PLDLA/TEC1% e 
+PLDLA/TEC2% apresentaram uma diferença estatística significativa em relação ao PLDLA 
+(*p<0,05), no entanto, a amostra PLDLA/TEC2% apresentou um valor de módulo de Young 
+menor em comparação as outras amostras. Quando analisado a tensão à compressão, figura 
+19B, o comportamento das amostras foi parecido com o módulo de Young, sendo que as 
+amostras PLDLA/TEC1% e PLDLA/TEC2% apresentaram uma diferença estatística 
+significativa em relação ao PLDLA (*p<0,05), contudo, a amostra PDLA/TEC2% apresentou 
+a menor tensão à compressão entre os materiais (MPa). Conforme relatado na literatura a ação 
+de plastificantes na estrutura PLDLA ajuda na diminuição da rigidez conforme aumenta-se a 
+concentração do plastificante, isso ocorre, pois os ésteres de citrato penetra nas cadeias 
+macromoleculares do polímero e causa uma diminuição nas forças intermoleculares 
+cumulativas ao longo delas  (Safandowska; Rozanski; Galeski, 2020).
+
+--- PAGE 57 ---
+ 
+56 
+6. CONSIDERAÇÕES FINAIS 
+A incorporação do TEC ao PLDLA foi confirmada por espectroscopia no infravermelho 
+(FTIR) e pela deconvolução da banda na faixa espectral, indicando que o aumento da 
+concentração de TEC resulta em maior área correspondente à sua presença. A análise 
+termogravimétrica (TG) demonstrou que a adição do TEC não promoveu aumento na 
+resistência térmica do PLDLA. Por outro lado, a calorimetria exploratória diferencial (DSC) 
+evidenciou que o plastificante reduziu a temperatura de transição vítrea (Tg) do polímero à base 
+de poli(ácido láctico). Com base nos ensaios físico-químicos, verifica-se que o TEC não 
+compromete as propriedades do PLDLA, configurando-se, portanto, como um aditivo viável 
+para o desenvolvimento de um protótipo de prótese de menisco. 
+A análise de potencial zeta revelou que o aumento da concentração de TEC nas 
+diferentes amostras resultou em valores mais negativos de potencial, enquanto o ensaio de 
+molhabilidade demonstrou que a presença do plastificante influencia diretamente as 
+propriedades de superfície do material. Esses resultados indicam que a adição de TEC 
+promoveu modificações superficiais benéficas, favorecendo um ambiente biocompatível para a 
+adesão celular. 
+Os ensaios de degradação hidrolítica evidenciaram que os scaffolds iniciam o processo 
+de degradação em meio simulado a partir de 60 dias, com formação de estruturas cristalinas e 
+aumento da porosidade, características favoráveis à regeneração tecidual do menisco. 
+O ensaio mecânico de compressão demonstrou que a incorporação de TEC reduziu a 
+rigidez dos scaffolds, exigindo menor tensão para atingir 45% de deformação conforme 
+aumentou a concentração de plastificante. Essa redução de rigidez confere maior flexibilidade 
+ao material, característica desejável para sua aplicação como prótese de menisco. 
+Por fim, as propriedades biológicas das amostras serão posteriormente avaliadas por 
+meio de ensaios de viabilidade celular e microscopia confocal, a fim de compreender a 
+morfologia e o comportamento das células no contexto in vitro. 
+ 
+ 
+
+--- PAGE 58 ---
+ 
+57 
+7. CRONOGRAMA 
+Na figura 20 é representado todas as atividades que já foram realizadas e as atividades 
+que serão realizadas no período restante no mestrado. 
+ 
+Figura 20 – Cronograma das atividades realizadas e das atividades que irão ser realizadas durante o mestrado. 
+Atividades realizadas (cinza). Atividades a serem realizadas (azul). 
+ 
+ 
+ 
+Atividades
+Produzir PLDLA puro e PLDLA-TEC nas 
+concentrações de 1% e 2%
+Desenvolver modelos computacionais e 
+imprimir scaffolds
+Avaliar propriedades químicas dos 
+scaffolds  nas diferentes concentrações
+Avaliar comportamento térmico dos 
+scaffolds impressos
+Avaliar a degradabilidade dos scaffolds 
+impressos por 90 dias
+Avaliar a citocompatibilidade dos scaffolds 
+nas diferentes concentrações definidas
+Avaliar a viabilidade e organização 
+fenotípica
+Escrita de artigo
+Escrita da dissertação
+Desefa do mestrado
+1° semestre 2026
+Periodos
+A realizar
+Realizado
+2° semestre 2024
+1° semestre 2025
+2° semestre 2025
+
+--- PAGE 59 ---
+ 
+58 
+8. REFERÊNCIAS 
+AAGAARD, H.; VERDONK, R. Function of the normal meniscus and consequences of 
+meniscal resection. Scandinavian Journal of Medicine & Science in Sports, [s. l.], v. 9, n. 3, 
+p. 134–140, 1999. https://doi.org/10.1111/j.1600-0838.1999.tb00443.x. 
+ALLEN, C. R.; WONG, E. K.; LIVESAY, G. A.; SAKANE, M.; FU, F. H.; WOO, S. L.-Y. 
+Importance of the medial meniscus in the anterior cruciate ligament-deficient knee. Journal of 
+Orthopaedic 
+Research, 
+[s. 
+l.], 
+v. 
+18, 
+n. 
+1, 
+p. 
+109–115, 
+2000. 
+https://doi.org/10.1002/jor.1100180116. 
+ALVAREZ, L. X.; RINCÓN, O. T. de; ESCRIBANO, J.; TROCONIS, B. C. R. Organic 
+compounds as corrosion inhibitors for reinforced concrete: a review. Corrosion Reviews, [s. 
+l.], v. 41, n. 6, p. 617–634, 1 dez. 2023. https://doi.org/10.1515/corrrev-2023-0017. 
+ARNER, J. W.; RUZBARSKY, J. J.; VIDAL, A. F.; FRANK, R. M. Meniscus Repair Part 1: 
+Biology, Function, Tear Morphology, and Special Considerations. JAAOS - Journal of the 
+American Academy of Orthopaedic Surgeons, [s. l.], v. 30, n. 12, p. e852, 15 jun. 2022. 
+https://doi.org/10.5435/JAAOS-D-21-00993. 
+AWEID, O.; OSMANI, H.; MELTON, J. Biomechanics of the knee. Orthopaedics and 
+Trauma, 
+[s. 
+l.], 
+v. 
+33, 
+n. 
+4, 
+p. 
+224–230, 
+1 
+ago. 
+2019. 
+https://doi.org/10.1016/j.mporth.2019.05.004. 
+BANSAL, S.; FLOYD, E. R.; A KOWALSKI, M.; AIKMAN, E.; ELROD, P.; BURKEY, K.; 
+CHAHLA, J.; LAPRADE, R. F.; MAHER, S. A.; ROBINSON, J. L.; PATEL, J. M. Meniscal 
+repair: The current state and recent advances in augmentation. Journal of Orthopaedic 
+Research, [s. l.], v. 39, n. 7, p. 1368–1382, jul. 2021. https://doi.org/10.1002/jor.25021. 
+BARATZ, M. E.; FU, F. H.; MENGATO, R. Meniscal tears: The effect of meniscectomy and 
+of repair on intraarticular contact areas and stress in the human knee: A preliminary report. The 
+American Journal of Sports Medicine, [s. l.], v. 14, n. 4, p. 270–275, 1 jul. 1986. 
+https://doi.org/10.1177/036354658601400405. 
+BEDRIN, M. D.; KARTALIAS, K.; YOW, B. G.; DICKENS, J. F. Degenerative Joint Disease 
+After Meniscectomy. Sports Medicine and Arthroscopy Review, [s. l.], v. 29, n. 3, p. e44, 
+set. 2021. https://doi.org/10.1097/JSA.0000000000000301. 
+BHATIA, S.; CIVITARESE, D. M.; TURNBULL, T. L.; LAPRADE, C. M.; NITRI, M.; 
+WIJDICKS, C. A.; LAPRADE, R. F. A Novel Repair Method for Radial Tears of the Medial 
+Meniscus: Biomechanical Comparison of Transtibial 2-Tunnel and Double Horizontal Mattress 
+Suture Techniques Under Cyclic Loading. The American Journal of Sports Medicine, [s. l.], 
+v. 44, n. 3, p. 639–645, 1 mar. 2016. https://doi.org/10.1177/0363546515615565. 
+BOSE, S.; KE, D.; SAHASRABUDHE, H.; BANDYOPADHYAY, A. Additive manufacturing 
+of biomaterials. Progress in Materials Science, [s. l.], v. 93, p. 45–111, 1 abr. 2018. 
+https://doi.org/10.1016/j.pmatsci.2017.08.003. 
+BROPHY, R. H.; STEINMETZ, R. G.; SMITH, M. V.; MATAVA, M. J. Meniscal Ramp 
+Lesions: Anatomy, Epidemiology, Diagnosis, and Treatment. JAAOS - Journal of the 
+American Academy of Orthopaedic Surgeons, [s. l.], v. 30, n. 6, p. 255, 15 mar. 2022. 
+https://doi.org/10.5435/JAAOS-D-21-00091. 
+
+--- PAGE 60 ---
+ 
+59 
+BRYCELAND, J. K.; POWELL, A. J.; NUNN, T. Knee Menisci: Structure, Function, and 
+Management of Pathology. CARTILAGE, [s. l.], v. 8, n. 2, p. 99–104, 1 abr. 2017. 
+https://doi.org/10.1177/1947603516654945. 
+CAPUANA, E.; LOPRESTI, F.; CERAULO, M.; LA CARRUBBA, V. Poly-l-Lactic Acid 
+(PLLA)-Based Biomaterials for Regenerative Medicine: A Review on Processing and 
+Applications. 
+Polymers, 
+[s. 
+l.], 
+v. 
+14, 
+n. 
+6, 
+p. 
+1153, 
+jan. 
+2022. 
+https://doi.org/10.3390/polym14061153. 
+CHONG, W. J.; SHEN, S.; LI, Y.; TRINCHI, A.; PEJAK SIMUNEC, D.; KYRATZIS, I. 
+(Louis); SOLA, A.; WEN, C. Biodegradable PLA-ZnO nanocomposite biomaterials with 
+antibacterial properties, tissue engineering viability, and enhanced biocompatibility. Smart 
+Materials 
+in 
+Manufacturing, 
+[s. 
+l.], 
+v. 
+1, 
+p. 
+100004, 
+1 
+jan. 
+2023. 
+https://doi.org/10.1016/j.smmf.2022.100004. 
+COIMBRA, M. E. R.; ELIAS, C. N.; COELHO, P. G. In vitro degradation of poly-l-d-lactic 
+acid (PLDLA) pellets and powder used as synthetic alloplasts for bone grafting. Journal of 
+Materials Science: Materials in Medicine, [s. l.], v. 19, n. 10, p. 3227–3234, 1 out. 2008. 
+https://doi.org/10.1007/s10856-008-3425-2. 
+CRAPNELL, R. D.; KALINKE, C.; SILVA, L. R. G.; STEFANO, J. S.; WILLIAMS, R. J.; 
+ABARZA MUNOZ, R. A.; BONACIN, J. A.; JANEGITZ, B. C.; BANKS, C. E. Additive 
+manufacturing electrochemistry: An overview of producing bespoke conductive additive 
+manufacturing filaments. Materials Today, [s. l.], v. 71, p. 73–90, 1 dez. 2023. 
+https://doi.org/10.1016/j.mattod.2023.11.002. 
+DE ROY, L.; WARNECKE, D.; HACKER, S. P.; SIMON, U.; DÜRSELEN, L.; IGNATIUS, 
+A.; SEITZ, A. M. Meniscus Injury and its Surgical Treatment Does not Increase Initial Whole 
+Knee Joint Friction. Frontiers in Bioengineering and Biotechnology, [s. l.], v. 9, 10 dez. 2021. 
+DOI 
+10.3389/fbioe.2021.779946. 
+Disponível 
+em: 
+https://www.frontiersin.org/journals/bioengineering-and-
+biotechnology/articles/10.3389/fbioe.2021.779946/full. Acesso em: 13 maio 2025. 
+DEFOOR, M. T.; COGNETTI, D. J.; YUAN, T. T.; SHEEAN, A. J. Treatment of Tendon 
+Injuries in the Servicemember Population across the Spectrum of Pathology: From Exosomes 
+to Bioinductive Scaffolds. Bioengineering, [s. l.], v. 11, n. 2, p. 158, fev. 2024. 
+https://doi.org/10.3390/bioengineering11020158. 
+DEMIRBILEK, M. Effect of tributyl citrate on chitosan scaffold: chemical, physical properties, 
+pro/anti inflammation cytokines. Journal of Porous Materials, [s. l.], v. 22, n. 2, p. 395–402, 
+1 abr. 2015. https://doi.org/10.1007/s10934-015-9908-x. 
+DIANAT, S.; SMALL, K. M.; SHAH, N.; LATTERMANN, C.; MANDELL, J. C. Imaging of 
+meniscal allograft transplantation: what the radiologist needs to know. Skeletal Radiology, [s. 
+l.], v. 50, n. 4, p. 615–627, 1 abr. 2021. https://doi.org/10.1007/s00256-020-03631-5. 
+DORAL, M. N.; HURI, G.; BÜYÜKDOĞAN, K.; ATAY, Ö. A.; BAYRAMOGLU, A.; 
+TURHAN, E. Meniscectomy. In: DORAL, M. N.; KARLSSON, J. (org.). Sports Injuries: 
+Prevention, Diagnosis, Treatment and Rehabilitation. Berlin, Heidelberg: Springer, 2015. 
+p. 
+1199–1209. 
+DOI 
+10.1007/978-3-642-36569-0_71. 
+Disponível 
+em: 
+https://doi.org/10.1007/978-3-642-36569-0_71. Acesso em: 13 maio 2025. 
+
+--- PAGE 61 ---
+ 
+60 
+DUEK, E. A. R.; ZAVAGLIA, C. A. C.; BELANGERO, W. D. In vitro study of poly(lactic 
+acid) pin degradation. Polymer, [s. l.], v. 40, n. 23, p. 6465–6473, 1 nov. 1999. 
+https://doi.org/10.1016/S0032-3861(98)00846-5. 
+ESPOSITO, A. R.; MODA, M.; CATTANI, S. M. de M.; DE SANTANA, G. M.; BARBIERI, 
+J. A.; MUNHOZ, M. M.; CARDOSO, T. P.; BARBO, M. L. P.; RUSSO, T.; D’AMORA, U.; 
+GLORIA, A.; AMBROSIO, L.; DUEK, E. A. de R. PLDLA/PCL-T Scaffold for Meniscus 
+Tissue Engineering. BioResearch Open Access, [s. l.], v. 2, n. 2, p. 138–147, abr. 2013. 
+https://doi.org/10.1089/biores.2012.0293. 
+FIUME, M. M.; HELDRETH, B. A.; BERGFELD, W. F.; BELSITO, D. V.; HILL, R. A.; 
+KLAASSEN, C. D.; LIEBLER, D. C.; MARKSJR, J. G.; SHANK, R. C.; SLAGA, T. J.; 
+SNYDER, P. W.; ANDERSEN, F. A. Safety Assessment of Citric Acid, Inorganic Citrate Salts, 
+and Alkyl Citrate Esters as Used in Cosmetics. International Journal of Toxicology, [s. l.], v. 
+33, n. 2_suppl, p. 16S-46S, 1 maio 2014. https://doi.org/10.1177/1091581814526891. 
+FOTAKI, A.; Triantafyllou ,Athanasios; Papagiannis ,Georgios; Stasi ,Sophia; Georgios 
+,Papathanasiou; Olga ,Savvidou; Tsolakis ,Charilaos K.; AND KOULOUVARIS, P. The 
+science of biomechanics can promote dancers’ injury prevention strategies. Physical Therapy 
+Reviews, 
+[s. 
+l.], 
+v. 
+26, 
+n. 
+2, 
+p. 
+94–101, 
+4 
+mar. 
+2021. 
+https://doi.org/10.1080/10833196.2020.1832707. 
+FOX, A. J. S.; BEDI, A.; RODEO, S. A. The Basic Science of Human Knee Menisci: Structure, 
+Composition, and Function. Sports Health, [s. l.], v. 4, n. 4, p. 340–351, 1 jul. 2012. 
+https://doi.org/10.1177/1941738111429419. 
+FOX, A. J. S.; WANIVENHAUS, F.; BURGE, A. J.; WARREN, R. F.; RODEO, S. A. The 
+human meniscus: A review of anatomy, function, injury, and advances in treatment. Clinical 
+Anatomy, [s. l.], v. 28, n. 2, p. 269–287, 2015. https://doi.org/10.1002/ca.22456. 
+FURUMATSU, T.; KANAZAWA, T.; MIYAKE, Y.; KUBOTA, S.; TAKIGAWA, M.; 
+OZAKI, T. Mechanical stretch increases Smad3-dependent CCN2 expression in inner meniscus 
+cells. Journal of Orthopaedic Research, [s. l.], v. 30, n. 11, p. 1738–1745, 2012. 
+https://doi.org/10.1002/jor.22142. 
+GAUPP, R.; ADAMS, W. Acid Esters of Mono- and Diglycerides. Emulsifiers in Food 
+Technology. 
+[S. 
+l.]: 
+John 
+Wiley 
+& 
+Sons, 
+Ltd, 
+2004. 
+p. 
+59–85. 
+DOI 
+10.1002/9780470995747.ch3. 
+Disponível 
+em: 
+https://onlinelibrary.wiley.com/doi/abs/10.1002/9780470995747.ch3. Acesso em: 29 maio 
+2025. 
+GEE, S. M.; POSNER, M. Meniscus Anatomy and Basic Science. Sports Medicine and 
+Arthroscopy 
+Review, 
+[s. 
+l.], 
+v. 
+29, 
+n. 
+3, 
+p. 
+e18, 
+set. 
+2021. 
+https://doi.org/10.1097/JSA.0000000000000327. 
+GOLDSTEIN, J. I.; NEWBURY, D. E.; ECHLIN, P.; JOY, D. C.; ROMIG, A. D.; LYMAN, 
+C. E.; FIORI, C.; LIFSHIN, E. Scanning Electron Microscopy and X-Ray Microanalysis: A 
+Text for Biologists, Materials Scientists, and Geologists. Boston, MA: Springer US, 1992. 
+DOI 10.1007/978-1-4613-0491-3. Disponível em: http://link.springer.com/10.1007/978-1-
+4613-0491-3. Acesso em: 14 out. 2025. 
+
+--- PAGE 62 ---
+ 
+61 
+HASEEB, M. E.; Nasser ,Rabab M.; Nassar ,Amal M.; AND AHMED, N. S. Citric Acid-Based 
+Esters as Potential Synthetic Lubricants: A Study of Their Synthesis, Rheological Properties 
+and Thermal Stability. Tribology Transactions, [s. l.], v. 66, n. 6, p. 1095–1104, 2 nov. 2023. 
+https://doi.org/10.1080/10402004.2023.2269242. 
+HAVITÇIOĞLU, H.; ÖZMANEVRA, R.; KARAKAŞLI, A. A Fibroelastic Cartilage: 
+Meniscus. In: KORKUSUZ, F. (org.). Musculoskeletal Research and Basic Science. Cham: 
+Springer International Publishing, 2016. p. 429–441. DOI 10.1007/978-3-319-20777-3_25. 
+Disponível em: https://doi.org/10.1007/978-3-319-20777-3_25. Acesso em: 1 out. 2025. 
+HEO, J.; KOH, R. H.; SHIM, W.; KIM, H. D.; YIM, H.-G.; HWANG, N. S. Riboflavin-induced 
+photo-crosslinking of collagen hydrogel and its application in meniscus tissue engineering. 
+Drug Delivery and Translational Research, [s. l.], v. 6, n. 2, p. 148–158, 1 abr. 2016. 
+https://doi.org/10.1007/s13346-015-0224-4. 
+INA, J.; NELSON, G.; STRONY, J. T.; TAGLIERO, A.; CALCEI, J.; KRYCH, A. J.; VOOS, 
+J. Biomechanics of Meniscus Tears and Repair Techniques. Current Reviews in 
+Musculoskeletal Medicine, [s. l.], 5 mar. 2025. DOI 10.1007/s12178-025-09958-7. Disponível 
+em: https://doi.org/10.1007/s12178-025-09958-7. Acesso em: 29 abr. 2025. 
+JENNINGS, C. L.; Perry ,Ellis K.; Dziubla ,Thomas D.; AND PULEO, D. A. Sequential release 
+of multiple drugs from flexible drug delivery films. International Journal of Polymeric 
+Materials and Polymeric Biomaterials, [s. l.], v. 66, n. 11, p. 569–576, 24 jul. 2017. 
+https://doi.org/10.1080/00914037.2016.1252352. 
+JEONG, B.; BAE, Y. H.; LEE, D. S.; KIM, S. W. Biodegradable block copolymers as injectable 
+drug-delivery systems. Nature, [s. l.], v. 388, n. 6645, p. 860–862, ago. 1997. 
+https://doi.org/10.1038/42218. 
+JUNG, J.-Y.; JEE, W.-H.; PARK, M. Y.; LEE, S.-Y.; KIM, J.-M.; JUNG, J.-Y.; JEE, W.-H.; 
+PARK, M. Y.; LEE, S.-Y.; KIM, J.-M. Meniscal Tear Configurations: Categorization With 3D 
+Isotropic Turbo Spin-Echo MRI Compared With Conventional MRI at 3 T. American Journal 
+of Roentgenology, [s. l.], 23 nov. 2012. DOI 10.2214/AJR.11.6979. Disponível em: 
+https://www.ajronline.org/doi/10.2214/AJR.11.6979. Acesso em: 1 out. 2025. 
+KENAR, H.; KÖSE, G. T.; HASIRCI, V. Tissue engineering of bone on micropatterned 
+biodegradable polyester films. Biomaterials, [s. l.], v. 27, n. 6, p. 885–895, 1 fev. 2006. 
+https://doi.org/10.1016/j.biomaterials.2005.07.001. 
+KHOURI, N. G.; BAHÚ, J. O.; BLANCO-LLAMERO, C.; SEVERINO, P.; CONCHA, V. O. 
+C.; SOUTO, E. B. Polylactic acid (PLA): Properties, synthesis, and biomedical applications – 
+A review of the literature. Journal of Molecular Structure, [s. l.], v. 1309, p. 138243, 5 ago. 
+2024. https://doi.org/10.1016/j.molstruc.2024.138243. 
+KIM, M. S.; IN, Y.; KIM, H.; JEONG, J.; SOHN, S. Why Hoop Tension Matters: A 
+Biomechanical Perspective on Medial Meniscus Posterior Root Tears—A Narrative Review. 
+Bioengineering, 
+[s. 
+l.], 
+v. 
+12, 
+n. 
+6, 
+p. 
+638, 
+jun. 
+2025. 
+https://doi.org/10.3390/bioengineering12060638. 
+KOMATSU, D.; CABRERA, A. R. E.; QUEVEDO, B. V.; ASAMI, J.; CRISTINA MOTTA, 
+A.; DE MORAES, S. C.; DUARTE, M. A. T.; HAUSEN, M. de A.; APARECIDA DE 
+REZENDE DUEK, E. Meniscal repair with additive manufacture of bioresorbable polymer: 
+
+--- PAGE 63 ---
+ 
+62 
+From physicochemical characterization to implantation of 3D printed poly (L-co-D, L lactide-
+co-trimethylene carbonate) with autologous stem cells in rabbits. Journal of Biomaterials 
+Applications, 
+[s. 
+l.], 
+v. 
+39, 
+n. 
+1, 
+p. 
+66–79, 
+1 
+jul. 
+2024. 
+https://doi.org/10.1177/08853282241248517. 
+KOMATSU, D.; HAUSEN, M. A.; ERI, R. Y.; LEAL, V.; PEDRINI, F.; YAKSIC, C.; ALVES, 
+T. F. R.; CHAUD, M. V.; FANELLI, C.; NORONHA, I.; DUEK, E. A. R. Alternative 
+Cutaneous Substitutes Based on Poly(l-co-d,l-lactic acid-co-trimethylene carbonate) with 
+Schinus terebinthifolius Raddi Extract Designed for Skin Healing. ACS Omega, [s. l.], v. 4, n. 
+19, p. 18317–18326, 5 nov. 2019. https://doi.org/10.1021/acsomega.9b02427. 
+KRYCH, A. J.; REARDON, P. J.; JOHNSON, N. R.; MOHAN, R.; PETER, L.; LEVY, B. A.; 
+STUART, M. J. Non-operative management of medial meniscus posterior horn root tears is 
+associated with worsening arthritis and poor clinical outcome at 5-year follow-up. Knee 
+Surgery, Sports Traumatology, Arthroscopy, [s. l.], v. 25, n. 2, p. 383–389, 1 fev. 2017. 
+https://doi.org/10.1007/s00167-016-4359-8. 
+LAPRADE, R. F.; PADALECKI, J. R.; JANSSON, K.; SMITH, S.; DORNAN, G.; PIERCE, 
+C.; WIJDICKS, C. A. Biomechanical Consequences of a Complete Radial Tear Adjacent to the 
+Medial Meniscus Posterior Root Attachment Site. Orthopaedic Journal of Sports Medicine, 
+[s. 
+l.], 
+1 
+mar. 
+2014. 
+DOI 
+10.1177/2325967114S00004. 
+Disponível 
+em: 
+https://journals.sagepub.com/doi/10.1177/2325967114S00004. Acesso em: 1 out. 2025. 
+LEAL, C. V.; DOS SANTOS ALMEIDA, R.; DÁVILA, J. L.; DOMINGUES, J. A.; HAUSEN, 
+M. A.; DUEK, E. A. R.; D’ÁVILA, M. A. Characterization and in vitro evaluation of 
+electrospun aligned-fiber membranes of poly(L-co-D,L-lactic acid). Journal of Applied 
+Polymer Science, [s. l.], v. 136, n. 24, p. 47657, 2019. https://doi.org/10.1002/app.47657. 
+LEE, M.; JUNG, B. N.; KIM, G. H.; KANG, D.; PARK, H. J.; SHIM, J. K.; HWANG, S. W. 
+The effect of triethyl citrate on the dispersibility and water vapor sorption behavior of polylactic 
+acid/zeolite composites. Polymer Testing, [s. l.], v. 89, p. 106571, 1 set. 2020. 
+https://doi.org/10.1016/j.polymertesting.2020.106571. 
+LI, H.; LI, P.; YANG, Z.; GAO, C.; FU, L.; LIAO, Z.; ZHAO, T.; CAO, F.; CHEN, W.; PENG, 
+Y.; YUAN, Z.; SUI, X.; LIU, S.; GUO, Q. Meniscal Regenerative Scaffolds Based on 
+Biopolymers and Polymers: Recent Status and Applications. Frontiers in Cell and 
+Developmental Biology, [s. l.], v. 9, 13 jul. 2021. DOI 10.3389/fcell.2021.661802. Disponível 
+em: 
+https://www.frontiersin.org/journals/cell-and-developmental-
+biology/articles/10.3389/fcell.2021.661802/full. Acesso em: 27 maio 2025. 
+LI, Z.; RUAN, H.; LI, M.; YU, C.; JIA, Q.; WANG, J.; CHEN, L. Additive Manufacturing: 
+Prospects and Diverse Applications. Metals, [s. l.], v. 15, n. 2, p. 158, fev. 2025. 
+https://doi.org/10.3390/met15020158. 
+LIU, J.; DAI, C.; HU, Y. Aqueous aggregation behavior of citric acid coated magnetite 
+nanoparticles: Effects of pH, cations, anions, and humic acid. Environmental Research, [s. l.], 
+v. 161, p. 49–60, 1 fev. 2018. https://doi.org/10.1016/j.envres.2017.10.045. 
+LUO, A.; GOU, S.; TONG, N.; LIU, B.; JIAO, L.; XU, H.; WANG, Y.; DING, T. Visual 
+interpretable MRI fine grading of meniscus injury for intelligent assisted diagnosis and 
+
+--- PAGE 64 ---
+ 
+63 
+treatment. npj Digital Medicine, [s. l.], v. 7, n. 1, p. 1–22, 15 abr. 2024. 
+https://doi.org/10.1038/s41746-024-01082-z. 
+MAIZA, M.; AND HAMAM, A. Toughened Poly (lactic acid)/Poly (ε-caprolactone) blend 
+with triethyl citrate (TEC) and polyethylene glycol (PEG3). Polymer-Plastics Technology and 
+Materials, 
+[s. 
+l.], 
+v. 
+61, 
+n. 
+3, 
+p. 
+276–282, 
+11 
+fev. 
+2022. 
+https://doi.org/10.1080/25740881.2021.1982967. 
+MAIZA, M. B. Biobased additive plasticizing Polylactic acid (PLA). Biobased additive 
+plasticizing Polylactic acid (PLA), [s. l.], v. 25, n. 6, p. 581–590, 18 dez. 2015. . 
+MAIZA, M.; BENANIBA, M. T.; QUINTARD, G.; MASSARDIER-NAGEOTTE, V. 
+Biobased additive plasticizing Polylactic acid (PLA). Polímeros, [s. l.], v. 25, p. 581–590, dez. 
+2015. https://doi.org/10.1590/0104-1428.1986. 
+MAKRIS, E. A.; HADIDI, P.; ATHANASIOU, K. A. The knee meniscus: Structure–function, 
+pathophysiology, current repair techniques, and prospects for regeneration. Biomaterials, [s. 
+l.], v. 32, n. 30, p. 7411–7431, 1 out. 2011. https://doi.org/10.1016/j.biomaterials.2011.06.037. 
+MALBOS, L. B.; IGLESIAS-MONTES, M. L.; SEOANE, I. T.; CYRAS, V. P.; MANFREDI, 
+L. B. Biobased ternary composites for food packaging: influence of natural plasticizers and 
+starch on polylactic acid performance. Journal of Materials Science, [s. l.], v. 59, n. 43, p. 
+20304–20324, 1 nov. 2024. https://doi.org/10.1007/s10853-024-10375-3. 
+MAMERI, E. S.; DASARI, S. P.; FORTIER, L. M.; VERDEJO, F. G.; GURSOY, S.; YANKE, 
+A. B.; CHAHLA, J. Review of Meniscus Anatomy and Biomechanics. Current Reviews in 
+Musculoskeletal Medicine, [s. l.], v. 15, n. 5, p. 323–335, 1 out. 2022. 
+https://doi.org/10.1007/s12178-022-09768-1. 
+MARKES, A. R.; HODAX, J. D.; MA, C. B. Meniscus Form and Function. Clinics in Sports 
+Medicine, Meniscus 
+Injuries. 
+[s. 
+l.], v. 39, n. 1, p. 1–12, 1 jan. 2020. 
+https://doi.org/10.1016/j.csm.2019.08.007. 
+MARTÍN-ILLANA, A.; CAZORLA-LUNA, R.; NOTARIO-PÉREZ, F.; RUBIO, J.; RUIZ-
+CARO, R.; TAMAYO, A.; VEIGA, M. D. Eudragit® L100/chitosan composite thin bilayer 
+films for intravaginal pH-responsive release of Tenofovir. International Journal of 
+Pharmaceutics, 
+[s. 
+l.], 
+v. 
+616, 
+p. 
+121554, 
+25 
+mar. 
+2022. 
+https://doi.org/10.1016/j.ijpharm.2022.121554. 
+MASOUDI, A.; BEAMER, B. S.; HARLOW, E. R.; MANOUKIAN, O. S.; WALLEY, K. C.; 
+HERTZ, B.; HAEUSSLER, C.; OLSON, J. J.; ZURAKOWSKI, D.; NAZARIAN, A.; 
+RAMAPPA, A. J.; DEANGELIS, J. P. Biomechanical Evaluation of an All-Inside Suture-
+Based Device for Repairing Longitudinal Meniscal Tears. Arthroscopy: The Journal of 
+Arthroscopic & Related Surgery, [s. l.], v. 31, n. 3, p. 428–434, 1 mar. 2015. 
+https://doi.org/10.1016/j.arthro.2014.08.027. 
+MOTTA, A. C.; DUEK, E. a. R. Estudo inicial da degradação “in vitro” de poli (L-co-DL ácido 
+lático) sintetizado em laboratório. Matéria (Rio de Janeiro), [s. l.], v. 13, p. 429–438, 2008. 
+https://doi.org/10.1590/S1517-70762008000300003. 
+MOTTA, Adriana C.; DE MIRANDA FEDRIZZI, V.; BARBO, M. L. P.; DUEK, E. A. R. In 
+vitro and in vivo studies on devices of poly(l-co-d,l lactic acid)-co-TMC for bone repair. 
+
+--- PAGE 65 ---
+ 
+64 
+Polymer 
+Bulletin, 
+[s. 
+l.], 
+v. 
+75, 
+n. 
+10, 
+p. 
+4515–4529, 
+1 
+out. 
+2018. 
+https://doi.org/10.1007/s00289-018-2283-4. 
+MOTTA, Adriana C.; DUEK, E. A. R. Síntese e caracterização do copolímero poli (L-co-D,L 
+Ácido Láctico). Polímeros, [s. l.], v. 17, p. 123–129, jun. 2007. https://doi.org/10.1590/S0104-
+14282007000200011. 
+MURARIU, M.; DUBOIS, P. PLA composites: From production to properties. Advanced 
+Drug Delivery Reviews, PLA biodegradable polymers. [s. l.], v. 107, p. 17–46, 15 dez. 2016. 
+https://doi.org/10.1016/j.addr.2016.04.003. 
+NAKANISHI, Y.; HOSHINO, Y.; NAGAMUNE, K.; YAMAMOTO, T.; NAGAI, K.; ARAKI, 
+D.; KANZAKI, N.; MATSUSHITA, T.; KURODA, R. Radial Meniscal Tears Are Best 
+Repaired by a Modified “Cross” Tie-Grip Suture Based on a Biomechanical Comparison of 4 
+Repair Techniques in a Porcine Model. Orthopaedic Journal of Sports Medicine, [s. l.], v. 8, 
+n. 7, p. 2325967120935810, 1 jul. 2020. https://doi.org/10.1177/2325967120935810. 
+PATEL, A.; TAUFIK, M. Extrusion-Based Technology in Additive Manufacturing: A 
+Comprehensive Review. Arabian Journal for Science and Engineering, [s. l.], v. 49, n. 2, p. 
+1309–1342, 1 fev. 2024. https://doi.org/10.1007/s13369-022-07539-1. 
+PEARSALL, C. A.; DESAI, S. S.; ATHANASIAN, C.; PIASECKI, D. P.; SALTZMAN, B. 
+M.; SWINDELL, H.; TROFA, D. P. Biomechanical Properties of Meniscal Repair Versus 
+Meniscectomy for Horizontal Meniscal Tears: A Systematic Review. The American Journal 
+of 
+Sports 
+Medicine, 
+[s. 
+l.], 
+, 
+p. 
+03635465241279844, 
+12 
+jan. 
+2025. 
+https://doi.org/10.1177/03635465241279844. 
+PEDRINI, F.; GOMES, R. C.; MORAES, A. S.; ANTUNES, B. S. L.; MOTTA, A. C.; 
+DÁVILA, J. L.; HAUSEN, M. A.; KOMATSU, D.; DUEK, E. A. R. Poly(L-co-D,L-lactic acid-
+co-trimethylene carbonate) for extrusion-based 3D printing: Comprehensive characterization 
+and cytocompatibility assessment. Polymer, [s. l.], v. 290, p. 126585, 5 jan. 2024. 
+https://doi.org/10.1016/j.polymer.2023.126585. 
+PESODE, P.; AND BARVE, S. Additive manufacturing of metallic biomaterials: sustainability 
+aspect, opportunity, and challenges. Journal of Industrial and Production Engineering, [s. 
+l.], v. 40, n. 6, p. 464–505, 18 ago. 2023. https://doi.org/10.1080/21681015.2023.2229341. 
+PILLAI, M. M.; GOPINATHAN, J.; SELVAKUMAR, R.; BHATTACHARYYA, A. Human 
+Knee Meniscus Regeneration Strategies: a Review on Recent Advances. Current 
+Osteoporosis 
+Reports, 
+[s. 
+l.], 
+v. 
+16, 
+n. 
+3, 
+p. 
+224–235, 
+1 
+jun. 
+2018. 
+https://doi.org/10.1007/s11914-018-0436-x. 
+PINTO, M. F.; V. QUEVEDO, B.; KOMATSU, D.; DE MORAES, S. C.; DUARTE, M. A. T.; 
+DUEK, E. A. de R. Development of co-electrospun membrane composed poly(l-co-d,l-lactic 
+acid) and natural rubber with potential application in dermal dressing. Journal of Applied 
+Polymer Science, [s. l.], v. 141, n. 26, p. e55573, 2024. https://doi.org/10.1002/app.55573. 
+RABEK, C. L.; STELLE, R. V.; DZIUBLA, T. D.; PULEO, D. A. The effect of plasticizers on 
+the erosion and mechanical properties of polymeric films. Journal of Biomaterials 
+Applications, 
+[s. 
+l.], 
+v. 
+28, 
+n. 
+5, 
+p. 
+779–789, 
+1 
+jan. 
+2014. 
+https://doi.org/10.1177/0885328213480979. 
+
+--- PAGE 66 ---
+ 
+65 
+RAMOS, F.; WILLART, J.-F.; NEUT, C.; AGOSSA, K.; SIEPMANN, J.; SIEPMANN, F. In-
+situ forming PLGA implants: Towards less toxic solvents. International Journal of 
+Pharmaceutics, 
+[s. 
+l.], 
+v. 
+657, 
+p. 
+124121, 
+25 
+maio 
+2024. 
+https://doi.org/10.1016/j.ijpharm.2024.124121. 
+RENSTRÖM, P.; JOHNSON, R. J. Anatomy and Biomechanics of the Menisci. Clinics in 
+Sports Medicine, [s. l.], v. 9, n. 3, p. 523–538, 1 jul. 1990. https://doi.org/10.1016/S0278-
+5919(20)30704-3. 
+REYES LEIVA, K. M.; GATO, M. Á. C.; OLMEDO, J. J. S. Estimation of Spatio-Temporal 
+Parameters of Gait and Posture of Visually Impaired People Using Wearable Sensors. Sensors, 
+[s. l.], v. 23, n. 12, p. 5564, jan. 2023. https://doi.org/10.3390/s23125564. 
+RUI, J.; ZHU, S.; XU, X.; WANG, Y.; LIU, Z.; CHENG, G.; LONG, D.; CHENG, L.; DAI, F. 
+High-performance silk/polylactic acid composite scaffold material with immunomodulation 
+and osteogenesis function. Materials Today Bio, [s. l.], v. 29, p. 101316, 1 dez. 2024. 
+https://doi.org/10.1016/j.mtbio.2024.101316. 
+SAAVEDRA, M. Á.; NAVARRO-ZARZA, J. E.; VILLASEÑOR-OVIES, P.; CANOSO, J. J.; 
+VARGAS, A.; CHIAPAS-GASCA, K.; HERNÁNDEZ-DÍAZ, C.; KALISH, R. A. Clinical 
+Anatomy of the Knee. Reumatología Clínica, [s. l.], v. 8, p. 39–45, 1 dez. 2012. 
+https://doi.org/10.1016/j.reuma.2012.10.002. 
+SAFANDOWSKA, M.; ROZANSKI, A.; GALESKI, A. Plasticization of Polylactide after 
+Solidification: An Effectiveness and Utilization for Correct Interpretation of Thermal 
+Properties. 
+Polymers, 
+[s. 
+l.], 
+v. 
+12, 
+n. 
+3, 
+p. 
+561, 
+mar. 
+2020. 
+https://doi.org/10.3390/polym12030561. 
+SANGRONIZ, A.; CHAOS, A.; IRIARTE, M.; DEL RÍO, J.; SARASUA, J.-R.; 
+ETXEBERRIA, A. Influence of the Rigid Amorphous Fraction and Crystallinity on Polylactide 
+Transport Properties. Macromolecules, [s. l.], v. 51, n. 11, p. 3923–3931, 12 jun. 2018. 
+https://doi.org/10.1021/acs.macromol.8b00833. 
+SHEIKHI, M.; NEMAYANDEH, N.; SHIRANGI, M. Peptide Acylation in Aliphatic 
+Polyesters: a Review of Mechanisms and Inhibition Strategies. Pharmaceutical Research, [s. 
+l.], v. 41, n. 4, p. 765–778, 1 abr. 2024. https://doi.org/10.1007/s11095-024-03682-6. 
+SHI, Y.; YAO, Y.; LU, S.; CHEN, L.; CHEN, S.; HE, H.; MA, M.; WANG, X. Synergistic 
+Effect of Two Plasticizers on Thermal Stability, Transparency, and Migration Resistance of 
+Zinc Arginine Stabilized PVC. Polymers, [s. l.], v. 14, n. 21, p. 4560, jan. 2022. 
+https://doi.org/10.3390/polym14214560. 
+SMEETS, A.; GHAFELZADEH AHWAZ, F.; BOGAERTS, S.; BERGER, P.; PEERS, K. 
+Comparison of immediate versus optional delayed surgical repair for treatment of acute anterior 
+cruciate ligament injury through a parallel, multicentric, pragmatic randomized controlled trial 
+– IODA trial. BMC Sports Science, Medicine and Rehabilitation, [s. l.], v. 16, n. 1, p. 22, 18 
+jan. 2024. https://doi.org/10.1186/s13102-024-00816-6. 
+SONNERY-COTTET, B.; SERRA CRUZ, R.; VIEIRA, T. D.; GOES, R. A.; SAITHNA, A. 
+Ramp Lesions: An Unrecognized Posteromedial Instability? Clinics in Sports Medicine, 
+Meniscus 
+Injuries. 
+[s. 
+l.], 
+v. 
+39, 
+n. 
+1, 
+p. 
+69–81, 
+1 
+jan. 
+2020. 
+https://doi.org/10.1016/j.csm.2019.08.010. 
+
+--- PAGE 67 ---
+ 
+66 
+SOUSA, H. C.; RUBEN, R. B.; VIANA, J. C. On the Fused Deposition Modelling of 
+Personalised Bio-Scaffolds: Materials, Design, and Manufacturing Aspects. Bioengineering, 
+[s. l.], v. 11, n. 8, p. 769, ago. 2024. https://doi.org/10.3390/bioengineering11080769. 
+STOCCO, E.; PORZIONATO, A.; ROSE, E. D.; BARBON, S.; CARO, R. D.; MACCHI, V. 
+Meniscus regeneration by 3D printing technologies: Current advances and future perspectives. 
+Journal of Tissue Engineering, [s. l.], 25 jan. 2022. DOI 10.1177/20417314211065860. 
+Disponível em: https://journals.sagepub.com/doi/10.1177/20417314211065860. Acesso em: 1 
+out. 2025. 
+TASHIRO, K.; KOUNO, N.; WANG, H.; TSUJI, H. Crystal Structure of Poly(lactic acid) 
+Stereocomplex: Random Packing Model of PDLA and PLLA Chains As Studied by X-ray 
+Diffraction Analysis. Macromolecules, [s. l.], v. 50, n. 20, p. 8048–8065, 24 out. 2017. 
+https://doi.org/10.1021/acs.macromol.7b01468. 
+TEIXEIRA, S. C.; SILVA, R. R. A.; DE OLIVEIRA, T. V.; STRINGHETA, P. C.; PINTO, M. 
+R. M. R.; SOARES, N. de F. F. Glycerol and triethyl citrate plasticizer effects on molecular, 
+thermal, mechanical, and barrier properties of cellulose acetate films. Food Bioscience, [s. l.], 
+v. 42, p. 101202, 1 ago. 2021. https://doi.org/10.1016/j.fbio.2021.101202. 
+VILLARREAL-ESPINOSA, J. B.; BERRETA, R. S.; PALLONE, L.; RUBIN, J.; ALLENDE, 
+F.; GÓMEZ-VERDEJO, F.; KHAN, Z. A.; CARPENTER, M.; ALLAHABADI, S.; CHAHLA, 
+J. Failure and complication rates following meniscal all‐inside and inside‐out repairs: A 
+systematic review and meta‐analysis. [s. l.], [s. d.]. DOI 10.1002/ksa.12485. Disponível em: 
+https://esskajournals.onlinelibrary.wiley.com/doi/10.1002/ksa.12485. Acesso em: 1 out. 2025. 
+VOLOSHIN, A. S.; WOSK, J. Shock absorption of meniscectomized and painful knees: A 
+comparative in vivo study. Journal of Biomedical Engineering, [s. l.], v. 5, n. 2, p. 157–161, 
+1 abr. 1983. https://doi.org/10.1016/0141-5425(83)90036-5. 
+WANG, B.; BARCELÓ, X.; VON EUW, S.; KELLY, D. J. 3D printing of mechanically 
+functional meniscal tissue equivalents using high concentration extracellular matrix inks. 
+Materials 
+Today 
+Bio, 
+[s. 
+l.], 
+v. 
+20, 
+p. 
+100624, 
+1 
+jun. 
+2023. 
+https://doi.org/10.1016/j.mtbio.2023.100624. 
+WANG, L.; FENG, C.; ZHOU, D.; SHAO, J.; HOU, H.; LI, G. The crystallization and phase 
+transition behaviors of asymmetric PLLA/PDLA blends: From the amorphous state. 
+POLYMER 
+CRYSTALLIZATION, 
+[s. 
+l.], 
+v. 
+1, 
+n. 
+1, 
+p. 
+e10006, 
+2018. 
+https://doi.org/10.1002/pcr2.10006. 
+WANG, W.; LIANG, X.; ZHENG, K.; GE, G.; CHEN, X.; XU, Y.; BAI, J.; PAN, G.; GENG, 
+D. Horizon of exosome-mediated bone tissue regeneration: The all-rounder role in biomaterial 
+engineering. Materials Today Bio, [s. l.], v. 16, p. 100355, 1 dez. 2022. 
+https://doi.org/10.1016/j.mtbio.2022.100355. 
+YANG, H.; PARK, S.-Y.; PARK, S. B.; PARK, J.; HWANG, S. Y. Flexible Poly(Lactic acid) 
+suitable for deep freeze packaging synthesized using lactic acid-based ester precursors. 
+Polymer 
+Testing, 
+[s. 
+l.], 
+v. 
+127, 
+p. 
+108197, 
+1 
+out. 
+2023. 
+https://doi.org/10.1016/j.polymertesting.2023.108197. 
+ZAHIDIN, M. R.; YUSOF, F.; ABDUL RASHID, S. H.; MANSOR, S.; RAJA, S.; 
+JAMALUDIN, M. F.; MANURUNG, Y. HP.; ADENAN, M. S.; SYAHRIAH HUSSEIN, N. 
+
+--- PAGE 68 ---
+ 
+67 
+I. Research challenges, quality control and monitoring strategy for Wire Arc Additive 
+Manufacturing. Journal of Materials Research and Technology, [s. l.], v. 24, p. 2769–2794, 
+1 maio 2023. https://doi.org/10.1016/j.jmrt.2023.03.200. 
+ZHANG, Z.; WU, Q.; ZENG, L.; WANG, S. Modeling-Based Assessment of 3D Printing-
+Enabled Meniscus Transplantation. Healthcare, [s. l.], v. 7, n. 2, p. 69, jun. 2019. 
+https://doi.org/10.3390/healthcare7020069. 
+ZHU, Y.; GUO, S.; RAVICHANDRAN, D.; RAMANATHAN, A.; SOBCZAK, M. T.; 
+SACCO, A. F.; PATIL, D.; THUMMALAPALLI, S. V.; PULIDO, T. V.; LANCASTER, J. N.; 
+YI, J.; CORNELLA, J. L.; LOTT, D. G.; CHEN, X.; MEI, X.; ZHANG, Y. S.; WANG, L.; 
+WANG, X.; ZHAO, Y.; HASSAN, M. K.; CHAMBERS, L. B.; THEOBALD, T. G.; YANG, 
+S.; LIANG, L.; SONG, K. 3D-Printed Polymeric Biomaterials for Health Applications. 
+Advanced 
+Healthcare 
+Materials, 
+[s. 
+l.], 
+v. 
+14, 
+n. 
+1, 
+p. 
+2402571, 
+2025. 
+https://doi.org/10.1002/adhm.202402571. 
+ZUBER, S. A. N. A.; RUSLI, A.; ISMAIL, H. Effectiveness of triacetin and triethyl citrate as 
+plasticizer in polyvinyl alcohol. Materials Today: Proceedings, 6th International Conference 
+on Recent Advances in Materials, Minerals & Environment (RAMM) 2018, RAMM 2018, 27 
+- 29 November 2018, Penang, Malaysia. [s. l.], v. 17, p. 560–567, 1 jan. 2019. 
+https://doi.org/10.1016/j.matpr.2019.06.335. 
+ 

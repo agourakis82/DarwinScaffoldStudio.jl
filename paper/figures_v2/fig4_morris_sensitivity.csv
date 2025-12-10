@@ -1,0 +1,9 @@
+# Figura 4: Análise de Sensibilidade Morris
+# parametro,nome,mu_star,sigma
+Xc,Cristalinidade,0.6810,0.7370
+k0,Taxa base,0.4420,0.4660
+α,Autocatálise,0.0090,0.0090
+Mn0,Mn inicial,0.0010,0.0030
+Ea,Energia ativ.,0.0000,0.0000
+φ,Porosidade,0.0000,0.0000
+w,Absorção H2O,0.0000,0.0000

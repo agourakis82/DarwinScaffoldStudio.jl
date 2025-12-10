@@ -1,0 +1,15 @@
+{
+  "PropertyTable": {
+    "Properties": [
+      {
+        "CID": 6506,
+        "MolecularFormula": "C12H20O7",
+        "MolecularWeight": "276.28",
+        "ConnectivitySMILES": "CCOC(=O)CC(CC(=O)OCC)(C(=O)OCC)O",
+        "IUPACName": "triethyl 2-hydroxypropane-1,2,3-tricarboxylate",
+        "XLogP": 0.1,
+        "TPSA": 99.1
+      }
+    ]
+  }
+}

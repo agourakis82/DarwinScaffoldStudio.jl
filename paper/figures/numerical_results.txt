@@ -1,0 +1,15 @@
+TORTUOSITY PAPER - NUMERICAL RESULTS
+==================================================
+
+Dataset: Zenodo 7516228
+Samples: 4608
+
+Ground truth statistics:
+  τ: 1.1140 ± 0.0182 (range: 1.0589 - 1.2569)
+  φ: 0.317 ± 0.033 (range: 0.144 - 0.510)
+
+Key findings:
+  Optimal Archie exponent: m = 0.096
+  Linear model: τ = 0.977 + 0.043/φ
+  MRE (Archie m=0.5): 61.8%
+  MRE (This work): 0.76%

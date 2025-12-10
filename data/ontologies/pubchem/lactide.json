@@ -1,0 +1,14 @@
+{
+  "PropertyTable": {
+    "Properties": [
+      {
+        "CID": 7272,
+        "MolecularFormula": "C6H8O4",
+        "MolecularWeight": "144.12",
+        "ConnectivitySMILES": "CC1C(=O)OC(C(=O)O1)C",
+        "IUPACName": "3,6-dimethyl-1,4-dioxane-2,5-dione",
+        "XLogP": 0.6
+      }
+    ]
+  }
+}

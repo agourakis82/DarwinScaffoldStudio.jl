@@ -1,0 +1,14 @@
+{
+  "PropertyTable": {
+    "Properties": [
+      {
+        "CID": 757,
+        "MolecularFormula": "C2H4O3",
+        "MolecularWeight": "76.05",
+        "ConnectivitySMILES": "C(C(=O)O)O",
+        "IUPACName": "2-hydroxyacetic acid",
+        "XLogP": -1.1
+      }
+    ]
+  }
+}

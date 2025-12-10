@@ -1,0 +1,158 @@
+GKS: glyph missing from current font: 178
+GKS: glyph missing from current font: 178
+GKS: glyph missing from current font: 178
+GKS: glyph missing from current font: 178
+GKS: glyph missing from current font: 178
+GKS: glyph missing from current font: 178
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+GKS: glyph missing from current font: 8323
+GKS: glyph missing from current font: 8322
+  Activating project at `~/workspace/darwin-scaffold-studio`
+============================================================
+GENERATING PUBLICATION FIGURES
+============================================================
+
+📊 Figure 1: D(p) power-law model...
+   ✓ Saved: paper/figures/fig1_D_vs_porosity.{png,pdf}
+
+📊 Figure 2: Dimensional duality schematic...
+   ✓ Saved: paper/figures/fig2_dimensional_duality.{png,pdf}
+
+📊 Figure 3: Walk dimension validation...
+   ✓ Saved: paper/figures/fig3_walk_dimension.{png,pdf}
+
+📊 Figure 4: Golden ratio relations summary...
+   ✓ Saved: paper/figures/fig4_relations_summary.{png,pdf}
+
+============================================================
+✅ ALL FIGURES GENERATED SUCCESSFULLY
+============================================================
+
+Figures saved in: paper/figures/
+  • fig1_D_vs_porosity.{png,pdf}
+  • fig2_dimensional_duality.{png,pdf}
+  • fig3_walk_dimension.{png,pdf}
+  • fig4_relations_summary.{png,pdf}
+
+Ready for manuscript inclusion!

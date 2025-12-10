@@ -1,0 +1,22 @@
+# Figura 6: Seleção de Polímero por Aplicação
+# polymer,application,degradation_at_target,match_score
+PLLA,Cartilagem,0.2927,0.9756
+PLDLA,Cartilagem,0.6979,0.0000
+PDLLA,Cartilagem,0.8570,0.0000
+PLGA,Cartilagem,0.9378,0.0000
+PCL,Cartilagem,0.1629,0.5430
+PLLA,Menisco,0.2795,0.6986
+PLDLA,Menisco,0.6700,0.3250
+PDLLA,Menisco,0.8352,0.0000
+PLGA,Menisco,0.9239,0.0000
+PCL,Menisco,0.1531,0.3828
+PLLA,Osso,0.4569,0.9137
+PLDLA,Osso,0.9206,0.1587
+PDLLA,Osso,0.9832,0.0336
+PLGA,Osso,0.9950,0.0100
+PCL,Osso,0.2802,0.5604
+PLLA,Pele,0.1051,0.1502
+PLDLA,Pele,0.2551,0.3645
+PDLLA,Pele,0.3928,0.5612
+PLGA,Pele,0.5155,0.7365
+PCL,Pele,0.0459,0.0655
