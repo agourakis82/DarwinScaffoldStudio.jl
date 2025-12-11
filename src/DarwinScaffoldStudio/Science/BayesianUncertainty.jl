@@ -217,6 +217,7 @@ end
 
 """
 Propõe novo valor para parâmetro (random walk).
+Usa proposta proporcional para parâmetros lognormal.
 """
 function propose_parameter(
     current::Float64,
@@ -224,16 +225,24 @@ function propose_parameter(
     scale::Float64
 )::Float64
 
-    # Proposta normal centrada no valor atual
-    step = randn() * prior.std * scale
-    proposed = current + step
+    if prior.type == :lognormal
+        # Para lognormal: proposta multiplicativa (log-space random walk)
+        # Usar coeficiente de variação do prior como escala base
+        cv = prior.std / prior.mean
+        log_step = randn() * cv * scale
+        proposed = current * exp(log_step)
+    else
+        # Para normal/uniform: proposta aditiva
+        step = randn() * prior.std * scale
+        proposed = current + step
+    end
 
     # Refletir nos limites
     if proposed < prior.lower
-        proposed = prior.lower + (prior.lower - proposed)
+        proposed = prior.lower + abs(prior.lower - proposed)
     end
     if proposed > prior.upper
-        proposed = prior.upper - (proposed - prior.upper)
+        proposed = prior.upper - abs(proposed - prior.upper)
     end
 
     return clamp(proposed, prior.lower, prior.upper)

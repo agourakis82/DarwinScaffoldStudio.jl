@@ -61,33 +61,50 @@ end
 # ============================================================================
 
 """
-Modelo autocatalítico para degradação de PLDLA.
+Modelo trifásico com transições suaves para degradação de PLDLA.
 
-Equação: dMn/dt = -k * Mn * (1 + α * degraded_fraction)
+Perfil observado (dados Kaique):
+- Fase 1 (0-30d): Queda RÁPIDA 51->25 kg/mol (hidrólise regiões amorfas DL)
+- Fase 2 (30-60d): Queda LENTA 25->18 kg/mol (cristalização protege)
+- Fase 3 (60-90d): Queda RÁPIDA 18->8 kg/mol (colapso autocatalítico)
 
-Resolve numericamente para capturar a aceleração característica
-do PLDLA devido ao acúmulo de ácido láctico (degradação bulk).
+Usa funções sigmóide para transições suaves entre fases.
 """
 function pldla_model_for_mcmc(params::Dict{Symbol, Float64}, times::Vector{Float64})::Vector{Float64}
-    # Parâmetros
-    k = get(params, :k, 0.018)           # Taxa base
-    alpha = get(params, :alpha, 3.5)     # Intensidade autocatálise
+    # Parâmetros do modelo trifásico (calibrados)
+    k1 = get(params, :k1, 0.026)         # Taxa fase 1 (rápida inicial)
+    k2 = get(params, :k2, 0.006)         # Taxa fase 2 (lenta - platô)
+    k3 = get(params, :k3, 0.028)         # Taxa fase 3 (rápida final)
+
+    # Tempos de transição entre fases
+    t_trans1 = 30.0   # Transição fase 1 -> 2
+    t_trans2 = 60.0   # Transição fase 2 -> 3
+    w_trans = 8.0     # Largura da transição (dias)
 
     Mn0 = 51.285
     Mn_min = 5.0
     dt = 0.5
     t_max = maximum(times) + 1.0
 
-    # Simular
+    # Função sigmóide para transição suave
+    sigmoid(t, t_mid, width) = 1.0 / (1.0 + exp(-(t - t_mid) / width))
+
+    # Simular com Euler
     Mn = Mn0
     t_vals = Float64[0.0]
     Mn_vals = Float64[Mn0]
 
     t_curr = 0.0
     while t_curr < t_max
-        deg_frac = (Mn0 - Mn) / Mn0
-        k_eff = k * (1.0 + alpha * deg_frac)
-        dMn = -k_eff * Mn * dt
+        # Pesos das fases (transição suave)
+        w1 = 1.0 - sigmoid(t_curr, t_trans1, w_trans)
+        w2 = sigmoid(t_curr, t_trans1, w_trans) * (1.0 - sigmoid(t_curr, t_trans2, w_trans))
+        w3 = sigmoid(t_curr, t_trans2, w_trans)
+
+        # Taxa efetiva (média ponderada)
+        k = w1 * k1 + w2 * k2 + w3 * k3
+
+        dMn = -k * Mn * dt
         Mn = max(Mn_min, Mn + dMn)
         t_curr += dt
         push!(t_vals, t_curr)
@@ -106,8 +123,8 @@ function pldla_model_for_mcmc(params::Dict{Symbol, Float64}, times::Vector{Float
             elseif idx == 1
                 push!(Mn_pred, Mn0)
             else
-                t1, t2 = t_vals[idx-1], t_vals[idx]
-                w = (t - t1) / (t2 - t1)
+                t1_interp, t2_interp = t_vals[idx-1], t_vals[idx]
+                w = (t - t1_interp) / (t2_interp - t1_interp)
                 push!(Mn_pred, (1-w) * Mn_vals[idx-1] + w * Mn_vals[idx])
             end
         end
@@ -123,10 +140,11 @@ end
 println("\n📐 PRIORS INFORMATIVOS (baseados em literatura e dados preliminares):")
 println("-"^60)
 
-# Priors para modelo autocatalítico
+# Priors para modelo trifásico - amplos para explorar incerteza
 const PLDLA_PRIORS = [
-    BayesianUncertainty.PriorDistribution(:k, :lognormal, 0.018, 0.008, 0.005, 0.050),
-    BayesianUncertainty.PriorDistribution(:alpha, :normal, 3.5, 1.5, 0.5, 8.0),
+    BayesianUncertainty.PriorDistribution(:k1, :normal, 0.026, 0.008, 0.010, 0.050),
+    BayesianUncertainty.PriorDistribution(:k2, :normal, 0.006, 0.003, 0.001, 0.015),
+    BayesianUncertainty.PriorDistribution(:k3, :normal, 0.028, 0.010, 0.010, 0.060),
 ]
 
 for prior in PLDLA_PRIORS
@@ -141,13 +159,13 @@ end
 println("\n🔄 EXECUTANDO MCMC (Metropolis-Hastings):")
 println("-"^60)
 
-# Configuração MCMC - mais amostras e maior escala de proposta
+# Configuração MCMC - otimizada para boa exploração
 mcmc_config = BayesianUncertainty.BayesianConfig(
-    n_samples = 5000,
-    n_burnin = 2000,
+    n_samples = 10000,
+    n_burnin = 3000,
     n_chains = 1,
-    proposal_scale = 0.25,  # Maior para explorar melhor o espaço
-    sigma_likelihood = 5.0  # Erro observacional maior para IC mais amplo
+    proposal_scale = 0.50,  # Amplo para explorar
+    sigma_likelihood = 1.5  # Erro experimental estimado
 )
 
 @printf("  Amostras: %d (+ %d burn-in)\n", mcmc_config.n_samples, mcmc_config.n_burnin)
