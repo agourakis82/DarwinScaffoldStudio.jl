@@ -812,5 +812,3 @@ for (p, n) in stats["by_polymer"]
     println("    $p: $n datasets")
 end
 println("="^70)
-
-end # module (se for um módulo)

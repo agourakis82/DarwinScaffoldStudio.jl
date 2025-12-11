@@ -112,6 +112,7 @@ export ScientificDiscoveryEngine, PhysicsPrior, SymmetryAnalysis
 export CausalGraph, UncertaintyDecomposition, HypothesisGenerator
 export discover_laws!, analyze_symmetries!, infer_causality!
 export generate_hypotheses, validate_theory
+export infer_causal_graph, granger_causality_test
 
 # ═══════════════════════════════════════════════════════════════════════════════
 #                    PART 1: PHYSICS PRIORS
