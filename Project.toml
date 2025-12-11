@@ -1,7 +1,7 @@
 name = "DarwinScaffoldStudio"
 uuid = "a1b2c3d4-e5f6-7890-abcd-1234567890ab"
 authors = ["Dr. Demetrios Agourakis <agourakis@med.br>"]
-version = "0.8.0"
+version = "0.9.0"
 
 [deps]
 BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"

@@ -1,0 +1,19 @@
+digraph NEAT {
+  rankdir=LR;
+  node [shape=circle];
+  { rank=same;
+    n896 [label="896\nidentity", fillcolor=lightblue, style=filled];
+    n897 [label="897\nidentity", fillcolor=lightblue, style=filled];
+    n899 [label="899\nidentity", fillcolor=lightyellow, style=filled];
+    n898 [label="898\nidentity", fillcolor=lightblue, style=filled];
+    n895 [label="895\nidentity", fillcolor=lightblue, style=filled];
+  }
+  { rank=same;
+    n900 [label="900\ntanh", fillcolor=salmon, style=filled];
+  }
+  n896 -> n900 [style=solid, color=red, penwidth=0.9440011715920013, label="-0.44"];
+  n897 -> n900 [style=solid, color=red, penwidth=0.756586463021886, label="-0.26"];
+  n899 -> n900 [style=solid, color=black, penwidth=0.5464332932181525, label="0.05"];
+  n898 -> n900 [style=solid, color=red, penwidth=0.7159390592934085, label="-0.22"];
+  n895 -> n900 [style=solid, color=red, penwidth=0.6584225654704211, label="-0.16"];
+}
