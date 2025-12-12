@@ -57,6 +57,12 @@ CUDA = "052768ef-5323-5732-b1bb-66c8b64840ba"
 [extensions]
 DarwinScaffoldStudioCUDAExt = "CUDA"
 
+[extras]
+Coverage = "a2441757-f63c-504d-930d-738b6a56ba72"
+
+[targets]
+test = ["Coverage"]
+
 [compat]
 CUDA = "5"
 julia = "1.10"
