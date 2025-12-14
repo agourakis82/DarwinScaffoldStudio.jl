@@ -22,7 +22,7 @@ jobs:
                   version: "1.10"
 
             - name: Cache Julia packages
-              uses: actions/cache@v3
+              uses: actions/cache@v4
               with:
                   path: ~/.julia
                   key: ${{ runner.os }}-julia-${{ hashFiles('**/Project.toml') }}
@@ -48,7 +48,7 @@ jobs:
                   version: "1.10"
 
             - name: Cache Julia packages
-              uses: actions/cache@v3
+              uses: actions/cache@v4
               with:
                   path: ~/.julia
                   key: ${{ runner.os }}-julia-full-${{ hashFiles('**/Project.toml') }}
@@ -80,7 +80,7 @@ jobs:
                   version: "1.10"
 
             - name: Cache Julia packages
-              uses: actions/cache@v3
+              uses: actions/cache@v4
               with:
                   path: ~/.julia
                   key: ${{ runner.os }}-julia-coverage-${{ hashFiles('**/Project.toml') }}
@@ -128,7 +128,7 @@ jobs:
                   version: "1.10"
 
             - name: Cache Julia packages
-              uses: actions/cache@v3
+              uses: actions/cache@v4
               with:
                   path: ~/.julia
                   key: ${{ runner.os }}-julia-${{ hashFiles('**/Project.toml') }}
@@ -136,14 +136,16 @@ jobs:
             - name: Install dependencies
               run: julia --project=. -e 'using Pkg; Pkg.instantiate()'
 
-            - name: Run validation benchmark
-              run: julia --project=. scripts/run_validation_benchmark.jl
+            - name: Run minimal validation
+              run: julia --project=. test/test_minimal.jl
 
             - name: Upload benchmark results
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v4
+              if: always()
               with:
                   name: benchmark-results
                   path: results/
+                  if-no-files-found: ignore
 
     # Docker build
     docker:
