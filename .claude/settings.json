@@ -1,45 +1,38 @@
 {
-  "project": {
-    "name": "Darwin Scaffold Studio",
-    "description": "Julia-based tissue engineering scaffold analysis platform",
-    "language": "julia",
-    "version": "2.0.1"
-  },
-  "permissions": {
-    "allow": [
-      "Bash(julia*)",
-      "Bash(cargo*)",
-      "Bash(git*)",
-      "Bash(gh*)",
-      "Bash(grep*)",
-      "Bash(find*)",
-      "Bash(cat*)",
-      "Bash(ls*)",
-      "Bash(cd*)",
-      "Bash(mkdir*)",
-      "Bash(rm *.jl)",
-      "Bash(pkill*)",
-      "Read",
-      "Write",
-      "Edit"
-    ],
-    "deny": [
-      "Bash(rm -rf /)",
-      "Bash(sudo*)"
-    ]
-  },
+  "allowedTools": [
+    "Bash(*)",
+    "Read",
+    "Write",
+    "Edit",
+    "Glob",
+    "Grep",
+    "WebFetch",
+    "WebSearch",
+    "Task",
+    "TodoWrite",
+    "NotebookEdit"
+  ],
   "hooks": {
     "PreToolUse": [
       {
         "matcher": "Write|Edit",
-        "command": "echo 'Modifying: $FILE_PATH' >> .claude/dev.log"
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"$(date '+%Y-%m-%d %H:%M:%S') Modifying: $CLAUDE_FILE_PATH\" >> .claude/dev.log"
+          }
+        ]
       }
     ],
     "PostToolUse": [
       {
         "matcher": "Write|Edit",
-        "pattern": "src/.*\\.jl$",
-        "command": "julia --project=. -e 'try; include(\"test_minimal.jl\"); catch e; println(\"Warning: \", e); end' 2>/dev/null || true"
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if echo \"$CLAUDE_FILE_PATH\" | grep -qE 'src/.*\\.jl$'; then julia --project=. -e 'try; include(\"test_minimal.jl\"); catch e; println(\"Warning: \", e); end' 2>/dev/null || true; fi"
+          }
+        ]
       }
     ]
   },

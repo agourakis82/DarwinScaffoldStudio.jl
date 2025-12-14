@@ -96,6 +96,11 @@ using ..Config: get_config
 - Always add docstrings to exported functions
 - Use type annotations for public API
 
+## Git Commits
+- Do NOT include LLM co-author lines in commits
+- Do NOT include "Generated with Claude Code" or similar footers
+- Keep commit messages clean and human-authored
+
 ## Testing
 ```bash
 # Quick structure test

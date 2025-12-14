@@ -4,7 +4,7 @@ DarwinScaffoldStudio.jl - Q1-Level MicroCT & SEM Analysis
 Julia 1.10 implementation for tissue engineering scaffold analysis.
 
 Created: 2025-11-13
-Author: Dr. Demetrios Agourakis + AI Assistant
+Author: Demetrios Chiuratto Agourakis
 Version: 0.9.0
 
 CHANGELOG v0.9.0 (Pipeline Evolution - SOTA 2025):
