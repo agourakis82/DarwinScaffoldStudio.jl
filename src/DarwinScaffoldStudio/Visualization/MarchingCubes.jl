@@ -24,13 +24,13 @@ Result of marching cubes algorithm.
 
 # Fields
 - `vertices::Vector{Point3{Float64}}`: Mesh vertices
-- `faces::Vector{NgonNgonFace{3,Int}}`: Triangle faces (1-indexed)
+- `faces::Vector{NgonFace{3,Int}}`: Triangle faces (1-indexed)
 - `normals::Vector{Vec3{Float64}}`: Vertex normals
 - `n_triangles::Int`: Number of triangles generated
 """
 struct MarchingCubesResult
     vertices::Vector{Point3{Float64}}
-    faces::Vector{NgonNgonFace{3,Int}}
+    faces::Vector{NgonFace{3,Int}}
     normals::Vector{Vec3{Float64}}
     n_triangles::Int
 end
