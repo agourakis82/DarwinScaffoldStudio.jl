@@ -89,7 +89,7 @@ jobs:
                       ${{ runner.os }}-julia-
 
             - name: Install dependencies
-              run: julia --project=. -e 'using Pkg; Pkg.instantiate(); Pkg.add("Coverage")'
+              run: julia --project=. -e 'using Pkg; Pkg.instantiate()'
 
             - name: Measure code coverage
               run: julia --project=. test/measure_coverage.jl
@@ -97,20 +97,6 @@ jobs:
             - name: Run Frontier AI tests
               run: julia --project=. -e 'include("test/test_frontier_ai.jl")'
               continue-on-error: true
-
-            - name: Generate coverage report
-              run: |
-                  julia --project=. -e '
-                    using Coverage
-                    using Printf
-
-                    @info "Coverage Analysis"
-                    println("\nEstimated coverage improvement:")
-                    println("  Current: ~2-3%")
-                    println("  Target: 40%+")
-                    println("  New modules tested: PINNs, TDA, GNN, Agents, Foundation")
-                    println("\nCoverage report generated successfully")
-                  '
 
     # Validation benchmark
     benchmark:
