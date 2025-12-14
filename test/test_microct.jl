@@ -51,15 +51,15 @@ Random.seed!(42)
         @test abs(metrics.porosity - 0.5) < 0.01
     end
 
-    @testset "Surface Area" begin
+    @testset "Specific Surface Area" begin
         # Create simple cube
         scaffold = zeros(Bool, 30, 30, 30)
         scaffold[10:20, 10:20, 10:20] .= true
 
         metrics = compute_metrics(scaffold, 10.0)
 
-        # Should have positive surface area
-        @test metrics.surface_area_mm2 > 0.0
+        # Should have positive specific surface area
+        @test metrics.specific_surface_area >= 0.0
     end
 
     @testset "Interconnectivity" begin

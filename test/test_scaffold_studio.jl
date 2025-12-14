@@ -51,7 +51,7 @@ Random.seed!(42)
         binary = zeros(Bool, 20, 20, 20)
         binary[5:15, 5:15, 5:15] .= true
         
-        optimizer = ScaffoldOptimizer(voxel_size_um=10.0)
+        optimizer = Optimizer(voxel_size_um=10.0)
         
         target_params = ScaffoldParameters(
             0.92,  # porosity

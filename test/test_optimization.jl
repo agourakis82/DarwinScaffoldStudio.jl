@@ -11,7 +11,7 @@ Random.seed!(42)
 
 @testset "Optimization Module" begin
     @testset "ScaffoldOptimizer Creation" begin
-        optimizer = ScaffoldOptimizer(voxel_size_um=10.0)
+        optimizer = Optimizer(voxel_size_um=10.0)
         @test optimizer !== nothing
     end
 
@@ -20,7 +20,7 @@ Random.seed!(42)
         scaffold = zeros(Bool, 30, 30, 30)
         scaffold[5:25, 5:25, 5:25] .= true
 
-        optimizer = ScaffoldOptimizer(voxel_size_um=10.0)
+        optimizer = Optimizer(voxel_size_um=10.0)
 
         target = ScaffoldParameters(
             0.85,           # target_porosity
@@ -35,14 +35,14 @@ Random.seed!(42)
 
         @test size(results.optimized_volume) == size(scaffold)
         @test haskey(results.improvement_percent, "porosity")
-        @test results.final_metrics !== nothing
+        @test results.optimized_metrics !== nothing
     end
 
     @testset "Porosity Optimization" begin
         # Start with solid block (0% porosity)
         scaffold = ones(Bool, 30, 30, 30)
 
-        optimizer = ScaffoldOptimizer(voxel_size_um=10.0)
+        optimizer = Optimizer(voxel_size_um=10.0)
 
         target = ScaffoldParameters(
             0.70,           # target 70% porosity
@@ -66,7 +66,7 @@ Random.seed!(42)
         scaffold = zeros(Bool, 20, 20, 20)
         scaffold[5:15, 5:15, 5:15] .= true
 
-        optimizer = ScaffoldOptimizer(voxel_size_um=10.0)
+        optimizer = Optimizer(voxel_size_um=10.0)
 
         # Target with extreme values
         target = ScaffoldParameters(
@@ -90,7 +90,7 @@ Random.seed!(42)
         # Add some pores
         scaffold[10:15, 10:15, 10:15] .= false
 
-        optimizer = ScaffoldOptimizer(voxel_size_um=10.0)
+        optimizer = Optimizer(voxel_size_um=10.0)
 
         target = ScaffoldParameters(
             0.80,
