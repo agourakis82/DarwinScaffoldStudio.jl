@@ -242,7 +242,7 @@ end
 # GENERATIVE: Text-to-Scaffold Generation (LLM + TPMS)
 @info "Loading Generative layer (TextToScaffold)..."
 module Generative
-    using ..LLM.OllamaClient
+    using ..OllamaClient
     using ..Types
     include("DarwinScaffoldStudio/Generative/TextToScaffold.jl")
     using .TextToScaffold
