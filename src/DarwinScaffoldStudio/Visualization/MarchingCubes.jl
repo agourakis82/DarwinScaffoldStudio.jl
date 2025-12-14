@@ -24,13 +24,13 @@ Result of marching cubes algorithm.
 
 # Fields
 - `vertices::Vector{Point3{Float64}}`: Mesh vertices
-- `faces::Vector{Face{3,Int}}`: Triangle faces (1-indexed)
+- `faces::Vector{NgonNgonFace{3,Int}}`: Triangle faces (1-indexed)
 - `normals::Vector{Vec3{Float64}}`: Vertex normals
 - `n_triangles::Int`: Number of triangles generated
 """
 struct MarchingCubesResult
     vertices::Vector{Point3{Float64}}
-    faces::Vector{Face{3,Int}}
+    faces::Vector{NgonNgonFace{3,Int}}
     normals::Vector{Vec3{Float64}}
     n_triangles::Int
 end
@@ -378,7 +378,7 @@ function march_cubes(volume::AbstractArray{Bool,3}, voxel_size::Real=1.0)::March
     # Pre-allocate with estimated size
     estimated_triangles = div(sum(volume), 10)
     vertices = Vector{Point3{Float64}}()
-    faces = Vector{Face{3,Int}}()
+    faces = Vector{NgonFace{3,Int}}()
     sizehint!(vertices, estimated_triangles * 3)
     sizehint!(faces, estimated_triangles)
 
@@ -425,7 +425,7 @@ function extract_isosurface(
     dims = size(volume)
 
     vertices = Vector{Point3{Float64}}()
-    faces = Vector{Face{3,Int}}()
+    faces = Vector{NgonFace{3,Int}}()
     edge_cache = Dict{NTuple{4,Int}, Int}()
 
     for k in 1:(dims[3]-1)
@@ -456,7 +456,7 @@ function process_cube!(
     i::Int, j::Int, k::Int,
     voxel_size::Real,
     vertices::Vector{Point3{Float64}},
-    faces::Vector{Face{3,Int}},
+    faces::Vector{NgonFace{3,Int}},
     edge_cache::Dict{NTuple{4,Int}, Int}
 )
     # Get cube configuration (8 vertices → 8 bits → 0-255)
@@ -537,7 +537,7 @@ function process_cube_scalar!(
     isovalue::Real,
     voxel_size::Real,
     vertices::Vector{Point3{Float64}},
-    faces::Vector{Face{3,Int}},
+    faces::Vector{NgonFace{3,Int}},
     edge_cache::Dict{NTuple{4,Int}, Int}
 )
     # Get cube values
@@ -656,7 +656,7 @@ Compute vertex normals by averaging face normals.
 """
 function compute_vertex_normals(
     vertices::Vector{Point3{Float64}},
-    faces::Vector{Face{3,Int}}
+    faces::Vector{NgonFace{3,Int}}
 )::Vector{Vec3{Float64}}
     normals = [Vec3(0.0, 0.0, 0.0) for _ in 1:length(vertices)]
 
