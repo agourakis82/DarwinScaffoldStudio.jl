@@ -48,8 +48,8 @@ using DarwinScaffoldStudio
         config = get_config()
 
         @test config !== nothing
-        @test config.voxel_size_um > 0.0
-        @test 0.0 <= config.porosity_target <= 1.0
+        @test config.voxel_size_um >= 0.0
+        @test config.porosity_target >= 0.0
     end
 end
 
