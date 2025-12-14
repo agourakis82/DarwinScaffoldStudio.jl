@@ -98,8 +98,8 @@ println("=" ^ 50)
         @test isdir(scripts_dir)
 
         # Check key scripts exist
-        @test isfile(joinpath(scripts_dir, "generate_synthetic_validation.jl"))
-        @test isfile(joinpath(scripts_dir, "run_validation_benchmark.jl"))
+        @test isfile(joinpath(scripts_dir, "download_sample_data.sh"))
+        @test isfile(joinpath(scripts_dir, "setup_llm.sh"))
     end
 end
 
