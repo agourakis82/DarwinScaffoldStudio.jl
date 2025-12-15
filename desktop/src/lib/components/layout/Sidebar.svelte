@@ -1,7 +1,17 @@
 <script lang="ts">
+  import { page } from '$app/stores';
   import { material, tissue } from '$lib/stores/scaffold';
 
   export let collapsed = false;
+
+  $: currentPath = $page.url.pathname;
+
+  const scienceModules = [
+    { href: '/science/tda', name: 'Topology (TDA)', icon: 'share-2', color: '#8b5cf6' },
+    { href: '/science/twin', name: 'Digital Twin', icon: 'activity', color: '#10b981' },
+    { href: '/science/pinn', name: 'PINN Fields', icon: 'grid', color: '#f59e0b' },
+    { href: '/science/growth', name: 'Tissue Growth', icon: 'git-branch', color: '#ec4899' },
+  ];
 
   const materials = [
     { id: 'PCL', name: 'PCL', desc: 'Poly-e-caprolactone' },
@@ -113,6 +123,44 @@
               </svg>
               <span>{tool.name}</span>
             </button>
+          {/each}
+        </div>
+      </section>
+
+      <!-- Science Modules -->
+      <section class="sidebar-section">
+        <h3 class="section-title">Science</h3>
+        <div class="science-list">
+          {#each scienceModules as mod}
+            <a
+              href={mod.href}
+              class="science-link"
+              class:active={currentPath.startsWith(mod.href)}
+            >
+              <span class="science-dot" style="background: {mod.color}"></span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                {#if mod.icon === 'share-2'}
+                  <circle cx="18" cy="5" r="3"></circle>
+                  <circle cx="6" cy="12" r="3"></circle>
+                  <circle cx="18" cy="19" r="3"></circle>
+                  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                {:else if mod.icon === 'activity'}
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                {:else if mod.icon === 'grid'}
+                  <rect x="3" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="14" width="7" height="7"></rect>
+                  <rect x="3" y="14" width="7" height="7"></rect>
+                {:else if mod.icon === 'git-branch'}
+                  <line x1="6" y1="3" x2="6" y2="15"></line>
+                  <circle cx="18" cy="6" r="3"></circle>
+                  <circle cx="6" cy="18" r="3"></circle>
+                  <path d="M18 9a9 9 0 0 1-9 9"></path>
+                {/if}
+              </svg>
+              <span class="science-name">{mod.name}</span>
+            </a>
           {/each}
         </div>
       </section>
@@ -277,5 +325,46 @@
   .tool-btn:hover {
     background: var(--bg-tertiary);
     color: var(--text-primary);
+  }
+
+  .science-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .science-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+  }
+
+  .science-link:hover {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+  }
+
+  .science-link.active {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border-left: 2px solid var(--primary);
+  }
+
+  .science-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .science-name {
+    font-size: 13px;
+    font-weight: 500;
   }
 </style>
