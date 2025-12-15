@@ -32,6 +32,30 @@
       icon: 'git-branch',
       features: ['Cell Animation', 'Population Charts', 'Differentiation Tree'],
     },
+    {
+      href: '/science/causal',
+      name: 'Causal Discovery',
+      desc: 'Learn causal DAGs from scaffold-tissue data using PC, FCI, or NOTEARS algorithms. Estimate treatment effects with backdoor adjustment.',
+      color: '#3b82f6',
+      icon: 'git-merge',
+      features: ['DAG Learning', 'Effect Estimation', 'Confounder Control'],
+    },
+    {
+      href: '/science/gnn',
+      name: 'GNN Property Prediction',
+      desc: 'Graph neural network for predicting scaffold properties from pore network topology. Visualize node importance with 3D heatmaps.',
+      color: '#14b8a6',
+      icon: 'hexagon',
+      features: ['Property Prediction', 'Node Importance', 'GAT/GCN/Transformer'],
+    },
+    {
+      href: '/science/sem',
+      name: 'SEM Cell Classification',
+      desc: 'AI-powered cell type identification from scanning electron microscopy images. Classify osteoblasts, chondrocytes, fibroblasts, and more.',
+      color: '#f97316',
+      icon: 'eye',
+      features: ['Cell Detection', 'Type Classification', 'Morphology Analysis'],
+    },
   ];
 </script>
 

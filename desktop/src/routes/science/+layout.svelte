@@ -6,6 +6,9 @@
     { href: '/science/twin', name: 'Digital Twin', desc: 'Real-time biosensor monitoring', color: '#10b981' },
     { href: '/science/pinn', name: 'PINN Fields', desc: 'Nutrient concentration simulation', color: '#f59e0b' },
     { href: '/science/growth', name: 'Tissue Growth', desc: 'Cell differentiation simulation', color: '#ec4899' },
+    { href: '/science/causal', name: 'Causal Discovery', desc: 'DAG learning & effect estimation', color: '#3b82f6' },
+    { href: '/science/gnn', name: 'GNN Prediction', desc: 'Graph neural network properties', color: '#14b8a6' },
+    { href: '/science/sem', name: 'SEM Classification', desc: 'AI cell type identification', color: '#f97316' },
   ];
 
   $: currentPath = $page.url.pathname;
