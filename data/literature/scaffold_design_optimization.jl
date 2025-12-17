@@ -144,6 +144,7 @@ struct PolymerCandidate
 end
 
 const POLYMER_CANDIDATES = [
+    # Stiff polyesters (for bone, cartilage)
     PolymerCandidate("Poly(lactic acid)", "PLA", 3500.0, 50.0, (48.0, 104.0), :chain_end, 0.95, 1.0, true, "PMC6682490"),
     PolymerCandidate("Poly(glycolic acid)", "PGA", 7000.0, 60.0, (4.0, 12.0), :chain_end, 0.90, 1.2, true, "PMC6682490"),
     PolymerCandidate("PLGA 50:50", "PLGA50", 2000.0, 40.0, (4.0, 8.0), :random, 0.92, 1.5, true, "PMC3347861"),
@@ -152,6 +153,18 @@ const POLYMER_CANDIDATES = [
     PolymerCandidate("Poly(3-hydroxybutyrate)", "PHB", 3500.0, 40.0, (52.0, 156.0), :chain_end, 0.85, 2.0, false, "PMC4424662"),
     PolymerCandidate("Poly(propylene fumarate)", "PPF", 2000.0, 30.0, (26.0, 78.0), :random, 0.88, 3.0, false, "PMID:17961371"),
     PolymerCandidate("Polyurethane (degradable)", "PU", 50.0, 10.0, (26.0, 104.0), :random, 0.80, 2.5, false, "PMC5923535"),
+
+    # Hydrogels (for soft tissues: skin, nerve, cardiac, liver)
+    # E values for hydrogels are much lower (kPa range, expressed as MPa)
+    PolymerCandidate("Collagen Type I", "COL1", 0.05, 0.01, (2.0, 8.0), :enzymatic, 0.99, 3.0, true, "PMC4082975"),
+    PolymerCandidate("Gelatin Methacrylate", "GelMA", 0.02, 0.005, (2.0, 6.0), :enzymatic, 0.95, 2.0, false, "PMC5449418"),
+    PolymerCandidate("Alginate", "ALG", 0.1, 0.02, (4.0, 12.0), :dissolution, 0.92, 0.5, true, "PMC3347861"),
+    PolymerCandidate("Hyaluronic Acid", "HA", 0.01, 0.002, (1.0, 4.0), :enzymatic, 0.98, 4.0, true, "PMC6682490"),
+    PolymerCandidate("Fibrin", "FIB", 0.005, 0.001, (1.0, 3.0), :enzymatic, 0.99, 5.0, true, "PMC4424662"),
+    PolymerCandidate("Chitosan", "CHI", 0.15, 0.03, (4.0, 16.0), :enzymatic, 0.88, 1.5, false, "PMC5923535"),
+    PolymerCandidate("PEG Diacrylate", "PEGDA", 0.5, 0.1, (4.0, 52.0), :hydrolytic, 0.90, 2.0, true, "PMID:23201040"),
+    PolymerCandidate("Silk Fibroin", "SILK", 1.0, 0.2, (12.0, 52.0), :enzymatic, 0.95, 3.5, true, "PMC4082975"),
+    PolymerCandidate("Matrigel", "MAT", 0.001, 0.0005, (0.5, 2.0), :enzymatic, 0.97, 10.0, false, "PMC5449418"),
 ]
 
 # ============================================================================
@@ -186,11 +199,34 @@ function score_polymer(polymer::PolymerCandidate, tissue::TissueRequirements)
     target_phi_min, target_phi_max = tissue.target_porosity
 
     # Gibson-Ashby: E_scaffold = E_solid * (1-phi)^2
-    # At target_phi_max, E_scaffold = E_solid * (1-phi_max)^2
     E_at_max_porosity = polymer.E_solid_mpa * (1 - target_phi_max)^2
     E_at_min_porosity = polymer.E_solid_mpa * (1 - target_phi_min)^2
 
-    if E_at_max_porosity <= target_E_max && E_at_min_porosity >= target_E_min
+    # Determine if this is a soft tissue (target E <= 1 MPa)
+    is_soft_tissue = target_E_max <= 1.0
+    is_hydrogel = polymer.E_solid_mpa <= 1.0
+
+    if is_soft_tissue && is_hydrogel
+        # For soft tissues, hydrogels are ideal
+        # Check if hydrogel E is in right range (within order of magnitude)
+        if polymer.E_solid_mpa <= target_E_max * 10 && polymer.E_solid_mpa >= target_E_min * 0.1
+            score += 30
+            push!(reasons, "Hydrogel ideal for soft tissue: E_solid = $(round(polymer.E_solid_mpa * 1000, digits=0)) kPa")
+        else
+            score += 20
+            push!(reasons, "Hydrogel suitable: E_solid = $(round(polymer.E_solid_mpa * 1000, digits=0)) kPa")
+        end
+    elseif is_soft_tissue && !is_hydrogel
+        # Stiff polymer for soft tissue - problematic
+        if E_at_max_porosity <= target_E_max
+            score += 15
+            push!(reasons, "Stiff polymer, may work at high porosity")
+        else
+            score += 0
+            push!(reasons, "Too stiff for soft tissue ($(round(E_at_max_porosity, digits=1)) MPa > $(target_E_max) MPa)")
+        end
+    elseif E_at_max_porosity <= target_E_max && E_at_min_porosity >= target_E_min
+        # Perfect match for stiff tissues
         score += 30
         push!(reasons, "Modulus achievable: E = $(round(E_at_max_porosity, digits=1))-$(round(E_at_min_porosity, digits=1)) MPa")
     elseif E_at_min_porosity >= target_E_min
@@ -245,19 +281,38 @@ function optimize_geometry(polymer::PolymerCandidate, tissue::TissueRequirements
     target_phi_min, target_phi_max = tissue.target_porosity
     target_pore_min, target_pore_max = tissue.target_pore_size_um
 
-    # Calculate porosity for target modulus (Gibson-Ashby inverse)
-    # E_target = E_solid * (1-phi)^2
-    # phi = 1 - sqrt(E_target / E_solid)
+    # Check if this is a hydrogel (soft material)
+    is_hydrogel = polymer.E_solid_mpa <= 1.0
 
-    target_E = (target_E_min + target_E_max) / 2
-    phi_for_E = 1 - sqrt(target_E / polymer.E_solid_mpa)
-    phi_for_E = clamp(phi_for_E, 0.0, 0.99)
+    if is_hydrogel
+        # For hydrogels, use porosity optimized for cell infiltration
+        # (not mechanical properties, which are inherently soft)
+        optimal_porosity = (target_phi_min + target_phi_max) / 2
+        # Hydrogel modulus is mostly independent of porosity
+        # (swelling, not Gibson-Ashby)
+        actual_E = polymer.E_solid_mpa * (1 - optimal_porosity * 0.3)  # Slight reduction
+    else
+        # Stiff polymer: Calculate porosity for target modulus (Gibson-Ashby inverse)
+        # E_target = E_solid * (1-phi)^2
+        # phi = 1 - sqrt(E_target / E_solid)
 
-    # Reconcile with tissue porosity requirements
-    optimal_porosity = clamp(phi_for_E, target_phi_min, target_phi_max)
+        target_E = (target_E_min + target_E_max) / 2
+        ratio = target_E / polymer.E_solid_mpa
 
-    # If porosity constraint dominates, recalculate achievable E
-    actual_E = polymer.E_solid_mpa * (1 - optimal_porosity)^2
+        if ratio <= 0 || ratio > 1
+            # Can't achieve target E, use tissue-preferred porosity
+            phi_for_E = (target_phi_min + target_phi_max) / 2
+        else
+            phi_for_E = 1 - sqrt(ratio)
+        end
+        phi_for_E = clamp(phi_for_E, 0.0, 0.99)
+
+        # Reconcile with tissue porosity requirements
+        optimal_porosity = clamp(phi_for_E, target_phi_min, target_phi_max)
+
+        # Recalculate achievable E
+        actual_E = polymer.E_solid_mpa * (1 - optimal_porosity)^2
+    end
 
     # Optimal pore size: middle of range, biased toward cell requirements
     optimal_pore = (target_pore_min + target_pore_max) / 2
@@ -299,13 +354,29 @@ function predict_degradation_profile(polymer::PolymerCandidate,
         # MW decay (exponential)
         mw_fraction = exp(-k * t)
 
-        # Mass loss (delayed, autocatalytic for random scission)
+        # Mass loss depends on degradation mechanism
         if polymer.mechanism == :random
-            # Autocatalytic mass loss
+            # Autocatalytic bulk erosion (PLGA-like)
             mass_remaining = 1.0 / (1.0 + exp(0.2 * (t - half_life)))
-        else
-            # Chain-end: surface erosion
+        elseif polymer.mechanism == :chain_end
+            # Surface erosion (PLA, PCL-like)
             mass_remaining = max(0, 1.0 - (1 - exp(-k * t/2)))
+        elseif polymer.mechanism == :enzymatic
+            # Enzymatic degradation (collagen, gelatin, HA, fibrin)
+            # Faster initial degradation, then plateau
+            mass_remaining = exp(-k * t) * (1 + 0.5 * exp(-2*k * t))
+            mass_remaining = clamp(mass_remaining, 0.0, 1.0)
+        elseif polymer.mechanism == :dissolution
+            # Dissolution (alginate - ion exchange)
+            # More linear degradation profile
+            mass_remaining = max(0.0, 1.0 - t / (2 * half_life))
+        elseif polymer.mechanism == :hydrolytic
+            # Hydrolytic (PEG-based)
+            # Similar to chain-end but with swelling
+            mass_remaining = exp(-k * t * 0.8)
+        else
+            # Default: exponential
+            mass_remaining = exp(-k * t)
         end
         mass_remaining = clamp(mass_remaining, 0.0, 1.0)
 
