@@ -9,6 +9,8 @@ Julia package for analyzing tissue engineering scaffolds from MicroCT and SEM im
 
 Premium desktop application with 3D visualization, AI-powered analysis, and scientific panels.
 
+![Darwin Scaffold Studio Desktop App](docs/screenshot.png)
+
 | Platform | Download |
 |----------|----------|
 | Linux (AppImage) | [darwin-scaffold-studio_1.3.0_amd64.AppImage](https://github.com/agourakis82/DarwinScaffoldStudio.jl/releases/download/desktop-v1.3.0/darwin-scaffold-studio_1.3.0_amd64.AppImage) |
