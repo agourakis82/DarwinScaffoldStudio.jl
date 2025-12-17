@@ -168,6 +168,138 @@ const POLYMER_CANDIDATES = [
 ]
 
 # ============================================================================
+# CROSSLINKING DATABASE
+# ============================================================================
+
+"""
+Crosslinking method for hydrogels.
+- E_multiplier: factor increase in modulus (1.0 = no change)
+- degradation_factor: multiplier for degradation time (>1 = slower)
+- biocompat_penalty: reduction in biocompatibility score (0 = none)
+- compatible_polymers: which hydrogels work with this method
+"""
+struct CrosslinkingMethod
+    name::String
+    abbrev::String
+    E_multiplier::Float64           # Modulus increase factor
+    degradation_factor::Float64     # Degradation slowdown factor
+    biocompat_penalty::Float64      # Biocompatibility reduction (0-1)
+    compatible_polymers::Vector{String}  # Polymer abbreviations
+    source::String
+end
+
+const CROSSLINKING_METHODS = [
+    # Chemical crosslinking
+    CrosslinkingMethod(
+        "EDC/NHS", "EDC",
+        5.0, 2.0, 0.02,
+        ["COL1", "GelMA", "HA", "CHI"],
+        "PMC4082975"
+    ),
+    CrosslinkingMethod(
+        "Glutaraldehyde", "GTA",
+        20.0, 3.0, 0.15,  # High modulus but cytotoxic
+        ["COL1", "GelMA", "CHI"],
+        "PMC3347861"
+    ),
+    CrosslinkingMethod(
+        "Genipin", "GEN",
+        8.0, 2.5, 0.03,   # Natural crosslinker, low toxicity
+        ["COL1", "GelMA", "CHI", "SILK"],
+        "PMC5449418"
+    ),
+    # Physical crosslinking
+    CrosslinkingMethod(
+        "Calcium chloride (ionic)", "CaCl2",
+        3.0, 1.5, 0.0,    # Very biocompatible
+        ["ALG"],
+        "PMC3347861"
+    ),
+    CrosslinkingMethod(
+        "Thermal gelation", "THERM",
+        2.0, 1.2, 0.0,
+        ["COL1", "GelMA", "MAT"],
+        "PMC4082975"
+    ),
+    # Photo-crosslinking
+    CrosslinkingMethod(
+        "UV + LAP", "UV-LAP",
+        15.0, 2.0, 0.05,
+        ["GelMA", "PEGDA", "HA"],
+        "PMC5449418"
+    ),
+    CrosslinkingMethod(
+        "UV + Irgacure", "UV-IRG",
+        12.0, 2.0, 0.08,
+        ["GelMA", "PEGDA"],
+        "PMID:23201040"
+    ),
+    # Enzymatic crosslinking
+    CrosslinkingMethod(
+        "Transglutaminase", "TG",
+        4.0, 1.8, 0.01,   # Very biocompatible, natural enzyme
+        ["COL1", "GelMA", "FIB"],
+        "PMC4424662"
+    ),
+    CrosslinkingMethod(
+        "Thrombin", "THR",
+        3.0, 1.5, 0.0,    # Natural fibrin crosslinker
+        ["FIB"],
+        "PMC4424662"
+    ),
+    # No crosslinking (baseline)
+    CrosslinkingMethod(
+        "None (uncrosslinked)", "NONE",
+        1.0, 1.0, 0.0,
+        ["COL1", "GelMA", "ALG", "HA", "FIB", "CHI", "PEGDA", "SILK", "MAT"],
+        "N/A"
+    ),
+]
+
+"""
+Select optimal crosslinking method for a hydrogel to achieve target modulus.
+Returns the method that gets closest to target E while maximizing biocompatibility.
+"""
+function select_crosslinking(polymer::PolymerCandidate, target_E_mpa::Float64)
+    if polymer.E_solid_mpa > 1.0
+        # Not a hydrogel, no crosslinking needed
+        return (method=CROSSLINKING_METHODS[end], E_achieved=polymer.E_solid_mpa, needed=false)
+    end
+
+    compatible = filter(m -> polymer.abbrev in m.compatible_polymers, CROSSLINKING_METHODS)
+
+    if isempty(compatible)
+        return (method=CROSSLINKING_METHODS[end], E_achieved=polymer.E_solid_mpa, needed=false)
+    end
+
+    # Score each method: prioritize achieving target E, then biocompatibility
+    best_method = compatible[1]
+    best_score = -Inf
+    best_E = polymer.E_solid_mpa
+
+    for method in compatible
+        E_crosslinked = polymer.E_solid_mpa * method.E_multiplier
+
+        # Score: how close to target, penalized by toxicity
+        if E_crosslinked >= target_E_mpa
+            # Can achieve target - prefer lowest crosslinking that works
+            score = 100 - method.E_multiplier - method.biocompat_penalty * 50
+        else
+            # Can't achieve target - maximize E
+            score = E_crosslinked / target_E_mpa * 50 - method.biocompat_penalty * 50
+        end
+
+        if score > best_score
+            best_score = score
+            best_method = method
+            best_E = E_crosslinked
+        end
+    end
+
+    return (method=best_method, E_achieved=best_E, needed=best_method.abbrev != "NONE")
+end
+
+# ============================================================================
 # DESIGN ALGORITHM
 # ============================================================================
 
@@ -274,8 +406,10 @@ end
 
 """
 Calculate optimal scaffold geometry for given polymer and tissue.
+Optionally applies crosslinking for hydrogels.
 """
-function optimize_geometry(polymer::PolymerCandidate, tissue::TissueRequirements)
+function optimize_geometry(polymer::PolymerCandidate, tissue::TissueRequirements;
+                           crosslinking::Union{Nothing, CrosslinkingMethod}=nothing)
     # Target values
     target_E_min, target_E_max = tissue.target_modulus_mpa
     target_phi_min, target_phi_max = tissue.target_porosity
@@ -284,13 +418,18 @@ function optimize_geometry(polymer::PolymerCandidate, tissue::TissueRequirements
     # Check if this is a hydrogel (soft material)
     is_hydrogel = polymer.E_solid_mpa <= 1.0
 
+    # Effective modulus with crosslinking
+    E_effective = polymer.E_solid_mpa
+    if is_hydrogel && crosslinking !== nothing
+        E_effective = polymer.E_solid_mpa * crosslinking.E_multiplier
+    end
+
     if is_hydrogel
         # For hydrogels, use porosity optimized for cell infiltration
         # (not mechanical properties, which are inherently soft)
         optimal_porosity = (target_phi_min + target_phi_max) / 2
-        # Hydrogel modulus is mostly independent of porosity
-        # (swelling, not Gibson-Ashby)
-        actual_E = polymer.E_solid_mpa * (1 - optimal_porosity * 0.3)  # Slight reduction
+        # Hydrogel modulus with crosslinking, slight reduction for porosity
+        actual_E = E_effective * (1 - optimal_porosity * 0.3)
     else
         # Stiff polymer: Calculate porosity for target modulus (Gibson-Ashby inverse)
         # E_target = E_solid * (1-phi)^2
@@ -324,18 +463,24 @@ function optimize_geometry(polymer::PolymerCandidate, tissue::TissueRequirements
     # For cubic unit cells: wall ~ pore * (1-phi)^(1/3) / phi^(1/3)
     wall_thickness = optimal_pore * (1 - optimal_porosity)^(1/3) / optimal_porosity^(1/3)
 
+    # Strength also scales with crosslinking
+    sigma_multiplier = crosslinking !== nothing ? sqrt(crosslinking.E_multiplier) : 1.0
+    sigma_scaffold = polymer.sigma_solid_mpa * sigma_multiplier * 0.3 * (1 - optimal_porosity)^1.5
+
     return (
         porosity = optimal_porosity,
         pore_size_um = optimal_pore,
         window_size_um = window_size,
         wall_thickness_um = wall_thickness,
         E_scaffold_mpa = actual_E,
-        sigma_scaffold_mpa = polymer.sigma_solid_mpa * 0.3 * (1 - optimal_porosity)^1.5,
+        sigma_scaffold_mpa = sigma_scaffold,
+        crosslinking = crosslinking,
     )
 end
 
 """
 Predict scaffold properties over time as it degrades.
+Crosslinking slows degradation by the crosslinking.degradation_factor.
 """
 function predict_degradation_profile(polymer::PolymerCandidate,
                                       geometry::NamedTuple;
@@ -343,6 +488,12 @@ function predict_degradation_profile(polymer::PolymerCandidate,
     # Degradation rate (first-order approximation)
     # Half-life ~ (deg_min + deg_max) / 2
     half_life = (polymer.degradation_weeks[1] + polymer.degradation_weeks[2]) / 2
+
+    # Crosslinking slows degradation
+    if haskey(geometry, :crosslinking) && geometry.crosslinking !== nothing
+        half_life *= geometry.crosslinking.degradation_factor
+    end
+
     k = log(2) / half_life  # per week
 
     results = []
@@ -511,21 +662,41 @@ function design_scaffold(tissue_type::Symbol;
 
     best_polymer = rankings[1].polymer
 
+    # Step 1.5: Select crosslinking for hydrogels
+    target_E = (tissue.target_modulus_mpa[1] + tissue.target_modulus_mpa[2]) / 2
+    crosslink_info = select_crosslinking(best_polymer, target_E)
+    crosslinking = crosslink_info.needed ? crosslink_info.method : nothing
+
+    if verbose && crosslink_info.needed
+        println("CROSSLINKING SELECTION")
+        println("-" ^ 70)
+        println(@sprintf("  Method: %s", crosslink_info.method.name))
+        println(@sprintf("  Modulus increase: %.1fx", crosslink_info.method.E_multiplier))
+        println(@sprintf("  Degradation slowdown: %.1fx", crosslink_info.method.degradation_factor))
+        biocompat_adj = best_polymer.biocompatibility * (1 - crosslink_info.method.biocompat_penalty)
+        println(@sprintf("  Adjusted biocompatibility: %.0f%%", biocompat_adj * 100))
+        println(@sprintf("  Source: %s", crosslink_info.method.source))
+        println()
+    end
+
     # Step 2: Optimize geometry
     if verbose
         println("OPTIMAL GEOMETRY")
         println("-" ^ 70)
     end
 
-    geometry = optimize_geometry(best_polymer, tissue)
+    geometry = optimize_geometry(best_polymer, tissue; crosslinking=crosslinking)
 
     if verbose
         println(@sprintf("  Porosity: %.1f%%", geometry.porosity * 100))
         println(@sprintf("  Pore size: %.0f um", geometry.pore_size_um))
         println(@sprintf("  Window size: %.0f um", geometry.window_size_um))
         println(@sprintf("  Wall thickness: %.0f um", geometry.wall_thickness_um))
-        println(@sprintf("  Scaffold E: %.1f MPa", geometry.E_scaffold_mpa))
-        println(@sprintf("  Scaffold strength: %.2f MPa", geometry.sigma_scaffold_mpa))
+        println(@sprintf("  Scaffold E: %.2f MPa", geometry.E_scaffold_mpa))
+        println(@sprintf("  Scaffold strength: %.3f MPa", geometry.sigma_scaffold_mpa))
+        if crosslink_info.needed
+            println(@sprintf("  (with %s crosslinking)", crosslink_info.method.abbrev))
+        end
         println()
     end
 
@@ -575,15 +746,26 @@ function design_scaffold(tissue_type::Symbol;
         println("DESIGN SUMMARY")
         println("=" ^ 70)
         println(@sprintf("  Polymer: %s (%s)", best_polymer.name, best_polymer.abbrev))
+        if crosslink_info.needed
+            println(@sprintf("  Crosslinking: %s (%.1fx modulus)", crosslink_info.method.name, crosslink_info.method.E_multiplier))
+        end
         println(@sprintf("  Tissue: %s", tissue.name))
         println(@sprintf("  Validation: %s", validation.all_pass ? "ALL PASS" : "ISSUES FOUND"))
-        println(@sprintf("  Estimated scaffold life: %.0f-%.0f weeks", best_polymer.degradation_weeks...))
+        # Adjusted scaffold life with crosslinking
+        deg_min = best_polymer.degradation_weeks[1]
+        deg_max = best_polymer.degradation_weeks[2]
+        if crosslink_info.needed
+            deg_min *= crosslink_info.method.degradation_factor
+            deg_max *= crosslink_info.method.degradation_factor
+        end
+        println(@sprintf("  Estimated scaffold life: %.0f-%.0f weeks", deg_min, deg_max))
         println()
     end
 
     return (
         tissue = tissue,
         polymer = best_polymer,
+        crosslinking = crosslinking,
         geometry = geometry,
         validation = validation,
         profile = profile
