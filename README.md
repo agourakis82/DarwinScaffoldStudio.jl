@@ -5,6 +5,18 @@ Julia package for analyzing tissue engineering scaffolds from MicroCT and SEM im
 [![CI](https://github.com/agourakis82/darwin-scaffold-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/agourakis82/darwin-scaffold-studio/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
+## Desktop App
+
+Premium desktop application with 3D visualization, AI-powered analysis, and scientific panels.
+
+| Platform | Download |
+|----------|----------|
+| Linux (AppImage) | [darwin-scaffold-studio_1.3.0_amd64.AppImage](https://github.com/agourakis82/DarwinScaffoldStudio.jl/releases/download/desktop-v1.3.0/darwin-scaffold-studio_1.3.0_amd64.AppImage) |
+| Linux (Debian/Ubuntu) | [darwin-scaffold-studio_1.3.0_amd64.deb](https://github.com/agourakis82/DarwinScaffoldStudio.jl/releases/download/desktop-v1.3.0/darwin-scaffold-studio_1.3.0_amd64.deb) |
+| Windows (Installer) | [Darwin.Scaffold.Studio_1.3.0_x64-setup.exe](https://github.com/agourakis82/DarwinScaffoldStudio.jl/releases/download/desktop-v1.3.0/Darwin.Scaffold.Studio_1.3.0_x64-setup.exe) |
+| Windows (MSI) | [Darwin.Scaffold.Studio_1.3.0_x64_en-US.msi](https://github.com/agourakis82/DarwinScaffoldStudio.jl/releases/download/desktop-v1.3.0/Darwin.Scaffold.Studio_1.3.0_x64_en-US.msi) |
+| macOS (Apple Silicon) | [Darwin.Scaffold.Studio_1.3.0_aarch64.dmg](https://github.com/agourakis82/DarwinScaffoldStudio.jl/releases/download/desktop-v1.3.0/Darwin.Scaffold.Studio_1.3.0_aarch64.dmg) |
+
 ## Installation
 
 Requires Julia 1.10 or later.
