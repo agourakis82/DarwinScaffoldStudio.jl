@@ -11,6 +11,10 @@ using ..Config
 using Statistics
 using Random
 
+# Import shared fabrication constants
+include("FabricationConstants.jl")
+using .FabricationConstants
+
 export Optimizer, optimize_scaffold, detect_problems
 
 # Note: Metrics module will be imported when needed
@@ -40,35 +44,35 @@ Detect scaffold design problems based on Q1 literature.
 """
 function detect_problems(metrics::ScaffoldMetrics)::Dict{String, String}
     problems = Dict{String, String}()
-    
+
     # Murphy 2010: pore size should be 100-200 μm
-    if !(100.0 <= metrics.mean_pore_size_um <= 200.0)
-        if metrics.mean_pore_size_um < 100.0
-            problems["pore_size"] = "Pore size too small ($(round(metrics.mean_pore_size_um, digits=1)) μm < 100 μm). Target: 100-200 μm (Murphy 2010)."
+    if !(PORE_SIZE_MIN_UM <= metrics.mean_pore_size_um <= PORE_SIZE_MAX_UM)
+        if metrics.mean_pore_size_um < PORE_SIZE_MIN_UM
+            problems["pore_size"] = "Pore size too small ($(round(metrics.mean_pore_size_um, digits=1)) μm < $(Int(PORE_SIZE_MIN_UM)) μm). Target: $(Int(PORE_SIZE_MIN_UM))-$(Int(PORE_SIZE_MAX_UM)) μm (Murphy 2010)."
         else
-            problems["pore_size"] = "Pore size too large ($(round(metrics.mean_pore_size_um, digits=1)) μm > 200 μm). Target: 100-200 μm (Murphy 2010)."
+            problems["pore_size"] = "Pore size too large ($(round(metrics.mean_pore_size_um, digits=1)) μm > $(Int(PORE_SIZE_MAX_UM)) μm). Target: $(Int(PORE_SIZE_MIN_UM))-$(Int(PORE_SIZE_MAX_UM)) μm (Murphy 2010)."
         end
     end
-    
+
     # Karageorgiou 2005: porosity should be 0.90-0.95
-    if !(0.90 <= metrics.porosity <= 0.95)
-        if metrics.porosity < 0.90
-            problems["porosity"] = "Porosity too low ($(round(metrics.porosity * 100, digits=1))% < 90%). Target: 90-95% (Karageorgiou 2005)."
+    if !(POROSITY_MIN <= metrics.porosity <= POROSITY_MAX)
+        if metrics.porosity < POROSITY_MIN
+            problems["porosity"] = "Porosity too low ($(round(metrics.porosity * 100, digits=1))% < $(Int(POROSITY_MIN * 100))%). Target: $(Int(POROSITY_MIN * 100))-$(Int(POROSITY_MAX * 100))% (Karageorgiou 2005)."
         else
-            problems["porosity"] = "Porosity too high ($(round(metrics.porosity * 100, digits=1))% > 95%). Target: 90-95% (Karageorgiou 2005)."
+            problems["porosity"] = "Porosity too high ($(round(metrics.porosity * 100, digits=1))% > $(Int(POROSITY_MAX * 100))%). Target: $(Int(POROSITY_MIN * 100))-$(Int(POROSITY_MAX * 100))% (Karageorgiou 2005)."
         end
     end
-    
-    # Karageorgiou 2005: interconnectivity should be ≥0.90
-    if metrics.interconnectivity < 0.90
-        problems["interconnectivity"] = "Interconnectivity too low ($(round(metrics.interconnectivity * 100, digits=1))% < 90%). Target: ≥90% (Karageorgiou 2005)."
+
+    # Karageorgiou 2005: interconnectivity should be ≥90%
+    if metrics.interconnectivity < INTERCONNECTIVITY_MIN
+        problems["interconnectivity"] = "Interconnectivity too low ($(round(metrics.interconnectivity * 100, digits=1))% < $(Int(INTERCONNECTIVITY_MIN * 100))%). Target: ≥$(Int(INTERCONNECTIVITY_MIN * 100))% (Karageorgiou 2005)."
     end
-    
+
     # Tortuosity should be <1.2
-    if metrics.tortuosity >= 1.2
-        problems["tortuosity"] = "Tortuosity too high ($(round(metrics.tortuosity, digits=2)) ≥ 1.2). Target: <1.2 for straight paths."
+    if metrics.tortuosity >= TORTUOSITY_MAX
+        problems["tortuosity"] = "Tortuosity too high ($(round(metrics.tortuosity, digits=2)) ≥ $(TORTUOSITY_MAX)). Target: <$(TORTUOSITY_MAX) for straight paths."
     end
-    
+
     return problems
 end
 
@@ -108,12 +112,12 @@ function optimize_scaffold(
     # Analyze optimized
     optimized_metrics = Metrics.compute_metrics(optimized_volume, optimizer.voxel_size_um)
     
-    # Compute improvements
+    # Compute improvements (percentage change)
     improvement = Dict{String, Float64}(
-        "porosity" => ((optimized_metrics.porosity - original_metrics.porosity) / max(original_metrics.porosity, 0.01)) * 100.0,
-        "pore_size" => ((optimized_metrics.mean_pore_size_um - original_metrics.mean_pore_size_um) / max(original_metrics.mean_pore_size_um, 1.0)) * 100.0,
-        "interconnectivity" => ((optimized_metrics.interconnectivity - original_metrics.interconnectivity) / max(original_metrics.interconnectivity, 0.01)) * 100.0,
-        "tortuosity" => ((original_metrics.tortuosity - optimized_metrics.tortuosity) / max(original_metrics.tortuosity, 1.0)) * 100.0
+        "porosity" => ((optimized_metrics.porosity - original_metrics.porosity) / max(original_metrics.porosity, MIN_POROSITY_DIVISOR)) * 100.0,
+        "pore_size" => ((optimized_metrics.mean_pore_size_um - original_metrics.mean_pore_size_um) / max(original_metrics.mean_pore_size_um, MIN_PORE_SIZE_DIVISOR)) * 100.0,
+        "interconnectivity" => ((optimized_metrics.interconnectivity - original_metrics.interconnectivity) / max(original_metrics.interconnectivity, MIN_INTERCONNECTIVITY_DIVISOR)) * 100.0,
+        "tortuosity" => ((original_metrics.tortuosity - optimized_metrics.tortuosity) / max(original_metrics.tortuosity, MIN_TORTUOSITY_DIVISOR)) * 100.0
     )
     
     # Determine fabrication method
@@ -205,23 +209,23 @@ function recommend_fabrication_method(
     metrics::ScaffoldMetrics
 )::Tuple{String, Dict{String, Any}}
     # Decision tree based on metrics
-    if metrics.porosity > 0.93 && metrics.mean_pore_size_um > 150.0
+    if metrics.porosity > HIGH_POROSITY_THRESHOLD && metrics.mean_pore_size_um > LARGE_PORE_THRESHOLD_UM
         return ("freeze-casting", Dict(
-            "temperature" => -20.0,
-            "freezing_rate" => 1.0,
-            "solute_concentration" => 0.1
+            "temperature" => FREEZE_CASTING_TEMP_C,
+            "freezing_rate" => FREEZE_CASTING_RATE,
+            "solute_concentration" => FREEZE_CASTING_SOLUTE_CONC
         ))
-    elseif metrics.mean_pore_size_um < 120.0
+    elseif metrics.mean_pore_size_um < SMALL_PORE_THRESHOLD_UM
         return ("3D-bioprinting", Dict(
-            "nozzle_diameter_um" => 100.0,
-            "layer_height_um" => 50.0,
-            "print_speed" => 10.0
+            "nozzle_diameter_um" => BIOPRINTING_NOZZLE_UM,
+            "layer_height_um" => BIOPRINTING_LAYER_UM,
+            "print_speed" => BIOPRINTING_SPEED
         ))
     else
         return ("salt-leaching", Dict(
             "salt_particle_size_um" => metrics.mean_pore_size_um,
             "salt_volume_fraction" => metrics.porosity,
-            "leaching_time_h" => 24.0
+            "leaching_time_h" => SALT_LEACHING_TIME_H
         ))
     end
 end

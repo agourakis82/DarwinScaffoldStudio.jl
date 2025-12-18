@@ -9,6 +9,10 @@ module Parametric
 using Random
 using Statistics
 
+# Import shared fabrication constants
+include("FabricationConstants.jl")
+using .FabricationConstants
+
 """
     generate_freeze_casting(params::Dict{String, Any}, dims::Tuple{Int, Int, Int}) -> Array{Bool, 3}
 
@@ -18,9 +22,9 @@ function generate_freeze_casting(
     params::Dict{String, Any},
     dims::Tuple{Int, Int, Int}
 )::Array{Bool, 3}
-    temperature = get(params, "temperature", -20.0)
-    freezing_rate = get(params, "freezing_rate", 1.0)
-    solute_concentration = get(params, "solute_concentration", 0.1)
+    temperature = get(params, "temperature", FREEZE_CASTING_TEMP_C)
+    freezing_rate = get(params, "freezing_rate", FREEZE_CASTING_RATE)
+    solute_concentration = get(params, "solute_concentration", FREEZE_CASTING_SOLUTE_CONC)
     
     # Simplified freeze-casting model
     # Ice crystals grow, creating aligned pores
@@ -49,9 +53,9 @@ function generate_3d_bioprinting(
     params::Dict{String, Any},
     dims::Tuple{Int, Int, Int}
 )::Array{Bool, 3}
-    nozzle_diameter_um = get(params, "nozzle_diameter_um", 100.0)
-    layer_height_um = get(params, "layer_height_um", 50.0)
-    print_speed = get(params, "print_speed", 10.0)
+    nozzle_diameter_um = get(params, "nozzle_diameter_um", BIOPRINTING_NOZZLE_UM)
+    layer_height_um = get(params, "layer_height_um", BIOPRINTING_LAYER_UM)
+    print_speed = get(params, "print_speed", BIOPRINTING_SPEED)
     
     # Simplified 3D bioprinting model
     # Layered structure with controlled spacing
@@ -83,9 +87,9 @@ function generate_salt_leaching(
     params::Dict{String, Any},
     dims::Tuple{Int, Int, Int}
 )::Array{Bool, 3}
-    salt_particle_size_um = get(params, "salt_particle_size_um", 150.0)
-    salt_volume_fraction = get(params, "salt_volume_fraction", 0.92)
-    leaching_time_h = get(params, "leaching_time_h", 24.0)
+    salt_particle_size_um = get(params, "salt_particle_size_um", SALT_LEACHING_SIZE_UM)
+    salt_volume_fraction = get(params, "salt_volume_fraction", SALT_LEACHING_FRACTION)
+    leaching_time_h = get(params, "leaching_time_h", SALT_LEACHING_TIME_H)
     
     # Simplified salt-leaching model
     # Random distribution of salt particles

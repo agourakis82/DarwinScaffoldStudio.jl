@@ -42,6 +42,40 @@ export hypervolume, dominated_hypervolume
 export latin_hypercube_sampling, sobol_sequence
 
 # =============================================================================
+# Hyperparameter Constants
+# =============================================================================
+
+# Gaussian Process defaults (Rasmussen & Williams 2006)
+const GP_DEFAULT_NOISE_VARIANCE = 1e-6
+const GP_JITTER = 1e-8  # Numerical stability for Cholesky
+const GP_MIN_STD = 1e-10  # Minimum standard deviation
+
+# Acquisition function defaults
+const UCB_DEFAULT_BETA = 2.0  # Exploration-exploitation trade-off (Srinivas et al. 2010)
+const KG_DEFAULT_FANTASIES = 64  # Monte Carlo samples for Knowledge Gradient
+const EHVI_DEFAULT_MC_SAMPLES = 128  # Monte Carlo samples for EHVI
+
+# TuRBO defaults (Eriksson et al. 2019)
+const TURBO_LENGTH_INIT = 0.8
+const TURBO_LENGTH_MIN = 0.5^7  # ~0.0078
+const TURBO_SUCCESS_TOL = 3
+const TURBO_FAIL_TOL = 5
+
+# SAASBO defaults (Eriksson & Jankowiak 2021)
+const SAASBO_DEFAULT_ALPHA = 0.1
+const SAASBO_DEFAULT_BETA = 1.0
+
+# NSGA-II defaults (Deb et al. 2002)
+const NSGA2_CROSSOVER_ETA = 20.0  # SBX distribution index
+const NSGA2_MUTATION_ETA = 20.0  # Polynomial mutation distribution
+
+# Scaffold optimization bounds (literature-based)
+const SCAFFOLD_POROSITY_BOUNDS = (0.7, 0.98)
+const SCAFFOLD_PORE_SIZE_BOUNDS = (50.0, 500.0)  # um
+const SCAFFOLD_STRUT_BOUNDS = (10.0, 200.0)  # um
+const SCAFFOLD_UNIT_CELL_BOUNDS = (200.0, 2000.0)  # um
+
+# =============================================================================
 # Gaussian Process Implementation
 # =============================================================================
 
@@ -113,7 +147,7 @@ mutable struct GaussianProcess
 end
 
 function GaussianProcess(kernel::KernelFunction;
-                         noise_variance::Float64=1e-6,
+                         noise_variance::Float64=GP_DEFAULT_NOISE_VARIANCE,
                          normalize_y::Bool=true)
     GaussianProcess(
         kernel,
@@ -157,7 +191,7 @@ function fit!(gp::GaussianProcess, X::Matrix{Float64}, y::Vector{Float64})
     if gp.normalize_y
         gp.y_mean = mean(y)
         gp.y_std = std(y)
-        gp.y_std = gp.y_std < 1e-10 ? 1.0 : gp.y_std
+        gp.y_std = gp.y_std < GP_MIN_STD ? 1.0 : gp.y_std
         gp.y = (y .- gp.y_mean) ./ gp.y_std
     else
         gp.y = y
@@ -170,7 +204,7 @@ function fit!(gp::GaussianProcess, X::Matrix{Float64}, y::Vector{Float64})
     K += gp.noise_variance * I(size(K, 1))
 
     # Add jitter for numerical stability
-    K += 1e-8 * I(size(K, 1))
+    K += GP_JITTER * I(size(K, 1))
 
     # Cholesky decomposition
     L = cholesky(Hermitian(K)).L
@@ -209,7 +243,7 @@ function predict_with_uncertainty(gp::GaussianProcess, X_new::Matrix{Float64})
 
     μ = K_star' * gp.alpha
     σ² = diag(K_star_star - K_star' * gp.K_inv * K_star)
-    σ² = max.(σ², 1e-10)  # Numerical stability
+    σ² = max.(σ², GP_MIN_STD)  # Numerical stability
 
     # Denormalize
     μ_out = μ .* gp.y_std .+ gp.y_mean
@@ -243,7 +277,7 @@ end
 ExpectedImprovement() = ExpectedImprovement(0.01)
 
 function (ei::ExpectedImprovement)(μ::Float64, σ::Float64, f_best::Float64)
-    if σ < 1e-10
+    if σ < GP_MIN_STD
         return max(μ - f_best - ei.xi, 0.0)
     end
 
@@ -262,7 +296,7 @@ struct UpperConfidenceBound <: AcquisitionFunction
     beta::Float64
 end
 
-UpperConfidenceBound() = UpperConfidenceBound(2.0)
+UpperConfidenceBound() = UpperConfidenceBound(UCB_DEFAULT_BETA)
 
 function (ucb::UpperConfidenceBound)(μ::Float64, σ::Float64, f_best::Float64)
     return μ + ucb.beta * σ
@@ -280,7 +314,7 @@ end
 ProbabilityOfImprovement() = ProbabilityOfImprovement(0.01)
 
 function (pi::ProbabilityOfImprovement)(μ::Float64, σ::Float64, f_best::Float64)
-    if σ < 1e-10
+    if σ < GP_MIN_STD
         return Float64(μ > f_best + pi.xi)
     end
     Z = (μ - f_best - pi.xi) / σ
@@ -297,7 +331,7 @@ struct KnowledgeGradient <: AcquisitionFunction
     n_fantasies::Int  # Number of Monte Carlo samples
 end
 
-KnowledgeGradient() = KnowledgeGradient(64)
+KnowledgeGradient() = KnowledgeGradient(KG_DEFAULT_FANTASIES)
 
 function (kg::KnowledgeGradient)(gp::GaussianProcess, x_new::Vector{Float64},
                                   X_candidates::Matrix{Float64})
@@ -310,7 +344,7 @@ function (kg::KnowledgeGradient)(gp::GaussianProcess, x_new::Vector{Float64},
     μ_new, σ²_new = predict_with_uncertainty(gp, x_mat)
     σ_new = sqrt(σ²_new[1])
 
-    if σ_new < 1e-10
+    if σ_new < GP_MIN_STD
         return 0.0
     end
 
@@ -762,8 +796,8 @@ mutable struct TuRBOState
 end
 
 function TuRBOState(dim::Int;
-                    length_init::Float64=0.8,
-                    length_min::Float64=0.5^7,
+                    length_init::Float64=TURBO_LENGTH_INIT,
+                    length_min::Float64=TURBO_LENGTH_MIN,
                     length_max::Float64=1.6)
     TuRBOState(
         length_init,
@@ -902,7 +936,7 @@ mutable struct SAASBO
 end
 
 function SAASBO(dim::Int; bounds::Matrix{Float64}=hcat(zeros(dim), ones(dim))',
-                alpha::Float64=0.1, beta::Float64=1.0)
+                alpha::Float64=SAASBO_DEFAULT_ALPHA, beta::Float64=SAASBO_DEFAULT_BETA)
     bo = BayesianOptimizer(dim; bounds=bounds)
     SAASBO(bo, alpha, beta, collect(1:dim))
 end
@@ -1507,7 +1541,12 @@ end
 
 function ScaffoldBayesianOptimizer(;
         dim::Int=4,  # porosity, pore_size, strut_thickness, unit_cell_size
-        bounds::Matrix{Float64}=Float64[0.7 0.98; 50.0 500.0; 10.0 200.0; 200.0 2000.0]')
+        bounds::Matrix{Float64}=Float64[
+            SCAFFOLD_POROSITY_BOUNDS[1] SCAFFOLD_POROSITY_BOUNDS[2];
+            SCAFFOLD_PORE_SIZE_BOUNDS[1] SCAFFOLD_PORE_SIZE_BOUNDS[2];
+            SCAFFOLD_STRUT_BOUNDS[1] SCAFFOLD_STRUT_BOUNDS[2];
+            SCAFFOLD_UNIT_CELL_BOUNDS[1] SCAFFOLD_UNIT_CELL_BOUNDS[2]
+        ]')
 
     mobo = MultiObjectiveBO(dim, 3;  # 3 objectives: mechanical, biological, permeability
                             bounds=bounds,

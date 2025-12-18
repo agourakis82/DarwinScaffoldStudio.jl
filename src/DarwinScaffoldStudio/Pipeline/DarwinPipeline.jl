@@ -5,6 +5,14 @@ using Dates
 
 export run_darwin_pipeline, PipelineConfig, PipelineResult
 
+# =============================================================================
+# Configuration Constants
+# =============================================================================
+
+# Default output directory for pipeline reports
+const DEFAULT_REPORT_DIR = "results"
+const DEFAULT_REPORT_SUFFIX = "_report.md"
+
 """
 Darwin Unified Pipeline 🧬
 
@@ -21,6 +29,22 @@ struct PipelineConfig
     optimization_goals::Vector{String} # ["porosity", "strength", "bioactivity"]
     use_quantum::Bool
     use_hausen_special::Bool
+    report_dir::String  # Output directory for reports
+
+    # Constructor with default report_dir
+    function PipelineConfig(
+        project_name::String,
+        input_type::String,
+        input_data::Any,
+        target_tissue::String,
+        optimization_goals::Vector{String},
+        use_quantum::Bool,
+        use_hausen_special::Bool,
+        report_dir::String=DEFAULT_REPORT_DIR
+    )
+        new(project_name, input_type, input_data, target_tissue,
+            optimization_goals, use_quantum, use_hausen_special, report_dir)
+    end
 end
 
 struct PipelineResult
@@ -185,8 +209,8 @@ function run_darwin_pipeline(config::PipelineConfig)
     results["provenance_hash"] = block.hash
     
     # Generate Report
-    report_path = generate_pipeline_report(pipeline_id, results)
-    
+    report_path = generate_pipeline_report(pipeline_id, results, config.report_dir)
+
     @info "✅ Pipeline Complete! Report: $report_path"
     
     return PipelineResult(
@@ -205,8 +229,11 @@ function merge_scaffold_components(base, pores, vessels)
     return base # Simplified
 end
 
-function generate_pipeline_report(id, results)
-    filename = "results/$(id)_report.md"
+function generate_pipeline_report(id::String, results::Dict, report_dir::String=DEFAULT_REPORT_DIR)::String
+    # Ensure report directory exists
+    mkpath(report_dir)
+
+    filename = joinpath(report_dir, "$(id)$(DEFAULT_REPORT_SUFFIX)")
     open(filename, "w") do io
         println(io, "# Darwin Pipeline Report: $id")
         println(io, "## Analysis")
