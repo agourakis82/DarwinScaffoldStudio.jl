@@ -216,4 +216,4 @@ MIT License - see [LICENSE](LICENSE).
 
 ---
 
-*Darwin Scaffold Studio v3.3.0 - 27 modules for comprehensive scaffold analysis*
+*Darwin Scaffold Studio v3.3.1 - 27 modules for comprehensive scaffold analysis*
