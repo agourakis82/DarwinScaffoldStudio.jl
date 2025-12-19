@@ -4,7 +4,27 @@ Configuration for DarwinScaffoldStudio
 
 module Config
 
-export ScaffoldConfig, get_config, set_config, GlobalConfig, get_global_config
+export ScaffoldConfig, get_config, set_config, GlobalConfig, get_global_config, VERSION
+
+"""
+    VERSION::String
+
+Current version of Darwin Scaffold Studio, read from Project.toml.
+"""
+const VERSION = let
+    project_file = joinpath(dirname(dirname(dirname(@__DIR__))), "Project.toml")
+    version = "0.0.0"
+    if isfile(project_file)
+        for line in eachline(project_file)
+            m = match(r"^version\s*=\s*\"([^\"]+)\"", line)
+            if m !== nothing
+                version = m.captures[1]
+                break
+            end
+        end
+    end
+    version
+end
 
 """
     GlobalConfig

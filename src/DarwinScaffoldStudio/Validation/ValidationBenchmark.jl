@@ -21,6 +21,22 @@ using Statistics
 using Printf
 using Dates
 
+# Read version from Project.toml (avoid cross-module import issues)
+const _VERSION = let
+    project_file = joinpath(dirname(dirname(dirname(@__DIR__))), "Project.toml")
+    version = "0.0.0"
+    if isfile(project_file)
+        for line in eachline(project_file)
+            m = match(r"^version\s*=\s*\"([^\"]+)\"", line)
+            if m !== nothing
+                version = m.captures[1]
+                break
+            end
+        end
+    end
+    version
+end
+
 export ValidationResult, BenchmarkSuite
 export run_validation, compare_with_reference, generate_validation_report
 export validate_porosity, validate_pore_size, validate_interconnectivity
@@ -395,7 +411,7 @@ function run_validation(
         dataset_name,
         dataset_source,
         now(),
-        "0.8.0",  # TODO: get from Config
+        _VERSION,
         results,
         overall_passed,
         summary
