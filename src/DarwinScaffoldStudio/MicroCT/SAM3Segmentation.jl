@@ -26,6 +26,7 @@ References:
 module SAM3Segmentation
 
 using Statistics
+using FileIO
 
 export segment_pores_sam, SAMConfig, initialize_sam
 export segment_3d_sam, segment_with_prompts
@@ -383,7 +384,6 @@ end
 
 function segment_pores_sam_python(image::AbstractMatrix; config::SAMConfig=SAMConfig())
     # Save image temporarily
-    using FileIO
     image_path = tempname() * ".png"
     output_path = tempname() * ".npy"
 

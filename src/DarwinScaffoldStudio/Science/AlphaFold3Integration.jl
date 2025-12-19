@@ -1,6 +1,7 @@
 module AlphaFold3Integration
 
 using LinearAlgebra
+using Statistics
 
 export predict_protein_scaffold_interaction, design_bioactive_coating
 
@@ -129,7 +130,7 @@ function design_bioactive_coating(scaffold_volume::AbstractArray;
         "target_cells" => target_cells,
         "recommended_proteins" => [p[1] for p in top3],
         "protein_interactions" => interactions,
-        "coating_strategy" => "Multi-layer: $(join([p[1] for p in top3], ' → '))",
+        "coating_strategy" => "Multi-layer: $(join([p[1] for p in top3], " -> "))",
         "predicted_cell_response" => mean([p[2]["binding_affinity"] for p in top3])
     )
 end

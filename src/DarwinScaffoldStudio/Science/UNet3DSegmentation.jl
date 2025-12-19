@@ -313,17 +313,10 @@ function forward_encoder(block::EncoderBlock, x::Array{Float64,4})
 end
 
 """
-    DecoderBlock
+    AttentionGate
 
-Upsampling + concatenation + double convolution for decoder path.
+Attention gate for focusing on relevant features.
 """
-struct DecoderBlock
-    conv1::Conv3DLayer
-    conv2::Conv3DLayer
-    use_attention::Bool
-    attention_gate::Union{AttentionGate, Nothing}
-end
-
 struct AttentionGate
     W_g::Conv3DLayer
     W_x::Conv3DLayer
@@ -353,6 +346,18 @@ function apply_attention(gate::AttentionGate, g::Array{Float64,4}, x::Array{Floa
     alpha_expanded = repeat(alpha, 1, 1, 1, n_channels)
 
     return x .* alpha_expanded
+end
+
+"""
+    DecoderBlock
+
+Upsampling + concatenation + double convolution for decoder path.
+"""
+struct DecoderBlock
+    conv1::Conv3DLayer
+    conv2::Conv3DLayer
+    use_attention::Bool
+    attention_gate::Union{AttentionGate, Nothing}
 end
 
 function DecoderBlock(in_channels::Int, out_channels::Int; use_attention::Bool=true)

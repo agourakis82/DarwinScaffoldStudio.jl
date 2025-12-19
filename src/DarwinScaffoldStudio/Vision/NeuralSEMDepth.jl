@@ -438,8 +438,8 @@ function resize_image(image::Matrix{Float64}, target_size::Tuple{Int,Int})
     return resized
 end
 
-sigmoid(x) = 1.0 / (1.0 + exp(-x))
-sigmoid.(x::AbstractArray) = 1.0 ./ (1.0 .+ exp.(-x))
+# Sigmoid function - broadcasting works automatically via sigmoid.(array)
+sigmoid(x::Real) = 1.0 / (1.0 + exp(-x))
 
 # ============================================================================
 # SHAPE FROM SHADING (SFS)
