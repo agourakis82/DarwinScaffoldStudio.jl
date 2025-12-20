@@ -213,6 +213,47 @@ end
 @info "Loading Validation layer (ValidationBenchmark)..."
 @safe_include "DarwinScaffoldStudio/Validation/ValidationBenchmark.jl" "ValidationBenchmark"
 
+# VALIDATION EXTENDED: Statistical Testing & Reproducibility (Phase 1 Science Enhancement)
+@info "Loading Extended Validation layer (Statistical Testing, Reproducibility)..."
+@safe_include "DarwinScaffoldStudio/Validation/StatisticalTesting.jl" "StatisticalTesting"
+@safe_include "DarwinScaffoldStudio/Validation/ReproducibilityTracker.jl" "ReproducibilityTracker"
+
+# DEMETRIOS: Epistemic Scientific Computing Integration
+# Units of measure, Knowledge types (τ,ε,δ,Φ), Compiler Bridge
+@info "Loading Demetrios layer (Units, Epistemic, CompilerBridge)..."
+module Demetrios
+    include("DarwinScaffoldStudio/Demetrios/Units.jl")
+    include("DarwinScaffoldStudio/Demetrios/Epistemic.jl")
+    include("DarwinScaffoldStudio/Demetrios/CompilerBridge.jl")
+
+    using .Units
+    using .Epistemic
+    using .CompilerBridge
+
+    export Units, Epistemic, CompilerBridge
+end
+
+# PHASE 2: Core Science Methods (SOTA 2024-2025)
+# Vision Transformers 3D, Equivariant Networks, GFlowNets, Uncertainty Quantification
+if SYSTEM_CONFIG.enable_frontier_ai
+    @info "Loading Phase 2: Vision Transformers 3D..."
+    @safe_include "DarwinScaffoldStudio/Science/VisionTransformers3D/ViT3D.jl" "ViT3D"
+    @safe_include "DarwinScaffoldStudio/Science/VisionTransformers3D/Swin3D.jl" "Swin3D"
+
+    @info "Loading Phase 2: Equivariant Networks (SE3-Transformers)..."
+    @safe_include "DarwinScaffoldStudio/Science/EquivariantNetworks/SphericalHarmonics.jl" "SphericalHarmonics"
+    @safe_include "DarwinScaffoldStudio/Science/EquivariantNetworks/SE3Transformers.jl" "SE3Transformers"
+
+    @info "Loading Phase 2: GFlowNets (Generative Flow Networks)..."
+    @safe_include "DarwinScaffoldStudio/Science/GFlowNets/GFlowNet.jl" "GFlowNet"
+    @safe_include "DarwinScaffoldStudio/Science/GFlowNets/ScaffoldGFN.jl" "ScaffoldGFN"
+
+    @info "Loading Phase 2: Uncertainty Quantification..."
+    @safe_include "DarwinScaffoldStudio/Validation/UncertaintyQuantification.jl" "UncertaintyQuantification"
+else
+    @warn "Phase 2 Science modules disabled. Enable with GlobalConfig(enable_frontier_ai=true)"
+end
+
 # FRONTIER BEYOND: Advanced Technologies (Optional - disabled by default)
 if SYSTEM_CONFIG.enable_advanced_modules
     @info "Loading ADVANCED modules (Quantum, Blockchain, etc.)..."
@@ -346,6 +387,8 @@ export
     Memory,
     # Generative (Text-to-Scaffold)
     Generative,
+    # Demetrios (Epistemic Scientific Computing)
+    Demetrios,
     # Agents (Type-safe AI agents)
     Agent,
     AgentTool,
