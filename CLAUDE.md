@@ -6,7 +6,11 @@ Julia-based platform for tissue engineering scaffold analysis with AI agents.
 ## Quick Commands
 ```bash
 # Test modules load
-julia --project=. test_minimal.jl
+julia --project=. test/test_minimal.jl
+
+# Build Demetrios compiler (submodule)
+git submodule update --init --recursive
+./scripts/build_demetrios.sh
 
 # Start Julia REPL with project
 julia --project=.
@@ -101,10 +105,13 @@ using ..Config: get_config
 - Do NOT include "Generated with Claude Code" or similar footers
 - Keep commit messages clean and human-authored
 
+## Demetrios Compiler Bridge
+- Set `DEMETRIOS_HOME` to the Demetrios repo root or `DEMETRIOS_STDLIB` to its `stdlib/` to help `CompilerBridge` locate `dc` and stdlib.
+
 ## Testing
 ```bash
 # Quick structure test
-julia --project=. test_minimal.jl
+julia --project=. test/test_minimal.jl
 
 # Full test suite (slow, loads all deps)
 julia --project=. test/runtests.jl

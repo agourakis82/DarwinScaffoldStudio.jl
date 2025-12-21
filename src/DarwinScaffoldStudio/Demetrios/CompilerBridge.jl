@@ -17,8 +17,11 @@ References:
 """
 module CompilerBridge
 
+using JSON3
+
 export DemetriosCompiler, find_compiler, is_available
 export compile_demetrios, run_demetrios, check_syntax
+export run_demetrios_json
 export DemetriosError, CompilationError, RuntimeError
 export get_compiler_version, get_compiler_info
 
@@ -122,8 +125,14 @@ function find_compiler(; paths::Union{Vector{String}, Nothing}=nothing)
 
     # Environment variable
     if haskey(ENV, "DEMETRIOS_HOME")
-        push!(search_paths, joinpath(ENV["DEMETRIOS_HOME"], "target", "release"))
-        push!(search_paths, joinpath(ENV["DEMETRIOS_HOME"], "target", "debug"))
+        demetrios_home = ENV["DEMETRIOS_HOME"]
+        append!(search_paths, [
+            joinpath(demetrios_home, "compiler", "target", "release"),
+            joinpath(demetrios_home, "compiler", "target", "debug"),
+            # Backward-compatible layout (if DEMETRIOS_HOME points at compiler/)
+            joinpath(demetrios_home, "target", "release"),
+            joinpath(demetrios_home, "target", "debug"),
+        ])
     end
 
     # Common locations
@@ -131,14 +140,21 @@ function find_compiler(; paths::Union{Vector{String}, Nothing}=nothing)
         # Local project
         joinpath(dirname(dirname(dirname(@__DIR__))), "compiler", "target", "release"),
         joinpath(dirname(dirname(dirname(@__DIR__))), "compiler", "target", "debug"),
+        joinpath(dirname(dirname(dirname(@__DIR__))), "demetrios", "compiler", "target", "release"),
+        joinpath(dirname(dirname(dirname(@__DIR__))), "demetrios", "compiler", "target", "debug"),
         # User home
         joinpath(homedir(), ".demetrios", "bin"),
+        joinpath(homedir(), "demetrios", "compiler", "target", "release"),
+        joinpath(homedir(), "demetrios", "compiler", "target", "debug"),
+        # Legacy/alternate layouts
         joinpath(homedir(), "demetrios", "target", "release"),
+        joinpath(homedir(), "demetrios", "target", "debug"),
         # System-wide
         "/usr/local/bin",
         "/usr/bin",
         # Workspace locations (common development setups)
         joinpath(dirname(dirname(dirname(dirname(@__DIR__)))), "demetrios", "compiler", "target", "release"),
+        joinpath(dirname(dirname(dirname(dirname(@__DIR__)))), "demetrios", "compiler", "target", "debug"),
         joinpath(dirname(dirname(dirname(dirname(@__DIR__)))), "Darwin-demetrios", "compiler", "target", "release"),
     ]
     append!(search_paths, common_paths)
@@ -175,11 +191,16 @@ function find_compiler(; paths::Union{Vector{String}, Nothing}=nothing)
 
                 # Find stdlib
                 stdlib_path = ""
-                for stdlib_candidate in [
+                stdlib_candidates = String[]
+                if haskey(ENV, "DEMETRIOS_HOME")
+                    push!(stdlib_candidates, joinpath(ENV["DEMETRIOS_HOME"], "stdlib"))
+                end
+                append!(stdlib_candidates, [
                     joinpath(dirname(dir), "stdlib"),
                     joinpath(dirname(dirname(dir)), "stdlib"),
-                    joinpath(dirname(dir), "..", "stdlib"),
-                ]
+                    joinpath(dirname(dirname(dirname(dir))), "stdlib"),
+                ])
+                for stdlib_candidate in stdlib_candidates
                     if isdir(stdlib_candidate)
                         stdlib_path = stdlib_candidate
                         break
@@ -275,7 +296,9 @@ function check_syntax(source::String; source_file::String="<inline>")
         write(temp_file, source)
 
         # Run syntax check
-        result = run(pipeline(`$(compiler.path) check $temp_file`, stderr=stderr), wait=false)
+        env = compiler_env(compiler)
+        cmd = Cmd([compiler.path, "check", temp_file]; env=env)
+        result = run(pipeline(cmd, stderr=stderr), wait=false)
         wait(result)
 
         return result.exitcode == 0
@@ -309,26 +332,17 @@ function compile_demetrios(source_file::String;
     end
 
     # Build command
-    cmd_parts = [compiler.path]
-
-    # Add stdlib path if available
-    if !isempty(compiler.stdlib_path)
-        push!(cmd_parts, "--stdlib")
-        push!(cmd_parts, compiler.stdlib_path)
-    end
+    cmd_parts = [compiler.path, "compile"]
 
     # Optimization
     if optimize
-        push!(cmd_parts, "--release")
+        push!(cmd_parts, "-O")
+        push!(cmd_parts, "2")
     end
 
-    # GPU
+    # GPU (not yet exposed via CLI)
     if gpu
-        if !(:gpu in compiler.features)
-            @warn "GPU not available in this Demetrios build"
-        else
-            push!(cmd_parts, "--gpu")
-        end
+        @warn "Demetrios GPU codegen is not exposed via the CLI yet; ignoring gpu=true"
     end
 
     # Output path
@@ -342,7 +356,8 @@ function compile_demetrios(source_file::String;
     push!(cmd_parts, source_file)
 
     # Run compiler
-    cmd = Cmd(cmd_parts)
+    env = compiler_env(compiler)
+    cmd = Cmd(cmd_parts; env=env)
     stdout_buf = IOBuffer()
     stderr_buf = IOBuffer()
 
@@ -386,63 +401,88 @@ Run a Demetrios model with given inputs.
 """
 function run_demetrios(source_file::String, inputs::Dict=Dict();
                        timeout::Int=60)
-    compiler = get_compiler()
-
     if !isfile(source_file)
         error("Source file not found: $source_file")
     end
 
-    # Build command
-    cmd_parts = [compiler.path, "run"]
+    argv = ["$k=$v" for (k, v) in inputs]
+    stdout_output = run_demetrios_stdout(source_file, argv; timeout=timeout)
+    return parse_demetrios_output(stdout_output)
+end
 
-    # Add stdlib path
-    if !isempty(compiler.stdlib_path)
-        push!(cmd_parts, "--stdlib")
-        push!(cmd_parts, compiler.stdlib_path)
-    end
+"""
+    run_demetrios_stdout(source_file::String, argv; timeout=60) -> String
 
-    # Add input parameters
-    for (k, v) in inputs
-        push!(cmd_parts, "--param")
-        push!(cmd_parts, "$k=$v")
-    end
+Run `dc run` and return stdout as a string.
+"""
+function run_demetrios_stdout(source_file::String, argv::Vector{String}=String[];
+                              timeout::Int=60)
+    compiler = get_compiler()
 
-    # Source file
-    push!(cmd_parts, source_file)
+    cmd_parts = [compiler.path, "run", source_file]
+    append!(cmd_parts, argv)
 
-    # Run with timeout
-    cmd = Cmd(cmd_parts)
+    env = compiler_env(compiler)
+    cmd = Cmd(cmd_parts; env=env)
     stdout_buf = IOBuffer()
     stderr_buf = IOBuffer()
 
+    proc = run(pipeline(cmd, stdout=stdout_buf, stderr=stderr_buf), wait=false)
+
+    start_time = time()
+    while process_running(proc)
+        if time() - start_time > timeout
+            kill(proc)
+            throw(RuntimeError("Execution timeout after $(timeout)s", ""))
+        end
+        sleep(0.1)
+    end
+
+    stderr_output = String(take!(stderr_buf))
+    stdout_output = String(take!(stdout_buf))
+    if proc.exitcode != 0
+        throw(RuntimeError("Execution failed with code $(proc.exitcode)", stderr_output))
+    end
+
+    return stdout_output
+end
+
+"""
+    run_demetrios_json(source_file::String, input; timeout=60) -> Any
+
+Run a Demetrios program using a JSON file input contract.
+
+The program is invoked as:
+`dc run <source_file> <temp_input.json>`
+
+and is expected to print a single JSON value to stdout (last non-empty line).
+"""
+function run_demetrios_json(source_file::String, input=Dict{String, Any}();
+                            timeout::Int=60)
+    if !isfile(source_file)
+        error("Source file not found: $source_file")
+    end
+
+    json_str = JSON3.write(input)
+    temp_json = tempname() * ".json"
+
     try
-        proc = run(pipeline(cmd, stdout=stdout_buf, stderr=stderr_buf), wait=false)
+        write(temp_json, json_str)
+        stdout_output = run_demetrios_stdout(source_file, [temp_json]; timeout=timeout)
 
-        # Wait with timeout
-        start_time = time()
-        while process_running(proc)
-            if time() - start_time > timeout
-                kill(proc)
-                throw(RuntimeError("Execution timeout after $(timeout)s", ""))
-            end
-            sleep(0.1)
+        lines = [strip(l) for l in split(stdout_output, "\n") if !isempty(strip(l))]
+        if isempty(lines)
+            throw(RuntimeError("No output from Demetrios program", ""))
         end
 
-        if proc.exitcode != 0
-            stderr_output = String(take!(stderr_buf))
-            throw(RuntimeError("Execution failed with code $(proc.exitcode)", stderr_output))
+        json_out = lines[end]
+        try
+            return JSON3.read(json_out)
+        catch e
+            throw(RuntimeError("Failed to parse JSON output: $e", json_out))
         end
-
-        # Parse output
-        stdout_output = String(take!(stdout_buf))
-        return parse_demetrios_output(stdout_output)
-
-    catch e
-        if e isa DemetriosError
-            rethrow()
-        end
-        stderr_output = String(take!(stderr_buf))
-        throw(RuntimeError("Execution error: $e", stderr_output))
+    finally
+        rm(temp_json, force=true)
     end
 end
 
@@ -508,28 +548,15 @@ kernel = compile_demetrios_kernel(\"""
 function compile_demetrios_kernel(source::String; name::String="kernel")
     compiler = get_compiler()
 
-    if !(:gpu in compiler.features)
-        error("GPU support not available in this Demetrios build")
+    error("Demetrios CLI does not expose GPU kernel emission yet; compile kernels via the Demetrios toolchain directly.")
+end
+
+function compiler_env(compiler::DemetriosCompiler)
+    env = Dict{String, String}()
+    if !isempty(compiler.stdlib_path) && !haskey(ENV, "DEMETRIOS_STDLIB")
+        env["DEMETRIOS_STDLIB"] = compiler.stdlib_path
     end
-
-    # Write kernel source
-    temp_file = tempname() * ".d"
-    try
-        write(temp_file, source)
-
-        # Compile to PTX/GPU IR
-        output_file = tempname() * ".ptx"
-        cmd = `$(compiler.path) compile --gpu --emit-ptx -o $output_file $temp_file`
-
-        run(cmd)
-
-        # Read compiled kernel
-        ptx_code = read(output_file, String)
-
-        return CompiledKernel(name, ptx_code, source)
-    finally
-        rm(temp_file, force=true)
-    end
+    return env
 end
 
 """

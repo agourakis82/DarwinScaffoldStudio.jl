@@ -1,0 +1,3 @@
+[submodule "demetrios"]
+	path = demetrios
+	url = https://github.com/chiuratto-AI/demetrios.git
